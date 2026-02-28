@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Play } from 'lucide-react';
+import VideoModal from './VideoModal';
 
 interface ReviewCard {
   title: string;
   subtitle: string;
   image: string;
   tag?: string;
+  videoId: string;
 }
 
 const reviews: ReviewCard[] = [
@@ -13,22 +16,38 @@ const reviews: ReviewCard[] = [
     title: 'STUDENT EXPERIENCE',
     subtitle: 'CLASS OF CAREERDCODE',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+    videoId: 'dQw4w9WgXcQ' // Example ID
   },
   {
     title: '9 MONTHS JOBLESS TO 2 OFFERS!',
     subtitle: 'His Roadmap to Your Dream Job',
     image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800',
-    tag: 'SUCCESS STORY'
+    tag: 'SUCCESS STORY',
+    videoId: 'dQw4w9WgXcQ' // Example ID
   },
   {
     title: 'CAREER SWITCH THAT PAID OFF!',
     subtitle: 'From Non-Tech to Software Engineer',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800',
-    tag: 'CAREER SWITCH'
+    tag: 'CAREER SWITCH',
+    videoId: 'dQw4w9WgXcQ' // Example ID
   }
 ];
 
 export default function StudentReviews() {
+  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  const openVideo = (videoId: string) => {
+    setSelectedVideoId(videoId);
+    setIsVideoModalOpen(true);
+  };
+
+  const closeVideo = () => {
+    setIsVideoModalOpen(false);
+    setSelectedVideoId(null);
+  };
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,6 +76,7 @@ export default function StudentReviews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
+              onClick={() => openVideo(review.videoId)}
               className="group relative rounded-2xl overflow-hidden shadow-xl cursor-pointer aspect-video md:aspect-[4/3]"
             >
               {/* Background Image */}
@@ -102,6 +122,13 @@ export default function StudentReviews() {
           ))}
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal 
+        isOpen={isVideoModalOpen} 
+        onClose={closeVideo} 
+        videoId={selectedVideoId || ''} 
+      />
     </section>
   );
 }
