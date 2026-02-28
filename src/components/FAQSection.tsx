@@ -25,7 +25,7 @@ const faqData: FAQData = {
   Learning: [
     {
       question: "How are offline and online courses different at CareerDCode?",
-      answer: "At CareerDCode, both offline and online courses offer the same high-quality curriculum and placement support. The main differences lie in the learning environment:\n• Offline Courses are held at our centers, providing a classroom experience with face-to-face interactions, peer learning, and instant support from instructors.\n• Live Online Courses provide the same real-time interaction but allow you to learn from anywhere, with flexibility in attending classes remotely while still benefiting from live discussions and mentorship.\n\nBoth formats include projects, assignments, and placement assistance, but you choose the learning environment that fits your lifestyle best."
+      answer: "At CareerDCode, both offline and online courses offer the same high-quality curriculum. The main differences lie in the learning environment:\n• Offline Courses are held at our centers, providing a classroom experience with face-to-face interactions, peer learning, and instant support from instructors.\n• Live Online Courses provide the same real-time interaction but allow you to learn from anywhere, with flexibility in attending classes remotely while still benefiting from live discussions and mentorship.\n\nBoth formats include projects, assignments, and expert mentorship, but you choose the learning environment that fits your lifestyle best."
     },
     {
       question: "What study materials and resources will I get access to?",
@@ -54,16 +54,6 @@ const faqData: FAQData = {
     {
       question: "What kind of real-world projects are included?",
       answer: "You will work on industry-grade projects like E-commerce clones, Social Media dashboards, and Data Visualization tools that simulate real work environments."
-    }
-  ],
-  Placements: [
-    {
-      question: "Does CareerDCode guarantee placements?",
-      answer: "We provide 100% placement assistance and have a network of 500+ hiring partners. Our students consistently land high-paying jobs at top tech companies."
-    },
-    {
-      question: "What is the average salary package?",
-      answer: "The salary packages vary based on the role and company, but our graduates typically see packages ranging from 5 LPA to 40 LPA."
     }
   ]
 };

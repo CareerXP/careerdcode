@@ -121,8 +121,8 @@ export default function TrustedBy() {
             <div className="grid grid-cols-3 gap-8 pt-8">
               {[
                 { label: 'COMPANIES', value: '500+' },
-                { label: 'OPENINGS', value: '8000+' },
-                { label: 'PLACEMENTS', value: '2000+' },
+                { label: 'PROJECTS', value: '1000+' },
+                { label: 'STUDENTS', value: '35000+' },
               ].map((stat, idx) => (
                 <div key={idx} className={`${idx !== 2 ? 'border-r border-white/20' : ''}`}>
                   <p className="text-4xl font-bold mb-2">{stat.value}</p>

@@ -13,7 +13,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "We have the best engineers on board from CareerDCode. The value they add to the students's career and the company's hiring needs is unparalleled. It's become a ritual for us to ping CareerDCode for new openings.",
+    quote: "We have the best engineers on board from CareerDCode. The value they add to the students's career and the company's talent needs is unparalleled. It's become a ritual for us to reach out to CareerDCode for new talent.",
     author: "Yogesh Lokhande",
     role: "PayGlobal Co-founder",
     avatar: "https://picsum.photos/seed/yogesh/100/100"
@@ -143,8 +143,8 @@ export default function TrustedCompanies() {
             <div className="grid grid-cols-3 gap-8">
               {[
                 { label: 'COMPANIES', value: '500+' },
-                { label: 'OPENINGS', value: '8000+' },
-                { label: 'PLACEMENTS', value: '2000+' }
+                { label: 'PROJECTS', value: '1000+' },
+                { label: 'STUDENTS', value: '35000+' }
               ].map((stat, idx) => (
                 <div key={idx} className={`text-center ${idx !== 2 ? 'border-r border-white/20' : ''}`}>
                   <p className="text-4xl lg:text-5xl font-bold mb-2">{stat.value}</p>

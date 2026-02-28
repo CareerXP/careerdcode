@@ -34,12 +34,12 @@ export default function Hero() {
 
             {/* Heading */}
             <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-              The <span className="text-blue-600">Training</span> and Placement platform for your <span className="text-blue-500">career</span>
+              The <span className="text-blue-600">Training</span> platform for your <span className="text-blue-500">career</span>
             </h1>
 
             {/* Subtext */}
             <p className="text-xl text-slate-600 max-w-xl leading-relaxed">
-              Get job-ready with expert-led courses or participate in our free hiring drives.
+              Get industry-ready with expert-led courses and state-of-the-art curriculum.
             </p>
 
             {/* Partner Logos */}
@@ -71,7 +71,7 @@ export default function Hero() {
               <div className="relative z-10 max-w-[60%]">
                 <h3 className="text-xs font-bold uppercase tracking-widest mb-4">Courses</h3>
                 <p className="text-2xl font-bold mb-8 leading-tight">
-                  Industry Ready Training to get you placed!
+                  Industry Ready Training to master your skills!
                 </p>
                 <button className="flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-xl font-bold hover:bg-blue-50 transition-all">
                   View Courses <ArrowUpRight size={20} />
@@ -86,34 +86,6 @@ export default function Hero() {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/40 to-transparent"></div>
-              </div>
-            </motion.div>
-
-            {/* Jobs Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 to-purple-500 p-8 text-white shadow-2xl shadow-purple-200"
-            >
-              <div className="relative z-10 max-w-[60%]">
-                <h3 className="text-xs font-bold uppercase tracking-widest mb-4">Jobs</h3>
-                <p className="text-2xl font-bold mb-8 leading-tight">
-                  If you're skilled, get hired directly with our FREE verified hiring drives!
-                </p>
-                <button className="flex items-center gap-2 px-6 py-3 bg-white text-purple-600 rounded-xl font-bold hover:bg-purple-50 transition-all">
-                  View Hiring Drives <ArrowUpRight size={20} />
-                </button>
-              </div>
-              {/* Professional Image Placeholder */}
-              <div className="absolute right-0 bottom-0 w-1/2 h-full flex items-end justify-end overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" 
-                  className="h-[90%] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
-                  alt="Professional"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-600/40 to-transparent"></div>
               </div>
             </motion.div>
           </div>

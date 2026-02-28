@@ -4,7 +4,6 @@ import ImpactStats from './components/ImpactStats';
 import StudentTransformations from './components/StudentTransformations';
 import CourseSection from './components/CourseSection';
 import SkillCentres from './components/SkillCentres';
-import HiringDrives from './components/HiringDrives';
 import TrustedCompanies from './components/TrustedCompanies';
 import StudentReviews from './components/StudentReviews';
 import MentorSection from './components/MentorSection';
@@ -24,7 +23,6 @@ export default function App() {
         <StudentTransformations />
         <CourseSection />
         <SkillCentres />
-        <HiringDrives />
         <TrustedCompanies />
         <StudentReviews />
         <MentorSection />

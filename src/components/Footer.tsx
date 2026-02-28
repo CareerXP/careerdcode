@@ -18,7 +18,7 @@ export default function Footer() {
 
           {/* Pune Centre */}
           <div>
-            <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Pune Skill & Job Drive Centre</h3>
+            <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Pune Skill Centre</h3>
             <div className="mb-4">
               <h4 className="text-slate-900 font-bold text-xs uppercase mb-2">Courses Offered</h4>
               <ul className="space-y-1 text-slate-600 text-sm">
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Noida Centre */}
           <div>
-            <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Noida Skill & Job Drive Centre</h3>
+            <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Noida Skill Centre</h3>
             <div className="mb-4">
               <h4 className="text-slate-900 font-bold text-xs uppercase mb-2">Courses Offered</h4>
               <ul className="space-y-1 text-slate-600 text-sm">
@@ -54,7 +54,7 @@ export default function Footer() {
 
           {/* Hyderabad Centre */}
           <div>
-            <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Hyderabad Skill & Job Drive Centre</h3>
+            <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Hyderabad Skill Centre</h3>
             <div className="mb-4">
               <h4 className="text-slate-900 font-bold text-xs uppercase mb-2">Courses Offered</h4>
               <ul className="space-y-1 text-slate-600 text-sm">

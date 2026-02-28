@@ -23,10 +23,6 @@ export default function Navbar() {
               Centres
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </a>
-            <a href="#" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors relative group">
-              Jobs
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            </a>
             <div className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-blue-600 cursor-pointer transition-colors">
               More <ChevronDown size={16} />
             </div>
@@ -34,9 +30,6 @@ export default function Navbar() {
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-4">
-            <button className="px-6 py-2.5 text-sm font-semibold text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-all">
-              Login
-            </button>
             <button className="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all">
               <PhoneCall size={18} />
               Request Callback
