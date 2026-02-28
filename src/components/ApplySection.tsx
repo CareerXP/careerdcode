@@ -25,7 +25,11 @@ const steps = [
   },
 ];
 
-export default function ApplySection() {
+interface ApplySectionProps {
+  onCallbackClick: () => void;
+}
+
+export default function ApplySection({ onCallbackClick }: ApplySectionProps) {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,6 +73,7 @@ export default function ApplySection() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              onClick={onCallbackClick}
               className="w-full py-4 bg-blue-50 text-blue-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-100 transition-colors border border-blue-100"
             >
               <PhoneCall size={18} />

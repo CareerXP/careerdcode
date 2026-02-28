@@ -1,6 +1,10 @@
 import { ChevronDown, PhoneCall } from 'lucide-react';
 
-export default function Navbar() {
+interface NavbarProps {
+  onCallbackClick: () => void;
+}
+
+export default function Navbar({ onCallbackClick }: NavbarProps) {
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +34,10 @@ export default function Navbar() {
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-4">
-            <button className="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all">
+            <button 
+              onClick={onCallbackClick}
+              className="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all"
+            >
               <PhoneCall size={18} />
               Request Callback
             </button>

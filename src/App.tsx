@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ImpactStats from './components/ImpactStats';
@@ -12,11 +13,21 @@ import FAQSection from './components/FAQSection';
 import ApplySection from './components/ApplySection';
 import Footer from './components/Footer';
 import WhatsAppFAB from './components/WhatsAppFAB';
+import CallbackModal from './components/CallbackModal';
 
 export default function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<'callback' | 'brochure'>('callback');
+
+  const openModal = (type: 'callback' | 'brochure' = 'callback') => {
+    setModalType(type);
+    setIsModalOpen(true);
+  };
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar onCallbackClick={() => openModal('callback')} />
       <main className="flex-grow">
         <Hero />
         <ImpactStats />
@@ -28,12 +39,17 @@ export default function App() {
         <MentorSection />
         <FoundersSection />
         <FAQSection />
-        <ApplySection />
+        <ApplySection onCallbackClick={() => openModal('callback')} />
       </main>
       
-      <Footer />
+      <Footer 
+        onCallbackClick={() => openModal('callback')} 
+        onBrochureClick={() => openModal('brochure')}
+      />
 
       <WhatsAppFAB />
+
+      <CallbackModal isOpen={isModalOpen} onClose={closeModal} type={modalType} />
     </div>
   );
 }

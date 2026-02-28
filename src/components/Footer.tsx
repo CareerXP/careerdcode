@@ -1,6 +1,11 @@
 import { Mail, Phone, MapPin, Send, Instagram, Youtube, Linkedin, Facebook, MessageCircle, Download } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onCallbackClick: () => void;
+  onBrochureClick: () => void;
+}
+
+export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps) {
   return (
     <footer className="bg-white border-t border-slate-100 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -131,11 +136,17 @@ export default function Footer() {
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-4">
-            <button className="w-full py-3.5 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100">
+            <button 
+              onClick={onBrochureClick}
+              className="w-full py-3.5 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100"
+            >
               <Download size={18} />
               Download Brochure
             </button>
-            <button className="w-full py-3.5 bg-blue-50 text-blue-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-100 transition-colors border border-blue-100">
+            <button 
+              onClick={onCallbackClick}
+              className="w-full py-3.5 bg-blue-50 text-blue-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-100 transition-colors border border-blue-100"
+            >
               <Phone size={18} />
               Request Callback
             </button>
