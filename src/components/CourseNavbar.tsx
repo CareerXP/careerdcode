@@ -22,13 +22,13 @@ export default function CourseNavbar() {
 
           {/* Navigation Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="/#partners" className="text-sm font-medium text-white/80 hover:text-white transition-colors">
+            <a href="#partners" className="text-sm font-medium text-white/80 hover:text-white transition-colors">
               Hiring Partners
             </a>
             <a href="#curriculum" className="text-sm font-medium text-white/80 hover:text-white transition-colors">
               Curriculum
             </a>
-            <a href="/#faq" className="text-sm font-medium text-white/80 hover:text-white transition-colors">
+            <a href="#faq" className="text-sm font-medium text-white/80 hover:text-white transition-colors">
               FAQs
             </a>
           </div>
