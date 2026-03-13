@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { ChevronRight, MapPin } from 'lucide-react';
+import { coursesData } from '../data/courses';
 
 interface Centre {
   id: string;
@@ -12,21 +14,6 @@ const centres: Centre[] = [
   { id: 'pune', name: 'Pune Skill Centre', location: 'Pune' },
   { id: 'noida', name: 'Noida Skill Centre', location: 'Noida' },
   { id: 'hyderabad', name: 'Hyderabad Skill Centre', location: 'Hyderabad' },
-];
-
-const coursesOffered = [
-  {
-    title: 'Java Full Stack Development With Gen AI',
-    tech: ['java', 'mysql', 'spring', 'python'],
-  },
-  {
-    title: 'MERN Full Stack Development With Gen AI',
-    tech: ['html5', 'css3', 'react', 'nodejs', 'javascript', 'mongodb'],
-  },
-  {
-    title: 'Data Analytics',
-    tech: ['mysql', 'python', 'excel', 'powerbi'], // Simplified mapping
-  },
 ];
 
 export default function SkillCentres() {
@@ -55,6 +42,9 @@ export default function SkillCentres() {
     
     return mapping[tech] ? `${baseUrl}${mapping[tech]}` : null;
   };
+
+  // Flatten all courses from coursesData for display
+  const allCourses = Object.values(coursesData).flat();
 
   return (
     <section id="centres" className="py-24 bg-white overflow-hidden">
@@ -166,7 +156,7 @@ export default function SkillCentres() {
             <div>
               <h3 className="text-xl font-bold text-slate-900 mb-8">Courses Offered</h3>
               <div className="grid md:grid-cols-3 gap-6">
-                {coursesOffered.map((course, idx) => (
+                {allCourses.map((course, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 20 }}
@@ -180,7 +170,7 @@ export default function SkillCentres() {
                     </h4>
                     
                     <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                      {course.tech.map((t) => (
+                      {course.techStack.map((t) => (
                         <div key={t} className="w-7 h-7 p-1 bg-white rounded-md shadow-sm border border-slate-100">
                           <img 
                             src={getTechIcon(t) || ''} 
@@ -197,9 +187,12 @@ export default function SkillCentres() {
                       )}
                     </div>
 
-                    <button className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all">
+                    <Link 
+                      to={`/courses/${course.id}`}
+                      className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all"
+                    >
                       View Program <ChevronRight size={14} />
-                    </button>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
@@ -210,3 +203,4 @@ export default function SkillCentres() {
     </section>
   );
 }
+

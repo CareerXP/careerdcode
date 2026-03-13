@@ -60,7 +60,7 @@ export default function TrustedCompanies() {
   }, [isHovered]);
 
   return (
-    <section className="relative py-24 bg-[#0A2540] overflow-hidden text-white">
+    <section id="partners" className="relative py-24 bg-[#0A2540] overflow-hidden text-white">
       {/* Background Waves */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">

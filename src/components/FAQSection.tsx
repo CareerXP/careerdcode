@@ -63,7 +63,7 @@ export default function FAQSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-[#F0F7FF]">
+    <section id="faq" className="py-24 bg-[#F0F7FF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

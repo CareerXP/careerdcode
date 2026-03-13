@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { 
   Code, 
   BarChart3, 
@@ -11,36 +12,7 @@ import {
   MapPin,
   Zap
 } from 'lucide-react';
-
-interface Course {
-  id: string;
-  title: string;
-  duration: string;
-  image: string;
-  techStack: string[];
-  color: string;
-}
-
-const courses: Record<string, Course[]> = {
-  'Full Stack Development': [
-    {
-      id: 'java-fs',
-      title: 'JAVA- Full Stack Development With Gen AI',
-      duration: '8 MONTHS',
-      image: 'https://picsum.photos/seed/java/400/250',
-      techStack: ['java', 'mysql', 'spring', 'python'],
-      color: 'bg-[#9370DB]' // Purple-ish
-    },
-    {
-      id: 'mern-fs',
-      title: 'MERN- Full Stack Development With Gen AI',
-      duration: '8 MONTHS',
-      image: 'https://picsum.photos/seed/mern/400/250',
-      techStack: ['html5', 'css3', 'react', 'nodejs', 'javascript', 'mongodb'],
-      color: 'bg-[#008B45]' // Green-ish
-    }
-  ]
-};
+import { coursesData } from '../data/courses';
 
 export default function CourseSection() {
   const [activeCategory, setActiveCategory] = useState('Full Stack Development');
@@ -202,7 +174,7 @@ export default function CourseSection() {
 
             {/* Course Cards Grid */}
             <div className="grid md:grid-cols-2 gap-8">
-              {courses[activeCategory]?.map((course) => (
+              {coursesData[activeCategory]?.map((course) => (
                 <motion.div
                   key={course.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -257,9 +229,12 @@ export default function CourseSection() {
                     </div>
 
                     {/* Button */}
-                    <button className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all group-hover:shadow-lg group-hover:shadow-blue-200">
+                    <Link 
+                      to={`/courses/${course.id}`}
+                      className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all group-hover:shadow-lg group-hover:shadow-blue-200"
+                    >
                       View Program <ChevronRight size={18} />
-                    </button>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
@@ -270,3 +245,4 @@ export default function CourseSection() {
     </section>
   );
 }
+

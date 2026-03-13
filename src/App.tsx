@@ -5,6 +5,7 @@ import WhatsAppFAB from './components/WhatsAppFAB';
 import CallbackModal from './components/CallbackModal';
 import HomePage from './pages/HomePage';
 import TestPage from './pages/TestPage';
+import CourseDetails from './pages/CourseDetails';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage openModal={openModal} />} />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/courses/:courseId" element={<CourseDetails />} />
         </Routes>
         
         <Footer 
