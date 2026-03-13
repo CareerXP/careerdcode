@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Linkedin } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Testimonial {
   id: number;
@@ -8,177 +8,187 @@ interface Testimonial {
   author: string;
   role: string;
   avatar: string;
+  companyLogo: string;
+  previousCompanyLogo?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "We have the best engineers on board from CareerDCode. The value they add to the students's career and the company's talent needs is unparalleled. It's become a ritual for us to reach out to CareerDCode for new talent.",
+    quote: "We hired rockstar developers from CareerDCode! We had a great experience while hiring software developers from CareerDCode. The candidates are enjoying high ownership in Converj - having sound fundamentals and first principal thinking.",
     author: "Yogesh Lokhande",
-    role: "PayGlobal Co-founder",
-    avatar: "https://picsum.photos/seed/yogesh/100/100"
+    role: "Co-founder",
+    avatar: "https://picsum.photos/seed/yogesh/100/100",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png",
+    previousCompanyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/HCL_Technologies_logo.svg/2560px-HCL_Technologies_logo.svg.png"
   },
   {
     id: 2,
-    quote: "CareerDCode has consistently provided us with high-quality talent. Their students are well-prepared and possess the technical skills required for modern engineering roles.",
+    quote: "The talent we found at CareerDCode is exceptional. Their students don't just know how to code; they know how to solve problems. It's been a game-changer for our engineering team.",
     author: "Sneha Reddy",
-    role: "HR Director at TechCorp",
-    avatar: "https://picsum.photos/seed/sneha/100/100"
-  },
-  {
-    id: 3,
-    quote: "The hiring process with CareerDCode is seamless. They understand our requirements perfectly and match us with candidates who fit our culture and technical needs.",
-    author: "Amit Sharma",
-    role: "Engineering Manager at Innovate",
-    avatar: "https://picsum.photos/seed/amit/100/100"
+    role: "HR Director",
+    avatar: "https://picsum.photos/seed/sneha/100/100",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ola_Cabs_logo.svg/1200px-Ola_Cabs_logo.svg.png"
   }
 ];
 
 const companyLogos = [
-  { name: 'HCL', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/HCL_Technologies_logo.svg/2560px-HCL_Technologies_logo.svg.png' },
-  { name: 'OLA ELECTRIC', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ola_Cabs_logo.svg/1200px-Ola_Cabs_logo.svg.png' },
-  { name: 'VISA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png' },
-  { name: 'Tokopedia', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tokopedia.svg/1200px-Tokopedia.svg.png' },
-  { name: 'Optum', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Optum_logo.svg/2560px-Optum_logo.svg.png' },
-  { name: 'Arcesium', logo: 'https://picsum.photos/seed/arcesium/120/40' },
-  { name: 'Man Matters', logo: 'https://picsum.photos/seed/manmatters/120/40' },
-  { name: 'Gainsight', logo: 'https://picsum.photos/seed/gainsight/120/40' }
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/HCL_Technologies_logo.svg/2560px-HCL_Technologies_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ola_Cabs_logo.svg/1200px-Ola_Cabs_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tokopedia.svg/1200px-Tokopedia.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Optum_logo.svg/2560px-Optum_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2560px-Microsoft_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/2560px-Tata_Consultancy_Services_Logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinkedIn_Logo.svg/2560px-LinkedIn_Logo.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2560px-WhatsApp.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Walmart_Home_Office.svg/2560px-Walmart_Home_Office.svg.png',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Pepsi_logo_2014.svg/2560px-Pepsi_logo_2014.svg.png'
 ];
 
 export default function TrustedCompanies() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    if (isHovered) return;
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [isHovered]);
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
-    <section id="partners" className="relative py-24 bg-[#0A2540] overflow-hidden text-white">
-      {/* Background Waves */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 100C300 50 600 150 900 100C1200 50 1500 150 1800 100" stroke="white" strokeWidth="2" />
-          <path d="M0 200C300 150 600 250 900 200C1200 150 1500 250 1800 200" stroke="white" strokeWidth="2" />
-          <path d="M0 300C300 250 600 350 900 300C1200 250 1500 350 1800 300" stroke="white" strokeWidth="2" />
-          <path d="M0 400C300 350 600 450 900 400C1200 350 1500 450 1800 400" stroke="white" strokeWidth="2" />
-          <path d="M0 500C300 450 600 550 900 500C1200 450 1500 550 1800 500" stroke="white" strokeWidth="2" />
-          <path d="M0 600C300 550 600 650 900 600C1200 550 1500 650 1800 600" stroke="white" strokeWidth="2" />
-        </svg>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="partners" className="py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-5xl font-bold">
-            <span className="bg-white text-[#0A2540] px-4 py-1 rounded-lg mr-3">Trusted</span>
-            by 500+ companies for top talent
+          <div className="w-12 h-1 bg-blue-600 mx-auto mb-6"></div>
+          <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-4">
+            Unlock Opportunities With <span className="text-blue-600">500+</span> Elite Hiring Partners
           </h2>
+          <p className="text-slate-500 font-medium text-lg">
+            Check out why our hiring partner trust us
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Testimonials and Stats */}
-          <div className="space-y-16">
-            <div className="space-y-8">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-blue-300">
-                TECH AND HR LEADERS BANK ON CAREERDCODE
-              </h3>
-
-              {/* Testimonial Card */}
-              <div 
-                className="relative h-[280px]"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -100 }}
-                    transition={{ 
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20
-                    }}
-                    className="absolute inset-0 bg-white rounded-2xl p-8 text-slate-800 shadow-2xl"
-                  >
-                    <div className="space-y-6">
-                      <p className="text-lg font-bold text-blue-900">
-                        We have the best engineers on board from CareerDCode.
-                      </p>
-                      <p className="text-slate-600 leading-relaxed">
-                        {testimonials[currentIndex].quote}
-                      </p>
-                      <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <img 
-                            src={testimonials[currentIndex].avatar} 
-                            alt={testimonials[currentIndex].author} 
-                            className="w-12 h-12 rounded-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div>
-                            <p className="font-bold text-slate-900">{testimonials[currentIndex].author}</p>
-                            <p className="text-sm text-slate-500">{testimonials[currentIndex].role}</p>
-                          </div>
-                        </div>
-                        <Linkedin className="text-blue-600" size={24} fill="currentColor" />
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-                {/* Stack Effect */}
-                <div className="absolute -right-4 top-4 bottom-4 w-4 bg-white/20 rounded-r-2xl -z-10"></div>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8">
-              {[
-                { label: 'COMPANIES', value: '500+' },
-                { label: 'PROJECTS', value: '1000+' },
-                { label: 'STUDENTS', value: '35000+' }
-              ].map((stat, idx) => (
-                <div key={idx} className={`text-center ${idx !== 2 ? 'border-r border-white/20' : ''}`}>
-                  <p className="text-4xl lg:text-5xl font-bold mb-2">{stat.value}</p>
-                  <p className="text-xs font-bold uppercase tracking-widest text-blue-300">{stat.label}</p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Logo Grid */}
+          <div className="relative">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+              {companyLogos.map((logo, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-white border border-slate-100 rounded-xl p-4 flex items-center justify-center h-16 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <img 
+                    src={logo} 
+                    alt="Partner Logo" 
+                    className="max-w-full max-h-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
               ))}
             </div>
+            <div className="mt-8 text-center lg:text-left">
+              <a href="#" className="text-blue-600 font-bold hover:underline">and many more...</a>
+            </div>
           </div>
 
-          {/* Right: Hexagonal Logo Grid */}
-          <div className="relative h-[500px] flex items-center justify-center">
-            <div className="grid grid-cols-3 gap-4">
-              {companyLogos.map((company, idx) => (
+          {/* Right: Testimonial Carousel */}
+          <div className="relative flex items-center justify-center">
+            {/* Background Decoration */}
+            <div className="absolute -z-10 w-[120%] h-[120%] opacity-10">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#3B82F6" d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.7,-31.3,87,-15.7,85.8,-0.7C84.6,14.3,78.8,28.6,70.1,41.1C61.4,53.6,49.8,64.3,36.5,71.2C23.2,78.1,8.1,81.2,-6.6,80.2C-21.3,79.2,-35.6,74.1,-48.1,65.6C-60.6,57.1,-71.3,45.2,-77.4,31.4C-83.5,17.6,-85,1.9,-82.5,-13.1C-80,-28.1,-73.5,-42.4,-63.1,-53.8C-52.7,-65.2,-38.4,-73.7,-24.1,-78.6C-9.8,-83.5,4.5,-84.8,19.1,-82.1C33.7,-79.4,44.7,-76.4,44.7,-76.4Z" transform="translate(100 100)" />
+              </svg>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button 
+              onClick={prevTestimonial}
+              className="absolute left-0 lg:-left-6 z-20 w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-300 transition-colors"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={nextTestimonial}
+              className="absolute right-0 lg:-right-6 z-20 w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-white hover:bg-slate-900 transition-colors"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            {/* Testimonial Card */}
+            <div className="relative w-full max-w-md">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className={`w-32 h-36 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center p-6 hover:bg-white/20 transition-all cursor-pointer shadow-lg
-                    ${idx % 2 === 1 ? 'mt-12' : ''}
-                  `}
-                  style={{
-                    clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
-                  }}
+                  key={currentIndex}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-[#050A18] rounded-[32px] p-8 lg:p-10 text-white shadow-2xl relative overflow-hidden"
                 >
-                  <img 
-                    src={company.logo} 
-                    alt={company.name} 
-                    className="max-w-full max-h-full object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
-                    referrerPolicy="no-referrer"
-                  />
+                  {/* Card Stack Effect */}
+                  <div className="absolute right-0 top-0 bottom-0 w-2 bg-blue-600/20"></div>
+                  <div className="absolute right-2 top-4 bottom-4 w-2 bg-blue-600/10"></div>
+
+                  <div className="relative z-10 flex flex-col items-center text-center">
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-500/20 mb-6">
+                      <img 
+                        src={testimonials[currentIndex].avatar} 
+                        alt={testimonials[currentIndex].author}
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+
+                    <h4 className="text-xl font-bold mb-6 leading-tight">
+                      {testimonials[currentIndex].quote.split('!')[0]}!
+                    </h4>
+                    
+                    <p className="text-white/60 text-sm leading-relaxed mb-8">
+                      {testimonials[currentIndex].quote.split('!')[1]}
+                    </p>
+
+                    <div className="w-full pt-8 border-t border-white/10 flex items-center justify-between gap-4">
+                      <div className="text-left">
+                        <p className="font-bold text-sm">{testimonials[currentIndex].author}</p>
+                        <p className="text-white/50 text-[10px] uppercase tracking-widest">{testimonials[currentIndex].role}</p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <img 
+                          src={testimonials[currentIndex].companyLogo} 
+                          alt="Company" 
+                          className="h-6 object-contain brightness-0 invert"
+                          referrerPolicy="no-referrer"
+                        />
+                        {testimonials[currentIndex].previousCompanyLogo && (
+                          <img 
+                            src={testimonials[currentIndex].previousCompanyLogo} 
+                            alt="Previous Company" 
+                            className="h-6 object-contain brightness-0 invert opacity-50"
+                            referrerPolicy="no-referrer"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
-              ))}
+              </AnimatePresence>
+
+              {/* Dots */}
+              <div className="flex justify-center gap-2 mt-6">
+                {testimonials.map((_, idx) => (
+                  <div 
+                    key={idx}
+                    className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? 'bg-blue-600 w-4' : 'bg-slate-300'}`}
+                  ></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

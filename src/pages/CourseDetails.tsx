@@ -13,6 +13,7 @@ import {
 import { getCourseById } from '../data/courses';
 import CourseNavbar from '../components/CourseNavbar';
 import TrustedCompanies from '../components/TrustedCompanies';
+import PlacedStudents from '../components/PlacedStudents';
 import FAQSection from '../components/FAQSection';
 import { useEffect, useState } from 'react';
 
@@ -297,6 +298,9 @@ export default function CourseDetails() {
       <div id="partners" className="bg-white">
         <TrustedCompanies />
       </div>
+
+      {/* Placed Students Section */}
+      <PlacedStudents />
 
       {/* Technologies Section */}
       <section className="py-24 bg-[#050A18] text-white">
