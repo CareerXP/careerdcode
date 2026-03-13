@@ -68,7 +68,7 @@ export default function CourseSection() {
   };
 
   return (
-    <section className="py-20 bg-[#F0F7FF]">
+    <section id="courses" className="py-20 bg-[#F0F7FF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12">
