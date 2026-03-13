@@ -14,7 +14,8 @@ import { getCourseById } from '../data/courses';
 import CourseNavbar from '../components/CourseNavbar';
 import TrustedCompanies from '../components/TrustedCompanies';
 import PlacedStudents from '../components/PlacedStudents';
-import FAQSection from '../components/FAQSection';
+import CurriculumSection from '../components/CurriculumSection';
+import CourseFAQ from '../components/CourseFAQ';
 import { useEffect, useState } from 'react';
 
 const rotatingWords = [
@@ -330,58 +331,11 @@ export default function CourseDetails() {
       </section>
 
       {/* Curriculum Section */}
-      <section id="curriculum" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-8 leading-tight">
-                Course <span className="text-blue-600">Curriculum</span>
-              </h2>
-              <div className="space-y-4">
-                {course.curriculum.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-all group">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 shrink-0 font-bold text-sm group-hover:bg-blue-600 group-hover:text-white transition-all">
-                      {idx + 1}
-                    </div>
-                    <p className="text-slate-700 font-bold text-lg">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="sticky top-32">
-              <div className="bg-[#0A2540] p-8 lg:p-12 rounded-[32px] text-white shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 blur-3xl rounded-full"></div>
-                <h3 className="text-2xl font-bold mb-8 relative z-10">Program Highlights</h3>
-                <div className="space-y-6 relative z-10">
-                  {course.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-4">
-                      <CheckCircle2 className="text-blue-400 shrink-0" size={24} />
-                      <span className="text-lg font-medium text-white/90">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
-                  <p className="text-sm text-white/50 uppercase tracking-widest font-bold mb-4">Talk to our experts</p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                      <PhoneCall size={20} className="text-blue-400" />
-                    </div>
-                    <div>
-                      <p className="text-xl font-black">+91 8595563221</p>
-                      <p className="text-xs text-white/40">Mon - Sat, 10:00 AM - 7:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CurriculumSection />
 
       {/* FAQ Section */}
       <div id="faq">
-        <FAQSection />
+        <CourseFAQ />
       </div>
 
       {/* Footer Placeholder */}
