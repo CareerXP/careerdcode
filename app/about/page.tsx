@@ -110,7 +110,7 @@ export default function AboutUs() {
                   description: "We strive for excellence in our teaching, mentorship, and curriculum quality."
                 },
                 {
-                  icon: <ShieldCheck className="text-emerald-500" size={32} />,
+                  icon: <ShieldCheck className="text-blue-500" size={32} />,
                   title: "Integrity",
                   description: "We maintain the highest standards of transparency and honesty in all our interactions."
                 }

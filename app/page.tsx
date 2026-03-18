@@ -11,6 +11,7 @@ import MentorSection from '@/components/MentorSection';
 import FoundersSection from '@/components/FoundersSection';
 import FAQSection from '@/components/FAQSection';
 import ApplySection from '@/components/ApplySection';
+import SkillCentres from '@/components/SkillCentres';
 import { useModal } from '@/components/ClientLayout';
 
 export default function HomePage() {
@@ -24,6 +25,7 @@ export default function HomePage() {
         <ImpactStats />
         <StudentTransformations />
         <CourseSection />
+        <SkillCentres />
         <TrustedCompanies />
         <StudentReviews />
         <MentorSection />

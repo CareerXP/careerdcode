@@ -126,7 +126,7 @@ export default function CourseSection() {
 
             {/* Course Cards Grid */}
             <div className="grid md:grid-cols-2 gap-8">
-              {coursesData[activeCategory]?.map((course) => (
+              {coursesData.filter(c => c.category === activeCategory).map((course) => (
                 <motion.div
                   key={course.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -134,7 +134,7 @@ export default function CourseSection() {
                   className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all group"
                 >
                   {/* Course Illustration Area */}
-                  <div className={`relative h-56 ${course.color} flex items-center justify-center p-6`}>
+                  <div className="relative h-56 bg-slate-100 flex items-center justify-center p-6">
                     <img 
                       src={course.image} 
                       alt={course.title} 
@@ -153,17 +153,22 @@ export default function CourseSection() {
 
                     {/* Tech Stack Icons */}
                     <div className="flex flex-wrap gap-2 mb-8 h-10 overflow-hidden">
-                      {course.techStack.slice(0, 3).map((tech) => (
-                        <div key={tech} className="px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-100 flex items-center gap-2">
-                          <img 
-                            src={getTechIcon(tech) || undefined} 
-                            alt={tech} 
-                            className="w-4 h-4 object-contain"
-                            referrerPolicy="no-referrer"
-                          />
-                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{tech}</span>
-                        </div>
-                      ))}
+                      {course.techStack.slice(0, 3).map((tech) => {
+                        const icon = getTechIcon(tech);
+                        return (
+                          <div key={tech} className="px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-100 flex items-center gap-2">
+                            {icon && (
+                              <img 
+                                src={icon} 
+                                alt={tech} 
+                                className="w-4 h-4 object-contain"
+                                referrerPolicy="no-referrer"
+                              />
+                            )}
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{tech}</span>
+                          </div>
+                        );
+                      })}
                       {course.techStack.length > 3 && (
                         <div className="px-3 py-1.5 bg-blue-50 rounded-lg border border-blue-100 flex items-center">
                           <span className="text-[10px] font-black text-blue-600 uppercase tracking-wider">

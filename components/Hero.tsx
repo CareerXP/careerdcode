@@ -1,0 +1,90 @@
+"use client";
+
+import { motion } from "motion/react";
+import Image from "next/image";
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-[80vh] flex items-center pt-20 overflow-hidden bg-slate-50">
+      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-blue-700 uppercase bg-blue-100 rounded-full">
+            Accelerate Your Career
+          </span>
+          <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-6">
+            Master High-Demand <span className="text-blue-600">Tech Skills</span>
+          </h1>
+          <p className="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+            Join thousands of students learning from industry experts at top tech companies. 
+            Get mentored, build projects, and land your dream job.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <button className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+              Explore Courses
+            </button>
+            <button className="px-8 py-4 bg-white text-slate-900 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors">
+              View Curriculum
+            </button>
+          </div>
+          
+          <div className="mt-10 flex items-center gap-4">
+            <div className="flex -space-x-3">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-slate-200">
+                  <Image
+                    src={`https://picsum.photos/seed/user${i}/100/100`}
+                    alt="User"
+                    width={40}
+                    height={40}
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-slate-500">
+              <span className="font-bold text-slate-900">10,000+</span> students already joined
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
+            <Image
+              src="https://picsum.photos/seed/learning/1200/800"
+              alt="Learning"
+              width={1200}
+              height={800}
+              className="object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          {/* Decorative elements */}
+          <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        </motion.div>
+      </div>
+      
+      {/* Background Pattern */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+    </section>
+  );
+}

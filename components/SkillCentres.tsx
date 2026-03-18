@@ -43,8 +43,8 @@ export default function SkillCentres() {
     return mapping[tech] ? `${baseUrl}${mapping[tech]}` : null;
   };
 
-  // Flatten all courses from coursesData for display
-  const allCourses = Object.values(coursesData).flat();
+  // Use coursesData directly as it is already an array
+  const allCourses = coursesData;
 
   return (
     <section id="centres" className="py-24 bg-white overflow-hidden">
@@ -170,18 +170,23 @@ export default function SkillCentres() {
                     </h4>
                     
                     <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                      {course.techStack.map((t) => (
-                        <div key={t} className="w-7 h-7 p-1 bg-white rounded-md shadow-sm border border-slate-100">
-                          <img 
-                            src={getTechIcon(t) || ''} 
-                            alt={t} 
-                            className="w-full h-full object-contain"
-                            referrerPolicy="no-referrer"
-                          />
-                        </div>
-                      ))}
+                      {course.techStack.map((t) => {
+                        const icon = getTechIcon(t);
+                        return (
+                          <div key={t} className="w-7 h-7 p-1 bg-white rounded-md shadow-sm border border-slate-100">
+                            {icon && (
+                              <img 
+                                src={icon} 
+                                alt={t} 
+                                className="w-full h-full object-contain"
+                                referrerPolicy="no-referrer"
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
                       {course.title.includes('MERN') && (
-                        <div className="w-7 h-7 bg-emerald-600 text-white rounded-md flex items-center justify-center text-[7px] font-bold">
+                        <div className="w-7 h-7 bg-blue-600 text-white rounded-md flex items-center justify-center text-[7px] font-bold">
                           DSA
                         </div>
                       )}

@@ -205,7 +205,7 @@ export default function CourseDetails() {
           {[
             { label: 'Highest Salary', value: '41 Lakhs', icon: '💰', color: 'bg-red-50' },
             { label: 'Partner Companies', value: '500+', icon: '🤝', color: 'bg-orange-50' },
-            { label: 'Job Assistance', value: '100%', icon: '✅', color: 'bg-green-50' },
+            { label: 'Job Assistance', value: '100%', icon: '✅', color: 'bg-blue-50' },
             { label: 'Average Salary', value: '7.4 LPA', icon: '📈', color: 'bg-blue-50' }
           ].map((stat, idx) => (
             <div key={idx} className="bg-white flex items-center gap-5 p-4">
@@ -373,11 +373,11 @@ export default function CourseDetails() {
       </section>
 
       {/* Curriculum Section */}
-      <CurriculumSection />
+      <CurriculumSection curriculum={course.curriculum} />
 
       {/* FAQ Section */}
       <div id="faq">
-        <CourseFAQ />
+        <CourseFAQ faqs={course.faqs} />
       </div>
     </div>
   );
