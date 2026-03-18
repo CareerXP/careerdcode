@@ -23,8 +23,8 @@ export default function App() {
       <div className="min-h-screen flex flex-col">
         <Routes>
           <Route path="/" element={<HomePage openModal={openModal} />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/courses/:courseId" element={<CourseDetails />} />
+          <Route path="/about" element={<AboutUs openModal={openModal} />} />
+          <Route path="/courses/:courseId" element={<CourseDetails openModal={openModal} />} />
         </Routes>
         
         <Footer 

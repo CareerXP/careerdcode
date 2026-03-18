@@ -29,7 +29,11 @@ const rotatingWords = [
   'Success'
 ];
 
-export default function CourseDetails() {
+interface CourseDetailsProps {
+  openModal: (type: 'callback' | 'brochure') => void;
+}
+
+export default function CourseDetails({ openModal }: CourseDetailsProps) {
   const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
   const course = courseId ? getCourseById(courseId) : null;
@@ -102,14 +106,21 @@ export default function CourseDetails() {
                   </p>
                 </div>
                 
-                <div className="flex items-center gap-8 pt-4">
-                  <button className="px-10 py-5 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-blue-600 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200">
-                    Explore Curriculum <ChevronDown size={20} />
+                <div className="flex flex-wrap gap-6 pt-10">
+                  <button 
+                    onClick={() => openModal('brochure')}
+                    className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold font-display text-xs uppercase tracking-widest hover:bg-blue-600 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200 group"
+                  >
+                    <Download size={18} className="group-hover:translate-y-1 transition-transform" />
+                    Download Syllabus
                   </button>
-                  <div className="hidden lg:block">
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">TRUSTED BY</span>
-                    <span className="text-sm font-bold text-slate-900">5,000+ Students</span>
-                  </div>
+                  <a 
+                    href="#curriculum"
+                    className="px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold font-display text-xs uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center gap-3 shadow-2xl shadow-slate-100 group"
+                  >
+                    Explore Curriculum
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -366,13 +377,6 @@ export default function CourseDetails() {
       <div id="faq">
         <CourseFAQ />
       </div>
-
-      {/* Footer Placeholder */}
-      <footer className="bg-white py-12 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest">© 2026 CareerDCode. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }

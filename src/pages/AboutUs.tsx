@@ -2,10 +2,14 @@ import { motion } from 'motion/react';
 import Navbar from '../components/Navbar';
 import { Target, Users, Award, ShieldCheck } from 'lucide-react';
 
-export default function AboutUs() {
+interface AboutUsProps {
+  openModal: (type: 'callback' | 'brochure') => void;
+}
+
+export default function AboutUs({ openModal }: AboutUsProps) {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar onCallbackClick={() => {}} />
+      <Navbar onCallbackClick={() => openModal('callback')} />
       
       <main className="flex-grow">
         {/* Hero Section */}
