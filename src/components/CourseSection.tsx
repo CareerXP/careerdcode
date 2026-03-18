@@ -51,7 +51,7 @@ export default function CourseSection() {
             </span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            <span className="text-blue-600">Offline</span>, Live Online and Self Paced courses tailored for you!
+            {/* <span className="text-blue-600">Offline</span>,  */}Live Online and Self Paced courses tailored for you!
           </h2>
           <p className="text-slate-600 text-lg max-w-3xl">
             Courses and placement assistance with 60+ hiring drives each month to help you land your dream tech job!
@@ -82,7 +82,7 @@ export default function CourseSection() {
                 </button>
 
                 {/* Offline Courses Dropdown */}
-                <div className="space-y-1">
+                {/* <div className="space-y-1">
                   <button
                     onClick={() => {
                       setActiveType('Offline Courses');
@@ -121,7 +121,7 @@ export default function CourseSection() {
                       ))}
                     </div>
                   )}
-                </div>
+                </div> */}
 
                 {/* Self Paced Courses */}
                 <button
@@ -166,11 +166,11 @@ export default function CourseSection() {
             </div>
 
             {/* Location Heading for Offline */}
-            {activeType === 'Offline Courses' && (
+            {/* {activeType === 'Offline Courses' && (
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-slate-900">{selectedLocation} Skill Centre</h3>
               </div>
-            )}
+            )} */}
 
             {/* Course Cards Grid */}
             <div className="grid md:grid-cols-2 gap-8">

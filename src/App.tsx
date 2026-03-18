@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import WhatsAppFAB from './components/WhatsAppFAB';
 import CallbackModal from './components/CallbackModal';
 import HomePage from './pages/HomePage';
-import TestPage from './pages/TestPage';
+import AboutUs from './pages/AboutUs';
 import CourseDetails from './pages/CourseDetails';
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
       <div className="min-h-screen flex flex-col">
         <Routes>
           <Route path="/" element={<HomePage openModal={openModal} />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/courses/:courseId" element={<CourseDetails />} />
         </Routes>
         

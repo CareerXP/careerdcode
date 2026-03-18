@@ -24,12 +24,12 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
               Courses
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </a>
-            <a href="/#centres" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors relative group">
+            {/* <a href="/#centres" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors relative group">
               Centres
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            </a>
-            <Link to="/test" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors relative group">
-              Test Route
+            </a> */}
+            <Link to="/about" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors relative group">
+              About Us
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </Link>
             <div className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-blue-600 cursor-pointer transition-colors">

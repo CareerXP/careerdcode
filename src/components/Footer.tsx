@@ -22,7 +22,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
           </div>
 
           {/* Pune Centre */}
-          <div>
+          {/* <div>
             <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Pune Skill Centre</h3>
             <div className="mb-4">
               <h4 className="text-slate-900 font-bold text-xs uppercase mb-2">Courses Offered</h4>
@@ -37,10 +37,10 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
             <a href="#" className="text-blue-600 text-xs font-bold flex items-center gap-1 hover:underline">
               Get direction <Send size={12} className="rotate-45" />
             </a>
-          </div>
+          </div> */}
 
           {/* Noida Centre */}
-          <div>
+          {/* <div>
             <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Noida Skill Centre</h3>
             <div className="mb-4">
               <h4 className="text-slate-900 font-bold text-xs uppercase mb-2">Courses Offered</h4>
@@ -55,10 +55,10 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
             <a href="#" className="text-blue-600 text-xs font-bold flex items-center gap-1 hover:underline">
               Get direction <Send size={12} className="rotate-45" />
             </a>
-          </div>
+          </div> */}
 
           {/* Hyderabad Centre */}
-          <div>
+          {/* <div>
             <h3 className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6">Hyderabad Skill Centre</h3>
             <div className="mb-4">
               <h4 className="text-slate-900 font-bold text-xs uppercase mb-2">Courses Offered</h4>
@@ -73,7 +73,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
             <a href="#" className="text-blue-600 text-xs font-bold flex items-center gap-1 hover:underline">
               Get direction <Send size={12} className="rotate-45" />
             </a>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Row: Company Info and Contact */}

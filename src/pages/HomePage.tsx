@@ -24,7 +24,7 @@ export default function HomePage({ openModal }: HomePageProps) {
         <ImpactStats />
         <StudentTransformations />
         <CourseSection />
-        <SkillCentres />
+        {/* <SkillCentres /> */}
         <TrustedCompanies />
         <StudentReviews />
         <MentorSection />
