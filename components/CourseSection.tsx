@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { 
   Code, 
   BarChart3, 
@@ -12,7 +12,7 @@ import {
   MapPin,
   Zap
 } from 'lucide-react';
-import { coursesData } from '../data/courses';
+import { coursesData } from '@/data/courses';
 
 export default function CourseSection() {
   const [activeCategory, setActiveCategory] = useState('Full Stack Development');
@@ -179,7 +179,7 @@ export default function CourseSection() {
                         {course.duration}
                       </div>
                       <Link 
-                        to={`/courses/${course.id}`}
+                        href={`/courses/${course.id}`}
                         className="text-blue-600 font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all"
                       >
                         Details <ChevronRight size={16} />

@@ -1,4 +1,7 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+"use client";
+
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronDown, 
@@ -12,13 +15,14 @@ import {
   Quote,
   Linkedin
 } from 'lucide-react';
-import { getCourseById } from '../data/courses';
-import CourseNavbar from '../components/CourseNavbar';
-import TrustedCompanies from '../components/TrustedCompanies';
-import PlacedStudents from '../components/PlacedStudents';
-import CurriculumSection from '../components/CurriculumSection';
-import CourseFAQ from '../components/CourseFAQ';
+import { getCourseById } from '@/data/courses';
+import CourseNavbar from '@/components/CourseNavbar';
+import TrustedCompanies from '@/components/TrustedCompanies';
+import PlacedStudents from '@/components/PlacedStudents';
+import CurriculumSection from '@/components/CurriculumSection';
+import CourseFAQ from '@/components/CourseFAQ';
 import { useEffect, useState } from 'react';
+import { useModal } from '@/components/ClientLayout';
 
 const rotatingWords = [
   'Knowledge',
@@ -29,13 +33,11 @@ const rotatingWords = [
   'Success'
 ];
 
-interface CourseDetailsProps {
-  openModal: (type: 'callback' | 'brochure') => void;
-}
-
-export default function CourseDetails({ openModal }: CourseDetailsProps) {
-  const { courseId } = useParams<{ courseId: string }>();
-  const navigate = useNavigate();
+export default function CourseDetails() {
+  const params = useParams();
+  const courseId = params.courseId as string;
+  const router = useRouter();
+  const { openModal } = useModal();
   const course = courseId ? getCourseById(courseId) : null;
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -53,7 +55,7 @@ export default function CourseDetails({ openModal }: CourseDetailsProps) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
         <h2 className="text-2xl font-bold text-slate-900 mb-4 font-display">Course not found</h2>
-        <Link to="/" className="text-blue-600 font-bold hover:underline">Go back home</Link>
+        <Link href="/" className="text-blue-600 font-bold hover:underline">Go back home</Link>
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Send, Instagram, Youtube, Linkedin, Facebook, MessageCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 
 interface FooterProps {
   onCallbackClick: () => void;
@@ -16,10 +17,12 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
           {/* Brand & Mission */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-4 mb-10">
-              <div className="w-10 h-10 bg-blue-600 rotate-45 flex items-center justify-center rounded-sm shadow-xl shadow-blue-100">
-                <div className="w-5 h-5 bg-white -rotate-45"></div>
-              </div>
-              <span className="text-3xl font-bold tracking-tighter text-slate-900 font-display">CareerDCode.</span>
+              <Link href="/" className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-600 rotate-45 flex items-center justify-center rounded-sm shadow-xl shadow-blue-100">
+                  <div className="w-5 h-5 bg-white -rotate-45"></div>
+                </div>
+                <span className="text-3xl font-bold tracking-tighter text-slate-900 font-display">CareerDCode.</span>
+              </Link>
             </div>
             <p className="text-xl text-slate-500 leading-relaxed mb-12 font-medium max-w-md">
               Empowering the next generation of tech leaders through industry-aligned curriculum and elite mentorship from IIT Delhi alumni.
@@ -58,7 +61,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
                 COMPANY
               </span>
               <ul className="space-y-5 text-slate-600 text-sm font-bold">
-                <li><a href="#" className="hover:text-blue-600 transition-colors">About Us</a></li>
+                <li><Link href="/about" className="hover:text-blue-600 transition-colors">About Us</Link></li>
                 <li><a href="#" className="hover:text-blue-600 transition-colors">Mentors</a></li>
                 <li><a href="#" className="hover:text-blue-600 transition-colors">Careers</a></li>
                 <li><a href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</a></li>

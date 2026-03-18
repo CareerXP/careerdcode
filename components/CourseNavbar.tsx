@@ -1,5 +1,5 @@
 import { ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export default function CourseNavbar() {
   return (
@@ -8,7 +8,7 @@ export default function CourseNavbar() {
         <div className="flex justify-between items-center h-12">
           {/* Logo & Courses Dropdown */}
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <div className="w-8 h-8 bg-blue-600 rotate-45 flex items-center justify-center rounded-sm shadow-lg shadow-blue-100">
                 <div className="w-4 h-4 bg-white -rotate-45"></div>
               </div>

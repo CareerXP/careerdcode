@@ -1,5 +1,5 @@
 import { ChevronDown, PhoneCall } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface NavbarProps {
   onCallbackClick: () => void;
@@ -11,7 +11,7 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="w-8 h-8 bg-blue-600 rotate-45 flex items-center justify-center rounded-sm shadow-lg shadow-blue-100">
               <div className="w-4 h-4 bg-white -rotate-45"></div>
             </div>
@@ -23,7 +23,7 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
             <a href="/#courses" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">
               Courses
             </a>
-            <Link to="/about" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">
+            <Link href="/about" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">
               About Us
             </Link>
             <div className="flex items-center gap-1 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 cursor-pointer transition-colors">

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ChevronRight, MapPin } from 'lucide-react';
-import { coursesData } from '../data/courses';
+import { coursesData } from '@/data/courses';
 
 interface Centre {
   id: string;
@@ -188,7 +188,7 @@ export default function SkillCentres() {
                     </div>
 
                     <Link 
-                      to={`/courses/${course.id}`}
+                      href={`/courses/${course.id}`}
                       className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all"
                     >
                       View Program <ChevronRight size={14} />
