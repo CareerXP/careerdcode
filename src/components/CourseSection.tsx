@@ -43,100 +43,59 @@ export default function CourseSection() {
     <section id="courses" className="py-20 bg-[#F0F7FF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="mb-12">
+        <div className="mb-16">
           <div className="mb-4">
-            <span className="text-sm font-bold uppercase tracking-widest text-slate-900 relative">
-              COURSES
-              <span className="absolute -bottom-1 left-0 w-10 h-0.5 bg-blue-600"></span>
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-blue-600 font-display">
+              TECHNICAL PROGRAMS
             </span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            {/* <span className="text-blue-600">Offline</span>,  */}Live Online and Self Paced courses tailored for you!
+          <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 font-display tracking-tight">
+            Tailored for the <br />
+            <span className="text-blue-600">Modern Engineer.</span>
           </h2>
-          <p className="text-slate-600 text-lg max-w-3xl">
-            Courses and placement assistance with 60+ hiring drives each month to help you land your dream tech job!
+          <p className="text-slate-500 text-lg max-w-2xl font-medium">
+            Industry-aligned curriculum designed to bridge the gap between academia and professional excellence.
           </p>
         </div>
 
         {/* Main Content Card */}
-        <div className="bg-white rounded-[32px] shadow-xl shadow-blue-100/50 p-8 lg:p-12 flex flex-col lg:flex-row gap-12">
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl shadow-slate-200/50 p-8 lg:p-12 flex flex-col lg:flex-row gap-12">
           
           {/* Sidebar */}
           <div className="lg:w-1/4 space-y-8">
             <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-6">Choose Your Preferred Course:</h3>
-              <div className="space-y-2">
+              <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 font-display">Learning Mode</h3>
+              <div className="space-y-3">
                 {/* Live Online Courses */}
                 <button
                   onClick={() => setActiveType('Live Online Courses')}
-                  className={`w-full flex items-center justify-between p-4 rounded-xl text-sm font-bold transition-all ${
+                  className={`w-full flex items-center justify-between p-4 rounded-xl text-sm font-bold font-display transition-all ${
                     activeType === 'Live Online Courses' 
-                      ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
+                      ? 'bg-slate-900 text-white shadow-xl shadow-slate-200' 
                       : 'text-slate-500 hover:bg-slate-50'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <MonitorPlay size={18} />
-                    Live Online Courses
+                    Live Online
                   </div>
                 </button>
-
-                {/* Offline Courses Dropdown */}
-                {/* <div className="space-y-1">
-                  <button
-                    onClick={() => {
-                      setActiveType('Offline Courses');
-                      setIsOfflineExpanded(!isOfflineExpanded);
-                    }}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl text-sm font-bold transition-all ${
-                      activeType === 'Offline Courses' 
-                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
-                        : 'text-slate-500 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <MapPin size={18} />
-                      Offline Courses
-                    </div>
-                    <ChevronDown size={16} className={`transition-transform ${isOfflineExpanded ? 'rotate-180' : ''}`} />
-                  </button>
-                  
-                  {isOfflineExpanded && (
-                    <div className="pl-11 space-y-1">
-                      {locations.map((loc) => (
-                        <button
-                          key={loc}
-                          onClick={() => {
-                            setActiveType('Offline Courses');
-                            setSelectedLocation(loc);
-                          }}
-                          className={`w-full text-left py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                            activeType === 'Offline Courses' && selectedLocation === loc
-                              ? 'text-blue-600 bg-blue-50/50'
-                              : 'text-slate-500 hover:text-blue-600 hover:bg-slate-50'
-                          }`}
-                        >
-                          {loc}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div> */}
 
                 {/* Self Paced Courses */}
-                <button
-                  onClick={() => setActiveType('Self Paced Courses')}
-                  className={`w-full flex items-center justify-between p-4 rounded-xl text-sm font-bold transition-all ${
-                    activeType === 'Self Paced Courses' 
-                      ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
-                      : 'text-slate-500 hover:bg-slate-50'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <Zap size={18} />
-                    Self Paced Courses
-                  </div>
-                </button>
+                <div className="relative group/tooltip">
+                  <button
+                    disabled
+                    className="w-full flex items-center justify-between p-4 rounded-xl text-sm font-bold font-display transition-all text-slate-300 bg-slate-50 cursor-not-allowed border border-dashed border-slate-200"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Zap size={18} />
+                      Self Paced
+                    </div>
+                    <span className="text-[9px] font-black uppercase tracking-tighter bg-slate-200 text-slate-500 px-2 py-0.5 rounded">
+                      Coming Soon
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -144,7 +103,7 @@ export default function CourseSection() {
           {/* Main Display Area */}
           <div className="lg:w-3/4">
             {/* Top Tabs */}
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-3 mb-10">
               {[
                 { id: 'Full Stack Development', icon: <Code size={18} /> },
                 { id: 'Data Analytics', icon: <BarChart3 size={18} /> },
@@ -153,10 +112,10 @@ export default function CourseSection() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-bold border transition-all ${
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold font-display border-2 transition-all ${
                     activeCategory === cat.id
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-blue-600 hover:text-blue-600'
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-100'
+                      : 'bg-white text-slate-500 border-slate-100 hover:border-slate-900 hover:text-slate-900'
                   }`}
                 >
                   {cat.icon}
@@ -165,13 +124,6 @@ export default function CourseSection() {
               ))}
             </div>
 
-            {/* Location Heading for Offline */}
-            {/* {activeType === 'Offline Courses' && (
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-slate-900">{selectedLocation} Skill Centre</h3>
-              </div>
-            )} */}
-
             {/* Course Cards Grid */}
             <div className="grid md:grid-cols-2 gap-8">
               {coursesData[activeCategory]?.map((course) => (
@@ -179,62 +131,60 @@ export default function CourseSection() {
                   key={course.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all group"
+                  className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all group"
                 >
                   {/* Course Illustration Area */}
-                  <div className={`relative h-48 ${course.color} flex items-center justify-center p-6`}>
+                  <div className={`relative h-56 ${course.color} flex items-center justify-center p-6`}>
                     <img 
                       src={course.image} 
                       alt={course.title} 
-                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                      className="w-full h-full object-cover rounded-xl shadow-2xl"
                       referrerPolicy="no-referrer"
                     />
-                    {/* Floating Tech Labels (Simplified representation of image) */}
-                    <div className="absolute inset-0 p-4 pointer-events-none">
-                      <span className="absolute top-4 right-4 bg-yellow-400 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded">DSA</span>
-                      <span className="absolute bottom-10 left-6 bg-slate-200/80 text-slate-600 text-[10px] font-black px-2 py-0.5 rounded">HTML</span>
-                      <span className="absolute top-1/2 left-4 bg-slate-200/80 text-slate-600 text-[10px] font-black px-2 py-0.5 rounded">CSS</span>
-                    </div>
                   </div>
 
                   {/* Course Info */}
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <h4 className="text-lg font-bold text-blue-900 leading-tight max-w-[70%]">
+                  <div className="p-8 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-6 h-14">
+                      <h4 className="text-xl font-bold font-display text-slate-900 leading-tight line-clamp-2">
                         {course.title}
                       </h4>
-                      <div className="flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold">
-                        <Clock size={12} />
-                        {course.duration}
-                      </div>
                     </div>
 
                     {/* Tech Stack Icons */}
-                    <div className="flex flex-wrap gap-3 mb-8">
-                      {course.techStack.map((tech) => (
-                        <div key={tech} className="w-8 h-8 p-1 bg-slate-50 rounded-lg flex items-center justify-center border border-slate-100">
+                    <div className="flex flex-wrap gap-2 mb-8 h-10 overflow-hidden">
+                      {course.techStack.slice(0, 3).map((tech) => (
+                        <div key={tech} className="px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-100 flex items-center gap-2">
                           <img 
-                            src={getTechIcon(tech) || ''} 
+                            src={getTechIcon(tech) || undefined} 
                             alt={tech} 
-                            className="w-full h-full object-contain"
+                            className="w-4 h-4 object-contain"
                             referrerPolicy="no-referrer"
                           />
+                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{tech}</span>
                         </div>
                       ))}
-                      {course.id === 'mern-fs' && (
-                        <div className="w-8 h-8 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-[8px] font-bold">
-                          DSA
+                      {course.techStack.length > 3 && (
+                        <div className="px-3 py-1.5 bg-blue-50 rounded-lg border border-blue-100 flex items-center">
+                          <span className="text-[10px] font-black text-blue-600 uppercase tracking-wider">
+                            +{course.techStack.length - 3} More
+                          </span>
                         </div>
                       )}
                     </div>
 
-                    {/* Button */}
-                    <Link 
-                      to={`/courses/${course.id}`}
-                      className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all group-hover:shadow-lg group-hover:shadow-blue-200"
-                    >
-                      View Program <ChevronRight size={18} />
-                    </Link>
+                    <div className="mt-auto flex items-center justify-between pt-6 border-t border-slate-50">
+                      <div className="flex items-center gap-2 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
+                        <Clock size={14} />
+                        {course.duration}
+                      </div>
+                      <Link 
+                        to={`/courses/${course.id}`}
+                        className="text-blue-600 font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+                      >
+                        Details <ChevronRight size={16} />
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}

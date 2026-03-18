@@ -9,16 +9,10 @@ export default function ImpactStats() {
   ];
 
   return (
-    <section className="bg-blue-600 py-12 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-bold uppercase tracking-widest inline-block relative">
-            Impact Created
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-white"></span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
+    <section className="bg-slate-900 py-24 text-white relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -26,14 +20,14 @@ export default function ImpactStats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`text-center px-4 ${
-                idx !== stats.length - 1 ? 'lg:border-r lg:border-white/30' : ''
+              className={`text-center px-8 ${
+                idx !== stats.length - 1 ? 'lg:border-r lg:border-white/10' : ''
               }`}
             >
-              <p className="text-xs font-bold uppercase tracking-wider mb-4 opacity-90">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-blue-400 font-display">
                 {stat.label}
               </p>
-              <p className="text-4xl lg:text-5xl font-bold tracking-tight">
+              <p className="text-5xl lg:text-6xl font-bold tracking-tight font-display">
                 {stat.value}
               </p>
             </motion.div>

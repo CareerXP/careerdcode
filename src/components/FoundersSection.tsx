@@ -19,40 +19,44 @@ const founders: Founder[] = [
     name: 'Harsh Sharma',
     role: 'CTO & Co-founder',
     image: 'https://picsum.photos/seed/harsh/400/500',
+    bio: 'Tech visionary focused on building robust, scalable architectures for the next generation of engineers.'
   },
   {
     name: 'Priyanshu Agarwal',
     role: 'COO & Co-founder',
     image: 'https://picsum.photos/seed/priyanshu/400/500',
+    bio: 'Operations expert streamlining processes to deliver a seamless learning experience for thousands.'
   },
   {
     name: 'Vishu Bansal',
     role: 'CPO & Co-founder',
     image: 'https://picsum.photos/seed/vishu/400/500',
+    bio: 'Product strategist dedicated to crafting intuitive and impactful educational journeys.'
   }
 ];
 
 export default function FoundersSection() {
   return (
-    <section className="relative py-24 bg-white overflow-hidden">
-      {/* Grid Background */}
-      <div className="absolute inset-0 -z-10 opacity-30" 
-           style={{ 
-             backgroundImage: `linear-gradient(to right, #E0E7FF 1px, transparent 1px), linear-gradient(to bottom, #E0E7FF 1px, transparent 1px)`,
-             backgroundSize: '40px 40px'
-           }}>
-      </div>
-
+    <section className="relative py-32 bg-white overflow-hidden">
+      {/* Technical Grid Background */}
+      <div className="absolute inset-0 -z-10 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:32px_32px]"></div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900">
-            <span className="text-blue-600">Meet</span> Our Founders
+        <div className="mb-20">
+          <div className="mb-4">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 font-display">
+              LEADERSHIP TEAM
+            </span>
+          </div>
+          <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 font-display tracking-tight">
+            The Minds Behind <br />
+            <span className="text-blue-600">CareerDCode.</span>
           </h2>
         </div>
 
         {/* Founders Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-100 border border-slate-100 rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/50">
           {founders.map((founder, idx) => (
             <motion.div
               key={idx}
@@ -60,53 +64,47 @@ export default function FoundersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group relative h-[420px] rounded-2xl overflow-hidden shadow-xl bg-white border border-slate-100"
+              className="group relative bg-white aspect-[3/4] overflow-hidden flex flex-col"
             >
               {/* Founder Image */}
-              <img 
-                src={founder.image} 
-                alt={founder.name} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
+              <div className="relative flex-grow overflow-hidden">
+                <img 
+                  src={founder.image} 
+                  alt={founder.name} 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
+              </div>
 
-              {/* Special Layout for First Card (Yashwardhan) */}
-              {idx === 0 ? (
-                <div className="absolute inset-0 flex flex-col">
-                  {/* Top Quote Section */}
-                  <div className="absolute inset-0 bg-blue-600/90 p-8 flex flex-col justify-center text-white w-[65%] clip-path-founder">
-                    <Quote className="mb-4 opacity-50" size={48} fill="currentColor" />
-                    <p className="text-sm font-bold leading-relaxed mb-4">
-                      {founder.bio}
-                    </p>
-                    <Quote className="self-end opacity-50 rotate-180" size={48} fill="currentColor" />
-                  </div>
-                  
-                  {/* Bottom Info */}
-                  <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-blue-900/80 to-transparent">
-                    <div className="flex justify-between items-end">
-                      <div>
-                        <h3 className="text-white font-bold text-base leading-tight">{founder.name}</h3>
-                        <p className="text-white/80 text-[10px] font-medium mt-1">{founder.role}</p>
-                      </div>
-                      <a href="#" className="text-white hover:scale-110 transition-transform">
-                        <Linkedin size={18} fill="currentColor" />
+              {/* Founder Info */}
+              <div className="p-8 bg-white border-t border-slate-50 relative z-10">
+                <h3 className="text-xl font-bold text-slate-900 font-display tracking-tight leading-tight mb-1">
+                  {founder.name}
+                </h3>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest font-display">
+                  {founder.role}
+                </p>
+              </div>
+
+              {/* Bio on Hover - Covers Entire Card */}
+              {founder.bio && (
+                <div className="absolute inset-0 bg-slate-900/95 p-10 flex flex-col justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
+                  <Quote className="text-blue-500 mb-6 opacity-50" size={40} />
+                  <p className="text-base font-medium text-slate-300 leading-relaxed italic mb-8">
+                    {founder.bio}
+                  </p>
+                  <div className="pt-8 border-t border-white/10 flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-white font-bold font-display text-lg">{founder.name}</span>
+                      <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">{founder.role}</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="text-[10px] font-black text-white uppercase tracking-widest font-display opacity-0 group-hover:opacity-100 transition-opacity delay-300">View Profile</span>
+                      <a href="#" className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
+                        <Linkedin size={18} />
                       </a>
                     </div>
-                  </div>
-                </div>
-              ) : (
-                /* Standard Layout for other cards */
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-700/90 via-transparent to-transparent flex flex-col justify-end p-6">
-                  <div className="flex justify-between items-end">
-                    <div>
-                      <h3 className="text-white font-bold text-base leading-tight">{founder.name}</h3>
-                      <p className="text-white/80 text-[10px] font-medium mt-1">{founder.role}</p>
-                    </div>
-                    <a href="#" className="text-white hover:scale-110 transition-transform">
-                      <Linkedin size={18} fill="currentColor" />
-                    </a>
                   </div>
                 </div>
               )}
@@ -114,12 +112,6 @@ export default function FoundersSection() {
           ))}
         </div>
       </div>
-
-      <style>{`
-        .clip-path-founder {
-          clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-        }
-      `}</style>
     </section>
   );
 }

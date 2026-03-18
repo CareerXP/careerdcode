@@ -43,96 +43,116 @@ const transformations: TransformationCard[] = [
     after: { label: 'After', role: 'Software Engineer' },
     testimonial: "CareerDCode provided me with the right platform to showcase my skills. The mock interviews were extremely helpful."
   },
+  {
+    name: 'Ankit Sharma',
+    image: 'https://picsum.photos/seed/ankit/100/100',
+    companyLogo: 'https://picsum.photos/seed/google/120/40',
+    before: { label: 'Before', role: 'Civil Engineer' },
+    after: { label: 'After', role: 'Full Stack Developer' },
+    testimonial: "The transition was smooth thanks to the structured learning path. I never felt overwhelmed despite being from a non-CS background."
+  },
+  {
+    name: 'Sneha Gupta',
+    image: 'https://picsum.photos/seed/sneha/100/100',
+    companyLogo: 'https://picsum.photos/seed/amazon/120/40',
+    before: { label: 'Before', role: 'Fresher' },
+    after: { label: 'After', role: 'Backend Developer' },
+    testimonial: "The placement assistance is real. They don't just teach; they make sure you are ready for the industry challenges."
+  }
 ];
-
-// Double the list for seamless marquee
-const marqueeItems = [...transformations, ...transformations];
 
 export default function StudentTransformations() {
   return (
-    <section className="relative py-24 overflow-hidden bg-white">
-      {/* Dot Pattern Background */}
-      <div className="absolute inset-0 -z-10 opacity-40" 
+    <section className="relative py-24 overflow-hidden bg-slate-50">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 -z-10 opacity-5" 
            style={{ 
-             backgroundImage: 'radial-gradient(#3b82f6 1.5px, transparent 1.5px)', 
-             backgroundSize: '32px 32px' 
+             backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', 
+             backgroundSize: '24px 24px' 
            }}>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900">
-            <span className="text-blue-600">Those Who</span> Acted And Transformed
-          </h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl lg:text-6xl font-bold text-slate-900 font-display tracking-tight"
+          >
+            Real <span className="text-blue-600">Impact.</span>
+          </motion.h2>
+          <p className="mt-4 text-slate-500 max-w-2xl mx-auto font-medium">
+            Stories of career shifts from diverse backgrounds to global tech leaders.
+          </p>
         </div>
 
-        {/* Continuous Marquee Container */}
-        <div className="relative w-full overflow-hidden py-10 pause-on-hover">
-          <div className="flex gap-6 w-max animate-marquee">
-            {marqueeItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="group relative w-[320px] h-[420px] bg-white rounded-2xl shadow-xl shadow-slate-200/50 border-t-4 border-blue-600 transition-all duration-500 perspective-1000"
-              >
-                {/* Front Side: Transformation Info */}
-                <div className="absolute inset-0 p-8 flex flex-col items-center text-center backface-hidden group-hover:opacity-0 group-hover:scale-95 transition-all duration-500">
-                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-slate-100 mb-4 shadow-inner">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {transformations.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+            >
+              {/* Profile Header */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-100">
+                  {item.image && (
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-6">{item.name}</h3>
-                  <div className="h-12 flex items-center justify-center mb-8">
-                    <img src={item.companyLogo} alt="Company" className="max-h-full max-w-[160px] object-contain grayscale hover:grayscale-0 transition-all" referrerPolicy="no-referrer" />
-                  </div>
-                  <div className="w-full grid grid-cols-[1fr_auto_1fr] items-center gap-2">
-                    <div className="space-y-2">
-                      <span className="inline-block px-3 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase rounded-md">
-                        {item.before.label}
-                      </span>
-                      <p className="text-xs font-semibold text-slate-600 leading-tight h-8 flex items-center justify-center">
-                        {item.before.role}
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center gap-0.5 text-blue-300">
-                      <ChevronRight size={16} className="-mb-2" />
-                      <ChevronRight size={16} className="-mb-2" />
-                      <ChevronRight size={16} />
-                    </div>
-                    <div className="space-y-2">
-                      <span className="inline-block px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold uppercase rounded-md">
-                        {item.after.label}
-                      </span>
-                      <p className="text-xs font-semibold text-slate-600 leading-tight h-8 flex items-center justify-center">
-                        {item.after.role}
-                      </p>
-                    </div>
-                  </div>
+                  )}
                 </div>
-
-                {/* Back Side: Testimonial (Hover State) */}
-                <div className="absolute inset-0 p-10 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 bg-white rounded-2xl">
-                  <Quote className="text-blue-600 rotate-180" size={32} fill="currentColor" />
-                  
-                  <p className="text-slate-500 text-lg leading-relaxed font-medium">
-                    "{item.testimonial}"
-                  </p>
-
-                  <div className="flex justify-between items-center">
-                    <Linkedin className="text-blue-600" size={28} fill="currentColor" />
-                    <Quote className="text-blue-600" size={32} fill="currentColor" />
+                <div>
+                  <h3 className="font-bold text-slate-900 font-display">{item.name}</h3>
+                  <div className="h-5 mt-1">
+                    {item.companyLogo && (
+                      <img src={item.companyLogo} alt="Company" className="h-full object-contain grayscale opacity-60" referrerPolicy="no-referrer" />
+                    )}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* Transformation Path */}
+              <div className="flex items-center justify-between p-5 bg-slate-50 rounded-xl mb-8 border border-slate-100">
+                <div className="text-center flex-1">
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] block mb-2 font-display">Origin</span>
+                  <p className="text-[11px] font-bold text-slate-600 leading-tight uppercase tracking-wider">{item.before.role}</p>
+                </div>
+                <div className="px-3 text-blue-400">
+                  <ChevronRight size={20} />
+                </div>
+                <div className="text-center flex-1">
+                  <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] block mb-2 font-display">Target</span>
+                  <p className="text-[11px] font-bold text-slate-900 leading-tight uppercase tracking-wider">{item.after.role}</p>
+                </div>
+              </div>
+
+              {/* Testimonial */}
+              <div className="relative flex-grow">
+                <p className="relative z-10 text-slate-500 text-sm leading-relaxed font-medium italic">
+                  "{item.testimonial}"
+                </p>
+              </div>
+
+              {/* Social Link */}
+              <div className="mt-6 pt-6 border-t border-slate-50 flex justify-end">
+                <a href="#" className="text-blue-600 hover:text-blue-700 transition-colors">
+                  <Linkedin size={20} fill="currentColor" />
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Action Button */}
-        <div className="flex justify-end mt-4">
-          <button className="flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all active:translate-y-0">
+        {/* <div className="flex justify-center mt-16">
+          <button className="flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all active:translate-y-0">
             <FileText size={20} />
             Download Placement Report
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

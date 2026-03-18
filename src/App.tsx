@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import WhatsAppFAB from './components/WhatsAppFAB';
+import MentorConnectFAB from './components/MentorConnectFAB';
 import CallbackModal from './components/CallbackModal';
 import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
@@ -32,6 +33,7 @@ export default function App() {
         />
 
         <WhatsAppFAB />
+        <MentorConnectFAB />
 
         <CallbackModal isOpen={isModalOpen} onClose={closeModal} type={modalType} />
       </div>

@@ -17,7 +17,7 @@ export default function Hero() {
             className="space-y-8"
           >
             {/* Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
+            {/* <div className="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
               <div className="flex -space-x-2">
                 {[1, 2, 3].map((i) => (
                   <img
@@ -30,17 +30,29 @@ export default function Hero() {
                 ))}
               </div>
               <span className="text-sm font-semibold text-blue-700">35k+ Happy Students</span>
-            </div>
+            </div> */}
 
             {/* Heading */}
-            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-              The <span className="text-blue-600">Training</span> platform for your <span className="text-blue-500">career</span>
+            <h1 className="text-6xl lg:text-8xl font-bold font-display tracking-tight text-slate-900 leading-[0.95]">
+              Master the <br />
+              <span className="text-blue-600">Digital</span> <br />
+              Economy.
             </h1>
 
             {/* Subtext */}
-            <p className="text-xl text-slate-600 max-w-xl leading-relaxed">
-              Get industry-ready with expert-led courses and state-of-the-art curriculum.
+            <p className="text-lg text-slate-500 max-w-md leading-relaxed font-medium">
+              CareerDCode provides industry-leading technical training for the next generation of software engineers.
             </p>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-4">
+              <button className="px-8 py-4 bg-slate-900 text-white font-bold font-display rounded-xl hover:bg-blue-600 transition-all shadow-xl shadow-slate-200">
+                Explore Courses
+              </button>
+              <button className="px-8 py-4 bg-white text-slate-900 border-2 border-slate-100 font-bold font-display rounded-xl hover:border-slate-900 transition-all">
+                Our Story
+              </button>
+            </div>
 
             {/* Partner Logos */}
             <div className="pt-8 flex flex-wrap items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
