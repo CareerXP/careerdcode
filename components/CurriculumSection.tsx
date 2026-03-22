@@ -31,19 +31,19 @@ export default function CurriculumSection({ curriculum }: CurriculumSectionProps
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="flex gap-8 mb-12 relative"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-12 relative"
             >
-              <div className="flex-shrink-0 w-24 text-right">
+              <div className="flex-shrink-0 w-full sm:w-24 text-left sm:text-right">
                 <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest">
                   {item.week}
                 </span>
               </div>
               <div className="flex-grow pb-12 border-l-2 border-indigo-200 pl-8 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white"></div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
                   {item.topic}
                 </h3>
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
                   {item.description}
                 </p>
               </div>

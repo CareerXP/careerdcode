@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
 
+import { seoConfig } from "@/config/seo";
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -22,8 +24,19 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CareerDCode",
-  description: "Empowering the next generation of tech leaders.",
+  title: {
+    default: seoConfig.defaultTitle,
+    template: seoConfig.titleTemplate,
+  },
+  description: seoConfig.description,
+  keywords: seoConfig.keywords,
+  openGraph: {
+    ...seoConfig.openGraph,
+  },
+  twitter: {
+    ...seoConfig.twitter,
+  },
+  metadataBase: new URL(seoConfig.canonical),
 };
 
 export default function RootLayout({
