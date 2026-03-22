@@ -1,4 +1,25 @@
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import type { Document } from '@contentful/rich-text-types';
 import { contentfulClient } from '@/lib/contentful';
+
+function reviewTextFromCaption(caption: unknown): string {
+  if (caption == null || caption === '') {
+    return 'No review provided.';
+  }
+  if (typeof caption === 'string') {
+    return caption;
+  }
+  if (
+    typeof caption === 'object' &&
+    caption !== null &&
+    'nodeType' in caption &&
+    (caption as { nodeType: string }).nodeType === 'document'
+  ) {
+    const text = documentToPlainTextString(caption as Document);
+    return text.trim() || 'No review provided.';
+  }
+  return 'No review provided.';
+}
 
 export interface StudentReview {
   name: string;
@@ -39,8 +60,10 @@ export async function getStudentReviews(): Promise<StudentReview[]> {
     console.log(`Fetching entries from Contentful Space: ${spaceId} using token: ${accessToken?.slice(0, 4)}...${accessToken?.slice(-4)}`);
 
     const response = await contentfulClient.getEntries({
-      content_type: 'studentReview',
+      content_type: 'studentReviews',
     });
+
+    console.log(response);
 
     if (!response.items || response.items.length === 0) {
       return mockReviews;
@@ -48,11 +71,11 @@ export async function getStudentReviews(): Promise<StudentReview[]> {
 
     return response.items.map((item: any) => ({
       name: item.fields.name || 'Anonymous',
-      role: item.fields.role || 'Student',
+      role: item.fields.position || 'Student',
       image: item.fields.image?.fields?.file?.url 
         ? `https:${item.fields.image.fields.file.url}` 
         : `https://picsum.photos/seed/${item.sys.id}/100/100`,
-      review: item.fields.review || 'No review provided.',
+      review: reviewTextFromCaption(item.fields.caption),
     }));
   } catch (error: any) {
     if (error.status === 401) {
