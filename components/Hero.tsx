@@ -15,7 +15,7 @@ export default function Hero() {
           <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-blue-700 uppercase bg-blue-100 rounded-full">
             Accelerate Your Career
           </span>
-          <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-6">
+          <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-6 font-display">
             Master High-Demand <span className="text-blue-600">Tech Skills</span>
           </h1>
           <p className="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
@@ -56,19 +56,62 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
+          className="relative h-[500px] flex items-center justify-center"
         >
-          <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
-            <Image
-              src="https://picsum.photos/seed/learning/1200/800"
-              alt="Learning"
-              width={1200}
-              height={800}
-              className="object-cover"
-              referrerPolicy="no-referrer"
-            />
+          {/* Main Illustration */}
+          <div className="relative z-20 w-full max-w-md transform hover:scale-105 transition-transform duration-500">
+            <div className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white bg-white">
+              <Image
+                src="https://picsum.photos/seed/student-3d/800/800"
+                alt="Student Success"
+                width={800}
+                height={800}
+                className="object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            {/* Floating Badge */}
+            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce-slow">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                🚀
+              </div>
+              <div>
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Success Rate</p>
+                <p className="text-lg font-bold text-slate-900">98%</p>
+              </div>
+            </div>
           </div>
+
+          {/* Secondary Illustration 1 */}
+          <div className="absolute top-0 -left-4 z-10 w-48 h-48 transform -rotate-12 hover:rotate-0 transition-transform duration-500">
+            <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-white">
+              <Image
+                src="https://picsum.photos/seed/job-3d/400/400"
+                alt="Job Opportunity"
+                width={400}
+                height={400}
+                className="object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          {/* Secondary Illustration 2 */}
+          <div className="absolute bottom-12 -right-4 z-10 w-56 h-56 transform rotate-12 hover:rotate-0 transition-transform duration-500">
+            <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-white">
+              <Image
+                src="https://picsum.photos/seed/career-3d/400/400"
+                alt="Career Growth"
+                width={400}
+                height={400}
+                className="object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
           {/* Decorative elements */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-100/50 rounded-full blur-3xl -z-10"></div>
           <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
           <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         </motion.div>

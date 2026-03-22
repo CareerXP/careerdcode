@@ -79,7 +79,7 @@ export default function SkillCentres() {
           {/* Main Content */}
           <div className="lg:w-3/4">
             <div className="mb-12">
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 font-display">
                 <span className="text-blue-600">Offline</span> Skill Centres
               </h2>
               <p className="text-slate-600 text-lg">

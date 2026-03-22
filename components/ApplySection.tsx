@@ -17,7 +17,7 @@ export default function ApplySection({ onCallbackClick }: ApplySectionProps) {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-4xl font-bold mb-6 font-display">
             Ready to Start Your Career in Tech?
           </h2>
           <p className="text-lg mb-10 opacity-90 leading-relaxed">

@@ -23,7 +23,7 @@ export default function ImpactStats() {
               viewport={{ once: true }}
               className="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100"
             >
-              <h3 className="text-4xl font-bold text-blue-600 mb-2">
+              <h3 className="text-4xl font-bold text-blue-600 mb-2 font-display">
                 {stat.value}
               </h3>
               <p className="text-slate-600 font-medium">
