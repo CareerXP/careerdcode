@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useModal } from "./ClientLayout";
 
-interface ApplySectionProps {
-  onCallbackClick: () => void;
-}
+export default function ApplySection() {
+  const { openModal } = useModal();
 
-export default function ApplySection({ onCallbackClick }: ApplySectionProps) {
   return (
     <section className="py-24 bg-indigo-600 text-white">
       <div className="container mx-auto px-4 text-center">
@@ -29,7 +28,7 @@ export default function ApplySection({ onCallbackClick }: ApplySectionProps) {
               Apply Now
             </button>
             <button 
-              onClick={onCallbackClick}
+              onClick={() => openModal('callback')}
               className="px-10 py-5 bg-indigo-700 text-white font-bold rounded-2xl border border-indigo-500 hover:bg-indigo-800 transition-colors"
             >
               Request Callback

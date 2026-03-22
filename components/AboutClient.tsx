@@ -10,7 +10,7 @@ export default function AboutClient() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar onCallbackClick={() => openModal('callback')} />
+      <Navbar />
       
       <main className="flex-grow">
         {/* Hero Section */}

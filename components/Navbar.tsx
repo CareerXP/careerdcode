@@ -1,11 +1,12 @@
+"use client";
+
 import { ChevronDown, PhoneCall } from 'lucide-react';
 import Link from 'next/link';
+import { useModal } from './ClientLayout';
 
-interface NavbarProps {
-  onCallbackClick: () => void;
-}
+export default function Navbar() {
+  const { openModal } = useModal();
 
-export default function Navbar({ onCallbackClick }: NavbarProps) {
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +35,7 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
           {/* Action Buttons */}
           <div className="flex items-center space-x-4">
             <button 
-              onClick={onCallbackClick}
+              onClick={() => openModal('callback')}
               className="flex items-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200"
             >
               <PhoneCall size={14} />
