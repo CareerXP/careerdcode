@@ -22,7 +22,7 @@ export default function PlacedStudents() {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
           {students.map((student, i) => (
             <motion.div
               key={i}
@@ -32,20 +32,20 @@ export default function PlacedStudents() {
               viewport={{ once: true }}
               className="bg-slate-50 p-6 rounded-3xl text-center shadow-lg shadow-slate-100"
             >
-              <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 bg-slate-200">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden mx-auto mb-4 bg-slate-200">
                 <Image
                   src={student.image}
                   alt={student.name}
                   width={96}
                   height={96}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   referrerPolicy="no-referrer"
                 />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-1">
                 {student.name}
               </h3>
-              <p className="text-blue-600 font-semibold text-sm mb-2">
+              <p className="text-indigo-600 font-semibold text-sm mb-2">
                 {student.role}
               </p>
               <div className="text-slate-400 font-bold text-xs uppercase tracking-widest">

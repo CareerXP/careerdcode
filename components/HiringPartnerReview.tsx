@@ -40,19 +40,19 @@ export default function HiringPartnerReview() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-blue-700 uppercase bg-blue-100 rounded-full"
+            className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-indigo-700 uppercase bg-indigo-100 rounded-full"
           >
             Hiring Partner Feedback
           </motion.span>
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 font-display">
-            What Our <span className="text-blue-600">Hiring Partners</span> Say
+            What Our <span className="text-indigo-600">Hiring Partners</span> Say
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             We work closely with industry leaders to ensure our curriculum stays relevant and our students are job-ready.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reviews.map((review, i) => (
             <motion.div
               key={i}
@@ -60,9 +60,9 @@ export default function HiringPartnerReview() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100 relative group hover:-translate-y-2 transition-transform duration-300"
+              className="bg-white p-6 md:p-8 rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100 relative group hover:-translate-y-2 transition-transform duration-300"
             >
-              <div className="absolute top-8 right-8 text-blue-100 group-hover:text-blue-200 transition-colors">
+              <div className="absolute top-8 right-8 text-indigo-100 group-hover:text-indigo-200 transition-colors">
                 <Quote size={48} />
               </div>
 
@@ -112,7 +112,7 @@ export default function HiringPartnerReview() {
         </div>
 
         {/* Stats Summary */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { label: "Partner Companies", value: "500+" },
             { label: "Avg. Salary Hike", value: "120%" },
@@ -125,9 +125,9 @@ export default function HiringPartnerReview() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="text-center"
+              className="text-center p-4 rounded-2xl bg-white/50 border border-white/20"
             >
-              <p className="text-3xl font-bold text-blue-600 mb-1 font-display">{stat.value}</p>
+              <p className="text-3xl font-bold text-indigo-600 mb-1 font-display">{stat.value}</p>
               <p className="text-xs font-black text-slate-400 uppercase tracking-widest">{stat.label}</p>
             </motion.div>
           ))}

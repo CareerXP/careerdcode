@@ -34,12 +34,12 @@ export default function CurriculumSection({ curriculum }: CurriculumSectionProps
               className="flex gap-8 mb-12 relative"
             >
               <div className="flex-shrink-0 w-24 text-right">
-                <span className="text-sm font-bold text-blue-600 uppercase tracking-widest">
+                <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest">
                   {item.week}
                 </span>
               </div>
-              <div className="flex-grow pb-12 border-l-2 border-blue-200 pl-8 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-white"></div>
+              <div className="flex-grow pb-12 border-l-2 border-indigo-200 pl-8 relative">
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white"></div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">
                   {item.topic}
                 </h3>

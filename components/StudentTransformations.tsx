@@ -35,7 +35,7 @@ export default function StudentTransformations() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {transformations.map((item, i) => (
             <motion.div
               key={i}
@@ -43,32 +43,32 @@ export default function StudentTransformations() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200 flex flex-col md:flex-row gap-8 items-center"
+              className="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200 flex flex-col md:flex-row gap-8 items-center md:items-start"
             >
-              <div className="w-48 h-48 rounded-2xl overflow-hidden flex-shrink-0 bg-slate-100">
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden flex-shrink-0 bg-slate-100">
                 <Image
                   src={item.image}
                   alt={item.name}
                   width={200}
                   height={200}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wider">
+              <div className="flex-grow">
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] md:text-xs font-bold rounded-full uppercase tracking-wider">
                     {item.before}
                   </span>
                   <span className="text-slate-400">→</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wider">
+                  <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-[10px] md:text-xs font-bold rounded-full uppercase tracking-wider">
                     {item.after}
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">
                   {item.name}
                 </h3>
-                <p className="text-blue-600 font-semibold mb-4">
+                <p className="text-indigo-600 font-semibold mb-4">
                   {item.role}
                 </p>
                 <p className="text-slate-600 italic leading-relaxed">

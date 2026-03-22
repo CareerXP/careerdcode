@@ -1,7 +1,16 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { X } from "lucide-react";
+import { 
+  X, 
+  User, 
+  Phone, 
+  MapPin, 
+  BookOpen, 
+  GraduationCap, 
+  Briefcase, 
+  ChevronDown 
+} from "lucide-react";
 
 interface CallbackModalProps {
   isOpen: boolean;
@@ -25,56 +34,135 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl"
+            className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl overflow-hidden"
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
             >
               <X className="w-6 h-6" />
             </button>
             
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">
-                {type === 'callback' ? 'Request Callback' : 'Download Brochure'}
+              <h2 className="text-3xl font-bold text-slate-900 mb-2 font-display">
+                {type === 'callback' ? 'Request a Callback' : 'Download Brochure'}
               </h2>
-              <p className="text-slate-500">
+              <p className="text-slate-500 font-sans">
                 {type === 'callback' 
-                  ? 'Fill in your details and we will call you back shortly.' 
+                  ? 'Our team will get in touch with you asap.' 
                   : 'Enter your details to receive the course brochure.'}
               </p>
             </div>
             
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">Full Name</label>
+            <form className="space-y-3">
+              {/* Name Field */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-slate-400" />
+                </div>
                 <input 
                   type="text" 
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="John Doe"
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
+                  placeholder="Enter name"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
-                <input 
-                  type="email" 
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="john@example.com"
-                />
+
+              {/* WhatsApp Number Field */}
+              <div className="flex gap-2">
+                <div className="relative w-32">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Phone className="h-5 w-5 text-slate-400" />
+                  </div>
+                  <select className="w-full pl-12 pr-8 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 appearance-none cursor-pointer">
+                    <option>+91</option>
+                    <option>+1</option>
+                    <option>+44</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <ChevronDown className="h-4 w-4 text-slate-400" />
+                  </div>
+                </div>
+                <div className="relative flex-grow">
+                  <input 
+                    type="tel" 
+                    className="w-full px-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
+                    placeholder="Enter whatsapp number"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">Phone Number</label>
-                <input 
-                  type="tel" 
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="+91 12345 67890"
-                />
+
+              {/* State Field */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <MapPin className="h-5 w-5 text-slate-400" />
+                </div>
+                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                  <option value="" disabled>Select State</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                  <ChevronDown className="h-5 w-5 text-slate-400" />
+                </div>
               </div>
+
+              {/* Degree Field */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <BookOpen className="h-5 w-5 text-slate-400" />
+                </div>
+                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                  <option value="" disabled>Select Degree</option>
+                  <option value="B.Tech">B.Tech</option>
+                  <option value="BCA">BCA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                  <ChevronDown className="h-5 w-5 text-slate-400" />
+                </div>
+              </div>
+
+              {/* Graduation Year Field */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <GraduationCap className="h-5 w-5 text-slate-400" />
+                </div>
+                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                  <option value="" disabled>Select Graduation Year</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="Earlier">Earlier</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                  <ChevronDown className="h-5 w-5 text-slate-400" />
+                </div>
+              </div>
+
+              {/* Job Status Field */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Briefcase className="h-5 w-5 text-slate-400" />
+                </div>
+                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                  <option value="" disabled>Job Status</option>
+                  <option value="Student">Student</option>
+                  <option value="Working Professional">Working Professional</option>
+                  <option value="Job Seeker">Job Seeker</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                  <ChevronDown className="h-5 w-5 text-slate-400" />
+                </div>
+              </div>
+
               <button 
                 type="button"
-                className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 mt-4"
+                className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mt-6 font-sans text-lg"
               >
-                {type === 'callback' ? 'Submit Request' : 'Download Now'}
+                {type === 'callback' ? 'Request Callback' : 'Download Now'}
               </button>
             </form>
           </motion.div>

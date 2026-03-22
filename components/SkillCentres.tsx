@@ -56,7 +56,7 @@ export default function SkillCentres() {
             <div className="mb-10">
               <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 relative inline-block">
                 EXPLORE OUR CENTRES
-                <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-blue-600"></span>
+                <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-indigo-600"></span>
               </h3>
             </div>
             <div className="space-y-4">
@@ -66,7 +66,7 @@ export default function SkillCentres() {
                   onClick={() => setActiveCentre(centre.id)}
                   className={`w-full text-left px-6 py-4 rounded-xl text-sm font-bold transition-all ${
                     activeCentre === centre.id
-                      ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600 shadow-sm'
+                      ? 'bg-indigo-50 text-indigo-600 border-l-4 border-indigo-600 shadow-sm'
                       : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
                   }`}
                 >
@@ -80,7 +80,7 @@ export default function SkillCentres() {
           <div className="lg:w-3/4">
             <div className="mb-12">
               <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 font-display">
-                <span className="text-blue-600">Offline</span> Skill Centres
+                <span className="text-indigo-600">Offline</span> Skill Centres
               </h2>
               <p className="text-slate-600 text-lg">
                 Learn face to face with top industry experts and attend hiring drives at our skill centres.
@@ -134,7 +134,7 @@ export default function SkillCentres() {
                   referrerPolicy="no-referrer"
                 />
                 {/* Map Card */}
-                <div className="w-full h-1/2 bg-gradient-to-br from-blue-600 to-blue-400 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-center text-white shadow-lg">
+                <div className="w-full h-1/2 bg-gradient-to-br from-indigo-600 to-indigo-400 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-center text-white shadow-lg">
                   <div className="relative z-10">
                     <h4 className="text-2xl font-bold mb-2">{centres.find(c => c.id === activeCentre)?.location}</h4>
                     <div className="flex items-center gap-2">
@@ -157,48 +157,48 @@ export default function SkillCentres() {
               <h3 className="text-xl font-bold text-slate-900 mb-8">Courses Offered</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {allCourses.map((course, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100 flex flex-col h-full"
-                  >
-                    <h4 className="text-sm font-bold text-slate-800 mb-6 leading-tight min-h-[40px]">
-                      {course.title}
-                    </h4>
-                    
-                    <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                      {course.techStack.map((t) => {
-                        const icon = getTechIcon(t);
-                        return (
-                          <div key={t} className="w-7 h-7 p-1 bg-white rounded-md shadow-sm border border-slate-100">
-                            {icon && (
-                              <img 
-                                src={icon} 
-                                alt={t} 
-                                className="w-full h-full object-contain"
-                                referrerPolicy="no-referrer"
-                              />
-                            )}
-                          </div>
-                        );
-                      })}
-                      {course.title.includes('MERN') && (
-                        <div className="w-7 h-7 bg-blue-600 text-white rounded-md flex items-center justify-center text-[7px] font-bold">
-                          DSA
-                        </div>
-                      )}
-                    </div>
-
-                    <Link 
-                      href={`/courses/${course.id}`}
-                      className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all"
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="bg-indigo-50/50 rounded-2xl p-6 border border-indigo-100 flex flex-col h-full"
                     >
-                      View Program <ChevronRight size={14} />
-                    </Link>
-                  </motion.div>
+                      <h4 className="text-sm font-bold text-slate-800 mb-6 leading-tight min-h-[40px]">
+                        {course.title}
+                      </h4>
+                      
+                      <div className="flex flex-wrap gap-2 mb-8 mt-auto">
+                        {course.techStack.map((t) => {
+                          const icon = getTechIcon(t);
+                          return (
+                            <div key={t} className="w-7 h-7 p-1 bg-white rounded-md shadow-sm border border-slate-100">
+                              {icon && (
+                                <img 
+                                  src={icon} 
+                                  alt={t} 
+                                  className="w-full h-full object-contain"
+                                  referrerPolicy="no-referrer"
+                                />
+                              )}
+                            </div>
+                          );
+                        })}
+                        {course.title.includes('MERN') && (
+                          <div className="w-7 h-7 bg-indigo-600 text-white rounded-md flex items-center justify-center text-[7px] font-bold">
+                            DSA
+                          </div>
+                        )}
+                      </div>
+
+                      <Link 
+                        href={`/courses/${course.id}`}
+                        className="w-full py-2.5 bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all"
+                      >
+                        View Program <ChevronRight size={14} />
+                      </Link>
+                    </motion.div>
                 ))}
               </div>
             </div>

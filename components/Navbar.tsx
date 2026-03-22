@@ -12,7 +12,7 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-blue-600 rotate-45 flex items-center justify-center rounded-sm shadow-lg shadow-blue-100">
+            <div className="w-8 h-8 bg-indigo-600 rotate-45 flex items-center justify-center rounded-sm shadow-lg shadow-indigo-100">
               <div className="w-4 h-4 bg-white -rotate-45"></div>
             </div>
             <span className="text-xl font-bold tracking-tighter text-slate-900 font-display">CareerDCode.</span>
@@ -20,13 +20,13 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-10">
-            <a href="/#courses" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">
+            <a href="/#courses" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">
               Courses
             </a>
-            <Link href="/about" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">
+            <Link href="/about" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">
               About Us
             </Link>
-            <div className="flex items-center gap-1 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 cursor-pointer transition-colors">
+            <div className="flex items-center gap-1 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 cursor-pointer transition-colors">
               More <ChevronDown size={12} />
             </div>
           </div>
@@ -35,7 +35,7 @@ export default function Navbar({ onCallbackClick }: NavbarProps) {
           <div className="flex items-center space-x-4">
             <button 
               onClick={onCallbackClick}
-              className="flex items-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-slate-900 rounded-xl hover:bg-blue-600 transition-all shadow-xl shadow-slate-200"
+              className="flex items-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200"
             >
               <PhoneCall size={14} />
               Callback

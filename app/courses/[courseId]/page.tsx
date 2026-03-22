@@ -55,7 +55,7 @@ export default function CourseDetails() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
         <h2 className="text-2xl font-bold text-slate-900 mb-4 font-display">Course not found</h2>
-        <Link href="/" className="text-blue-600 font-bold hover:underline">Go back home</Link>
+        <Link href="/" className="text-indigo-600 font-bold hover:underline">Go back home</Link>
       </div>
     );
   }
@@ -82,12 +82,12 @@ export default function CourseDetails() {
             <div className="lg:col-span-7">
               <div className="space-y-10">
                 <div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 font-display mb-6 block">
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 font-display mb-6 block">
                     PROFESSIONAL CERTIFICATION
                   </span>
                   <h1 className="text-6xl lg:text-8xl font-bold text-slate-900 font-display tracking-tight leading-[0.9] mb-8">
                     {course.title.split('-')[0]} <br />
-                    <span className="text-blue-600">Full Stack</span> <br />
+                    <span className="text-indigo-600">Full Stack</span> <br />
                     Development.
                   </h1>
                 </div>
@@ -101,7 +101,7 @@ export default function CourseDetails() {
 
                 <div className="flex items-start gap-6 p-8 bg-slate-50 rounded-2xl border border-slate-100 max-w-xl">
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 shrink-0">
-                    <CheckCircle2 className="text-blue-600" size={24} />
+                    <CheckCircle2 className="text-indigo-600" size={24} />
                   </div>
                   <p className="text-lg text-slate-600 leading-relaxed font-medium">
                     Curriculum designed and taught by Alumni from <span className="text-slate-900 font-bold">IITs & Leading Tech Companies</span>.
@@ -111,7 +111,7 @@ export default function CourseDetails() {
                 <div className="flex flex-wrap gap-6 pt-10">
                   <button 
                     onClick={() => openModal('brochure')}
-                    className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold font-display text-xs uppercase tracking-widest hover:bg-blue-600 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200 group"
+                    className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold font-display text-xs uppercase tracking-widest hover:bg-indigo-600 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200 group"
                   >
                     <Download size={18} className="group-hover:translate-y-1 transition-transform" />
                     Download Syllabus
@@ -131,14 +131,14 @@ export default function CourseDetails() {
             <div className="lg:col-span-5">
               <div className="bg-white p-10 lg:p-12 rounded-[32px] border border-slate-100 shadow-2xl shadow-slate-200/50 relative">
                 <div className="absolute top-0 right-10 transform -translate-y-1/2">
-                  <div className="bg-blue-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+                  <div className="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
                     FREE DEMO
                   </div>
                 </div>
 
                 <div className="mb-10">
                   <h3 className="text-3xl font-bold text-slate-900 font-display tracking-tight mb-3">
-                    Reserve Your <span className="text-blue-600">Seat.</span>
+                    Reserve Your <span className="text-indigo-600">Seat.</span>
                   </h3>
                   <p className="text-sm text-slate-500 font-medium leading-relaxed">
                     Get access to exclusive lectures & assignments curated by industry veterans.
@@ -151,7 +151,7 @@ export default function CourseDetails() {
                     <input 
                       type="text" 
                       placeholder="e.g. John Doe"
-                      className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-blue-500 transition-colors font-medium"
+                      className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
                     />
                   </div>
 
@@ -159,7 +159,7 @@ export default function CourseDetails() {
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
                     <div className="flex gap-3">
                       <div className="relative w-24 shrink-0">
-                        <select className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-4 text-slate-900 appearance-none focus:outline-none focus:border-blue-500 transition-colors font-medium">
+                        <select className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-4 text-slate-900 appearance-none focus:outline-none focus:border-indigo-500 transition-colors font-medium">
                           <option>+91</option>
                         </select>
                         <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-400">
@@ -169,18 +169,18 @@ export default function CourseDetails() {
                       <input 
                         type="tel" 
                         placeholder="98765 43210"
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-blue-500 transition-colors font-medium"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
                       />
                     </div>
                   </div>
 
-                  <button className="w-full py-5 bg-blue-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 group mt-4">
+                  <button className="w-full py-5 bg-indigo-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 group mt-4">
                     Apply Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </button>
 
                   <p className="text-[10px] text-center text-slate-400 leading-relaxed font-medium pt-4">
                     By clicking 'Apply Now', you agree to our <br />
-                    <a href="#" className="text-blue-600 hover:underline font-bold">Terms & Conditions</a>
+                    <a href="#" className="text-indigo-600 hover:underline font-bold">Terms & Conditions</a>
                   </p>
                 </form>
               </div>
@@ -194,7 +194,7 @@ export default function CourseDetails() {
           href="https://wa.me/918595563221" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
+          className="fixed bottom-8 right-8 z-50 bg-indigo-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
         >
           <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
@@ -205,8 +205,8 @@ export default function CourseDetails() {
           {[
             { label: 'Highest Salary', value: '41 Lakhs', icon: '💰', color: 'bg-red-50' },
             { label: 'Partner Companies', value: '500+', icon: '🤝', color: 'bg-orange-50' },
-            { label: 'Job Assistance', value: '100%', icon: '✅', color: 'bg-blue-50' },
-            { label: 'Average Salary', value: '7.4 LPA', icon: '📈', color: 'bg-blue-50' }
+            { label: 'Job Assistance', value: '100%', icon: '✅', color: 'bg-indigo-50' },
+            { label: 'Average Salary', value: '7.4 LPA', icon: '📈', color: 'bg-indigo-50' }
           ].map((stat, idx) => (
             <div key={idx} className="bg-white flex items-center gap-5 p-4">
               <div className={`w-12 h-12 ${stat.color} rounded-xl flex items-center justify-center text-xl shadow-sm`}>
@@ -227,13 +227,13 @@ export default function CourseDetails() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-16 mb-24">
             <div className="max-w-2xl">
               <div className="mb-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 font-display">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 font-display">
                   ELITE MENTORSHIP
                 </span>
               </div>
               <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 font-display tracking-tight mb-8">
                 Learn From <br />
-                <span className="text-blue-600">The Best.</span>
+                <span className="text-indigo-600">The Best.</span>
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed font-medium">
                 Learn from the Top 1% of the tech industry— exceptional professionals from top MNCs who have not only taught thousands but transformed their careers.
@@ -242,7 +242,7 @@ export default function CourseDetails() {
             
             <div className="relative">
               <div className="flex items-center gap-6 h-32">
-                <span className="text-4xl lg:text-6xl font-bold text-blue-600 bg-blue-50 px-8 py-3 rounded-2xl rotate-[-2deg] font-display">Expert</span>
+                <span className="text-4xl lg:text-6xl font-bold text-indigo-600 bg-indigo-50 px-8 py-3 rounded-2xl rotate-[-2deg] font-display">Expert</span>
                 <div className="h-px w-24 bg-slate-200 hidden lg:block"></div>
                 <div className="relative h-full flex flex-col justify-center overflow-hidden min-w-[240px]">
                   <AnimatePresence mode="wait">
@@ -254,7 +254,7 @@ export default function CourseDetails() {
                       transition={{ duration: 0.5, ease: "easeInOut" }}
                       className="flex flex-col"
                     >
-                      <span className="text-3xl lg:text-5xl font-bold text-blue-600 font-display">
+                      <span className="text-3xl lg:text-5xl font-bold text-indigo-600 font-display">
                         {rotatingWords[wordIndex]}
                       </span>
                     </motion.div>
@@ -306,16 +306,16 @@ export default function CourseDetails() {
 
                 {/* Bio on Hover */}
                 <div className="absolute inset-0 bg-slate-900/95 p-8 flex flex-col justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
-                  <Quote className="text-blue-500 mb-4 opacity-50" size={32} />
+                  <Quote className="text-indigo-500 mb-4 opacity-50" size={32} />
                   <p className="text-sm font-medium text-slate-300 leading-relaxed italic mb-6">
                     {mentor.bio}
                   </p>
                   <div className="pt-6 border-t border-white/10 flex items-center justify-between">
                     <div className="flex flex-col">
                       <span className="text-white font-bold font-display text-base">{mentor.name}</span>
-                      <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest">{mentor.company}</span>
+                      <span className="text-[9px] font-black text-indigo-500 uppercase tracking-widest">{mentor.company}</span>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                    <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white">
                       <Linkedin size={14} />
                     </div>
                   </div>
@@ -339,13 +339,13 @@ export default function CourseDetails() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-20">
             <div className="mb-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 font-display">
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 font-display">
                 TECHNICAL STACK
               </span>
             </div>
             <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 font-display tracking-tight">
               Technologies You'll <br />
-              <span className="text-blue-600">Master.</span>
+              <span className="text-indigo-600">Master.</span>
             </h2>
           </div>
           
@@ -363,7 +363,7 @@ export default function CourseDetails() {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-blue-600 transition-colors font-display">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-indigo-600 transition-colors font-display">
                   {tech}
                 </span>
               </div>

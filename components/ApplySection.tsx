@@ -8,7 +8,7 @@ interface ApplySectionProps {
 
 export default function ApplySection({ onCallbackClick }: ApplySectionProps) {
   return (
-    <section className="py-24 bg-blue-600 text-white">
+    <section className="py-24 bg-indigo-600 text-white">
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -25,12 +25,12 @@ export default function ApplySection({ onCallbackClick }: ApplySectionProps) {
             Get mentored, build projects, and master high-demand skills.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-10 py-5 bg-white text-blue-600 font-bold rounded-2xl hover:bg-slate-50 transition-colors shadow-xl shadow-blue-900/20">
+            <button className="px-10 py-5 bg-amber-500 text-white font-bold rounded-2xl hover:bg-amber-600 transition-colors shadow-xl shadow-amber-900/20">
               Apply Now
             </button>
             <button 
               onClick={onCallbackClick}
-              className="px-10 py-5 bg-blue-700 text-white font-bold rounded-2xl border border-blue-500 hover:bg-blue-800 transition-colors"
+              className="px-10 py-5 bg-indigo-700 text-white font-bold rounded-2xl border border-indigo-500 hover:bg-indigo-800 transition-colors"
             >
               Request Callback
             </button>

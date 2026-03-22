@@ -37,7 +37,7 @@ export default function MentorSection() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {mentors.map((mentor, i) => (
             <motion.div
               key={i}
@@ -45,15 +45,15 @@ export default function MentorSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-slate-50 p-8 rounded-3xl shadow-xl shadow-slate-200"
+              className="bg-slate-50 p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200"
             >
-              <div className="w-48 h-48 rounded-2xl overflow-hidden mx-auto mb-6 bg-slate-100">
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden mx-auto mb-6 bg-slate-100">
                 <Image
                   src={mentor.image}
                   alt={mentor.name}
                   width={200}
                   height={200}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -61,7 +61,7 @@ export default function MentorSection() {
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">
                   {mentor.name}
                 </h3>
-                <p className="text-blue-600 font-semibold mb-4">
+                <p className="text-indigo-600 font-semibold mb-4">
                   {mentor.role}
                 </p>
                 <p className="text-slate-600 italic leading-relaxed">

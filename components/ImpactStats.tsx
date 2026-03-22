@@ -13,7 +13,7 @@ export default function ImpactStats() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -21,12 +21,12 @@ export default function ImpactStats() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100"
+              className="text-center p-6 md:p-8 rounded-3xl bg-indigo-50/50 border border-indigo-100 shadow-sm hover:shadow-md transition-shadow"
             >
-              <h3 className="text-4xl font-bold text-blue-600 mb-2 font-display">
+              <h3 className="text-3xl md:text-4xl font-bold text-indigo-600 mb-2 font-display">
                 {stat.value}
               </h3>
-              <p className="text-slate-600 font-medium">
+              <p className="text-slate-600 font-semibold text-sm md:text-base">
                 {stat.label}
               </p>
             </motion.div>

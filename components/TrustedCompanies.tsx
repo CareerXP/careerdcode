@@ -19,7 +19,7 @@ export default function TrustedCompanies() {
           </p>
         </div>
         
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 lg:gap-20">
           {companies.map((company, i) => (
             <motion.div
               key={i}
@@ -27,7 +27,7 @@ export default function TrustedCompanies() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold text-slate-300 hover:text-slate-900 transition-colors cursor-default"
+              className="text-2xl md:text-3xl font-bold text-slate-300 hover:text-slate-900 transition-colors cursor-default"
             >
               {company}
             </motion.div>

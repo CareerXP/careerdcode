@@ -37,7 +37,7 @@ export default function StudentReviews() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reviews.map((review, i) => (
             <motion.div
               key={i}
@@ -45,7 +45,7 @@ export default function StudentReviews() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200"
+              className="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-100">

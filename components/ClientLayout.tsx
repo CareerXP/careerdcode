@@ -3,7 +3,6 @@
 import { useState, createContext, useContext } from 'react';
 import Footer from './Footer';
 import WhatsAppFAB from './WhatsAppFAB';
-import MentorConnectFAB from './MentorConnectFAB';
 import CallbackModal from './CallbackModal';
 
 interface ModalContextType {
@@ -37,7 +36,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         />
 
         <WhatsAppFAB />
-        <MentorConnectFAB />
 
         <CallbackModal isOpen={isModalOpen} onClose={closeModal} type={modalType} />
       </ModalContext.Provider>

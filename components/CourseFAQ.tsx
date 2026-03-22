@@ -48,7 +48,7 @@ export default function CourseFAQ({ faqs }: CourseFAQProps) {
                   {faq.question}
                 </h3>
                 {openIndex === i ? (
-                  <ChevronUp className="w-6 h-6 text-blue-600" />
+                  <ChevronUp className="w-6 h-6 text-indigo-600" />
                 ) : (
                   <ChevronDown className="w-6 h-6 text-slate-400" />
                 )}

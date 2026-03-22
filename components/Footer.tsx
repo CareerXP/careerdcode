@@ -18,7 +18,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
           <div className="lg:col-span-5">
             <div className="flex items-center gap-4 mb-10">
               <Link href="/" className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-600 rotate-45 flex items-center justify-center rounded-sm shadow-xl shadow-blue-100">
+                <div className="w-10 h-10 bg-indigo-600 rotate-45 flex items-center justify-center rounded-sm shadow-xl shadow-indigo-100">
                   <div className="w-5 h-5 bg-white -rotate-45"></div>
                 </div>
                 <span className="text-3xl font-bold tracking-tighter text-slate-900 font-display">CareerDCode.</span>
@@ -31,9 +31,9 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               {[
                 { icon: Instagram, color: 'hover:text-rose-500' },
                 { icon: Youtube, color: 'hover:text-red-600' },
-                { icon: Linkedin, color: 'hover:text-blue-700' },
-                { icon: Facebook, color: 'hover:text-blue-600' },
-                { icon: MessageCircle, color: 'hover:text-blue-500' }
+                { icon: Linkedin, color: 'hover:text-indigo-700' },
+                { icon: Facebook, color: 'hover:text-indigo-600' },
+                { icon: MessageCircle, color: 'hover:text-indigo-500' }
               ].map((social, idx) => (
                 <a key={idx} href="#" className={`w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 transition-all hover:bg-white hover:shadow-2xl hover:shadow-slate-200 ${social.color}`}>
                   <social.icon size={20} />
@@ -45,41 +45,41 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
           {/* Navigation Grids */}
           <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 font-display mb-10 block">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-display mb-10 block">
                 COURSES
               </span>
               <ul className="space-y-5 text-slate-600 text-sm font-bold">
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Full Stack Dev</a></li>
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Data Science & AI</a></li>
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Data Analytics</a></li>
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Web 3.0</a></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Full Stack Dev</a></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Data Science & AI</a></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Data Analytics</a></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Web 3.0</a></li>
               </ul>
             </div>
 
             <div>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 font-display mb-10 block">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-display mb-10 block">
                 COMPANY
               </span>
               <ul className="space-y-5 text-slate-600 text-sm font-bold">
-                <li><Link href="/about" className="hover:text-blue-600 transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Mentors</a></li>
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</a></li>
+                <li><Link href="/about" className="hover:text-indigo-600 transition-colors">About Us</Link></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Mentors</a></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
 
             <div className="col-span-2 md:col-span-1">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 font-display mb-10 block">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-display mb-10 block">
                 SUPPORT
               </span>
               <div className="space-y-8">
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">EMAIL</span>
-                  <a href="mailto:contactus@careerdcode.com" className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">contactus@careerdcode.com</a>
+                  <a href="mailto:contactus@careerdcode.com" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">contactus@careerdcode.com</a>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">PHONE</span>
-                  <a href="tel:+918595563221" className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">+91 8595563221</a>
+                  <a href="tel:+918595563221" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">+91 8595563221</a>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
         <div className="grid md:grid-cols-2 gap-8 mb-24">
           <button 
             onClick={onBrochureClick}
-            className="group relative overflow-hidden bg-slate-900 text-white rounded-2xl py-8 px-10 flex items-center justify-between transition-all hover:bg-blue-600 shadow-2xl shadow-slate-200"
+            className="group relative overflow-hidden bg-indigo-600 text-white rounded-2xl py-8 px-10 flex items-center justify-between transition-all hover:bg-indigo-700 shadow-2xl shadow-indigo-200"
           >
             <div className="relative z-10 text-left">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-60 mb-2 block">RESOURCES</span>
@@ -102,14 +102,14 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
 
           <button 
             onClick={onCallbackClick}
-            className="group relative overflow-hidden bg-white border border-slate-200 text-slate-900 rounded-2xl py-8 px-10 flex items-center justify-between transition-all hover:border-blue-600 hover:shadow-2xl hover:shadow-blue-50"
+            className="group relative overflow-hidden bg-white border border-slate-200 text-slate-900 rounded-2xl py-8 px-10 flex items-center justify-between transition-all hover:border-indigo-600 hover:shadow-2xl hover:shadow-indigo-50"
           >
             <div className="relative z-10 text-left">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 mb-2 block">ADMISSIONS</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 mb-2 block">ADMISSIONS</span>
               <span className="text-xl font-bold font-display">Request Callback</span>
             </div>
-            <Phone className="relative z-10 group-hover:rotate-12 transition-transform text-blue-600" size={32} />
-            <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-blue-50 rounded-full blur-3xl group-hover:bg-blue-100 transition-colors"></div>
+            <Phone className="relative z-10 group-hover:rotate-12 transition-transform text-indigo-600" size={32} />
+            <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-indigo-50 rounded-full blur-3xl group-hover:bg-indigo-100 transition-colors"></div>
           </button>
         </div>
 
@@ -120,9 +120,9 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               © 2026 CareerDCode. All Rights Reserved
             </p>
             <div className="flex gap-8">
-              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">Terms</a>
-              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">Privacy</a>
-              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors">Refunds</a>
+              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Terms</a>
+              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Privacy</a>
+              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Refunds</a>
             </div>
           </div>
           

@@ -24,7 +24,7 @@ export default function AboutUs() {
             >
               <h1 className="text-6xl lg:text-8xl font-bold font-display tracking-tight mb-10 leading-[0.95]">
                 Engineering <br />
-                <span className="text-blue-500">Future</span> Leaders.
+                <span className="text-indigo-500">Future</span> Leaders.
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed font-medium max-w-2xl">
                 CareerDCode is a technical training ecosystem dedicated to bridging the gap between traditional education and the global tech landscape.
@@ -74,7 +74,7 @@ export default function AboutUs() {
                 />
                 <div className="absolute -bottom-8 -left-8 p-8 bg-white rounded-3xl shadow-xl border border-slate-100 hidden lg:block">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white">
+                    <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white">
                       <ShieldCheck size={24} />
                     </div>
                     <div>
@@ -100,7 +100,7 @@ export default function AboutUs() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: <Users className="text-blue-600" size={32} />,
+                  icon: <Users className="text-indigo-600" size={32} />,
                   title: "Student First",
                   description: "Every decision we make is centered around our students' success and learning experience."
                 },
@@ -110,7 +110,7 @@ export default function AboutUs() {
                   description: "We strive for excellence in our teaching, mentorship, and curriculum quality."
                 },
                 {
-                  icon: <ShieldCheck className="text-blue-500" size={32} />,
+                  icon: <ShieldCheck className="text-indigo-500" size={32} />,
                   title: "Integrity",
                   description: "We maintain the highest standards of transparency and honesty in all our interactions."
                 }

@@ -40,18 +40,18 @@ export default function CourseSection() {
   };
 
   return (
-    <section id="courses" className="py-20 bg-[#F0F7FF]">
+    <section id="courses" className="py-20 bg-indigo-50/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16">
           <div className="mb-4">
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-blue-600 font-display">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-600 font-display">
               TECHNICAL PROGRAMS
             </span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 font-display tracking-tight">
             Tailored for the <br />
-            <span className="text-blue-600">Modern Engineer.</span>
+            <span className="text-indigo-600">Modern Engineer.</span>
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl font-medium">
             Industry-aligned curriculum designed to bridge the gap between academia and professional excellence.
@@ -114,7 +114,7 @@ export default function CourseSection() {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold font-display border-2 transition-all ${
                     activeCategory === cat.id
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-100'
+                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-xl shadow-indigo-100'
                       : 'bg-white text-slate-500 border-slate-100 hover:border-slate-900 hover:text-slate-900'
                   }`}
                 >
@@ -152,8 +152,8 @@ export default function CourseSection() {
                     </div>
 
                     {/* Tech Stack Icons */}
-                    <div className="flex flex-wrap gap-2 mb-8 h-10 overflow-hidden">
-                      {course.techStack.slice(0, 3).map((tech) => {
+                    <div className="flex flex-wrap gap-2 mb-8 min-h-[2.5rem]">
+                      {course.techStack.slice(0, 4).map((tech) => {
                         const icon = getTechIcon(tech);
                         return (
                           <div key={tech} className="px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-100 flex items-center gap-2">
@@ -169,10 +169,10 @@ export default function CourseSection() {
                           </div>
                         );
                       })}
-                      {course.techStack.length > 3 && (
-                        <div className="px-3 py-1.5 bg-blue-50 rounded-lg border border-blue-100 flex items-center">
-                          <span className="text-[10px] font-black text-blue-600 uppercase tracking-wider">
-                            +{course.techStack.length - 3} More
+                      {course.techStack.length > 4 && (
+                        <div className="px-3 py-1.5 bg-indigo-50 rounded-lg border border-indigo-100 flex items-center">
+                          <span className="text-[10px] font-black text-indigo-600 uppercase tracking-wider">
+                            +{course.techStack.length - 4} More
                           </span>
                         </div>
                       )}
@@ -185,7 +185,7 @@ export default function CourseSection() {
                       </div>
                       <Link 
                         href={`/courses/${course.id}`}
-                        className="text-blue-600 font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+                        className="text-indigo-600 font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all"
                       >
                         Details <ChevronRight size={16} />
                       </Link>
