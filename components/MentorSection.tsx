@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Linkedin } from "lucide-react";
 import Image from "next/image";
 
 const mentors = [
@@ -84,6 +85,14 @@ export default function MentorSection() {
               <p className="text-slate-500 leading-relaxed text-sm">
                 {mentor.bio}
               </p>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="mt-5 inline-flex items-center justify-center rounded-lg p-1 -ml-1 text-slate-400 hover:text-[#0A66C2] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                aria-label={`${mentor.name} on LinkedIn (link coming soon)`}
+              >
+                <Linkedin className="size-5 shrink-0" aria-hidden />
+              </a>
             </div>
           ))}
         </motion.div>

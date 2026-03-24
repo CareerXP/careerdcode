@@ -24,9 +24,12 @@ export default function ApplySection() {
             Get mentored, build projects, and master high-demand skills.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-10 py-5 bg-amber-500 text-white font-bold rounded-2xl hover:bg-amber-600 transition-colors shadow-xl shadow-amber-900/20">
+            <a
+              href="#courses"
+              className="inline-flex items-center justify-center px-10 py-5 bg-amber-500 text-white font-bold rounded-2xl hover:bg-amber-600 transition-colors shadow-xl shadow-amber-900/20"
+            >
               Apply Now
-            </button>
+            </a>
             <button 
               onClick={() => openModal('callback')}
               className="px-10 py-5 bg-indigo-700 text-white font-bold rounded-2xl border border-indigo-500 hover:bg-indigo-800 transition-colors"
