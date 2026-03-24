@@ -126,13 +126,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
             </div>
           </div>
           
-          <div className="flex items-center gap-6 px-8 py-4 bg-slate-50 rounded-3xl border border-slate-100">
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">BACKED BY</span>
-            <div className="flex items-center gap-2 bg-[#FF6600] text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-tighter shadow-lg shadow-orange-100">
-              <span className="text-2xl leading-none">Y</span>
-              <span>Combinator</span>
-            </div>
-          </div>
+         
         </div>
       </div>
     </footer>
