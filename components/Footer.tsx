@@ -63,7 +63,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               <ul className="space-y-5 text-slate-600 text-sm font-bold">
                 <li><Link href="/about" className="hover:text-indigo-600 transition-colors">About Us</Link></li>
                 <li><a href="#" className="hover:text-indigo-600 transition-colors">Mentors</a></li>
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Careers</a></li>
+                <li><Link href="/careers" className="hover:text-indigo-600 transition-colors">Careers</Link></li>
                 <li><a href="#" className="hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
