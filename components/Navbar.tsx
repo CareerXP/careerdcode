@@ -16,7 +16,7 @@ export default function Navbar() {
             <div className="w-8 h-8 bg-indigo-600 rotate-45 flex items-center justify-center rounded-sm shadow-lg shadow-indigo-100">
               <div className="w-4 h-4 bg-white -rotate-45"></div>
             </div>
-            <span className="text-xl font-bold tracking-tighter text-slate-900 font-display">CareerDCode.</span>
+            <span className="text-xl font-bold tracking-tighter text-slate-900 font-display">CareerXP.</span>
           </Link>
 
           {/* Navigation Links */}
