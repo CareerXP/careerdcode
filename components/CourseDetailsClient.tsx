@@ -251,7 +251,7 @@ export default function CourseDetailsClient({ course }: CourseDetailsClientProps
             {[
               { name: 'Chetan Segare', role: 'SDE 2', company: 'Microsoft', image: 'https://picsum.photos/seed/mentor1/400/500', bio: 'Expert in distributed systems and cloud architecture at scale.' },
               { name: 'Somendra Tiwari', role: 'SDE 2', company: 'ServiceNow', image: 'https://picsum.photos/seed/mentor2/400/500', bio: 'Passionate about full-stack development and enterprise solutions.' },
-              { name: 'Gaurav Choudhary', role: 'Software Developer', company: 'CareerDCode', image: 'https://picsum.photos/seed/mentor3/400/500', bio: 'Dedicated to building impactful educational tools for developers.' },
+              { name: 'Gaurav Choudhary', role: 'Software Developer', company: 'CareerXP', image: 'https://picsum.photos/seed/mentor3/400/500', bio: 'Dedicated to building impactful educational tools for developers.' },
               { name: 'Navdeep Singh', role: 'Software Engineer', company: 'Microsoft', image: 'https://picsum.photos/seed/mentor4/400/500', bio: 'Specialist in frontend performance and modern web standards.' },
               { name: 'Dhiraj Kumar', role: 'Senior Manager', company: 'IIT Alumni', image: 'https://picsum.photos/seed/mentor5/400/500', bio: 'Strategic leader with deep roots in technical excellence and mentorship.' }
             ].map((mentor, idx) => (

@@ -75,7 +75,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               <div className="space-y-8">
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">EMAIL</span>
-                  <a href="mailto:contactus@careerdcode.com" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">contactus@careerdcode.com</a>
+                  <a href="mailto:contactus@careerxp.com" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">contactus@careerxp.com</a>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">PHONE</span>
@@ -117,7 +117,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
         <div className="pt-16 border-t border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-12">
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-              © 2026 CareerDCode. All Rights Reserved
+              © 2026 CareerXP. All Rights Reserved
             </p>
             <div className="flex gap-8">
               <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Terms</a>

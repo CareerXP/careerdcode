@@ -1,25 +1,25 @@
 export const seoConfig = {
-  defaultTitle: "CareerDCode | Master High-Demand Tech Skills",
-  titleTemplate: "%s | CareerDCode",
-  description: "CareerDCode offers industry-aligned tech education, elite mentorship from IIT Delhi alumni, and career-transforming courses in Full Stack Development, Data Science, and AI.",
-  canonical: "https://careerdcode.com", // Replace with actual domain if different
+  defaultTitle: "CareerXP | Master High-Demand Tech Skills",
+  titleTemplate: "%s | CareerXP",
+  description: "CareerXP offers industry-aligned tech education, elite mentorship from IIT Delhi alumni, and career-transforming courses in Full Stack Development, Data Science, and AI.",
+  canonical: "https://careerxp.com", // Replace with actual domain if different
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: 'https://careerdcode.com',
-    siteName: 'CareerDCode',
+    url: 'https://careerxp.com',
+    siteName: 'CareerXP',
     images: [
       {
-        url: 'https://picsum.photos/seed/careerdcode-og/1200/630',
+        url: 'https://picsum.photos/seed/careerxp-og/1200/630',
         width: 1200,
         height: 630,
-        alt: 'CareerDCode - Engineering Future Leaders',
+        alt: 'CareerXP - Engineering Future Leaders',
       },
     ],
   },
   twitter: {
-    handle: '@careerdcode',
-    site: '@careerdcode',
+    handle: '@careerxp',
+    site: '@careerxp',
     cardType: 'summary_large_image',
   },
   keywords: [

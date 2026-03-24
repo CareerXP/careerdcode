@@ -22,14 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: course.title,
     description: course.description,
     openGraph: {
-      title: `${course.title} | CareerDCode`,
+      title: `${course.title} | CareerXP`,
       description: course.description,
       images: [{ url: course.image }],
       url: `${seoConfig.canonical}/courses/${courseId}`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${course.title} | CareerDCode`,
+      title: `${course.title} | CareerXP`,
       description: course.description,
       images: [course.image],
     },

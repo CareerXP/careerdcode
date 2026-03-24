@@ -27,7 +27,7 @@ export default function AboutClient() {
                 <span className="text-indigo-500">Future</span> Leaders.
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed font-medium max-w-2xl">
-                CareerDCode is a technical training ecosystem dedicated to bridging the gap between traditional education and the global tech landscape.
+                CareerXP is a technical training ecosystem dedicated to bridging the gap between traditional education and the global tech landscape.
               </p>
             </motion.div>
           </div>
