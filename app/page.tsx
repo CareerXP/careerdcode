@@ -24,7 +24,7 @@ export default function HomePage() {
         <HiringPartnerReview />
         <StudentReviews />
         <MentorSection />
-        <FoundersSection />
+        {/* <FoundersSection /> */}
         <FAQSection />
         <ApplySection />
       </main>
