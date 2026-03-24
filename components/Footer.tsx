@@ -21,7 +21,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
                 <div className="w-10 h-10 bg-indigo-600 rotate-45 flex items-center justify-center rounded-sm shadow-xl shadow-indigo-100">
                   <div className="w-5 h-5 bg-white -rotate-45"></div>
                 </div>
-                <span className="text-3xl font-bold tracking-tighter text-slate-900 font-display">CareerDCode.</span>
+                <span className="text-3xl font-bold tracking-tighter text-slate-900 font-display">CareerXP.</span>
               </Link>
             </div>
             <p className="text-xl text-slate-500 leading-relaxed mb-12 font-medium max-w-md">
