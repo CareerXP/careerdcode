@@ -109,7 +109,7 @@ export default function CourseSection() {
                       <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
                         <Zap size={20} />
                       </div>
-                      Self Paced
+                      Offline Learning
                     </div>
                     <span className="text-[8px] font-black uppercase tracking-tighter bg-slate-200 text-slate-500 px-2 py-1 rounded">
                       Coming Soon
@@ -119,12 +119,12 @@ export default function CourseSection() {
               </div>
 
               {/* Sidebar Decoration */}
-              <div className="mt-12 p-8 bg-indigo-50 rounded-3xl border border-indigo-100/50 hidden lg:block">
+              {/* <div className="mt-12 p-8 bg-indigo-50 rounded-3xl border border-indigo-100/50 hidden lg:block">
                 <div className="w-12 h-1 bg-indigo-600 mb-6"></div>
                 <p className="text-[10px] font-black text-indigo-900/60 uppercase tracking-widest leading-relaxed">
                   All programs include 1:1 mentorship from IIT Delhi alumni.
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
 

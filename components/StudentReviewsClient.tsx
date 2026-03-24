@@ -9,10 +9,13 @@ interface StudentReviewsClientProps {
 }
 
 export default function StudentReviewsClient({ reviews }: StudentReviewsClientProps) {
+  // Duplicate reviews to ensure a seamless loop
+  const duplicatedReviews = [...reviews, ...reviews];
+
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+    <section className="py-24 bg-slate-50 overflow-hidden">
+      <div className="container mx-auto px-4 mb-16">
+        <div className="text-center">
           <h2 className="text-4xl font-bold text-slate-900 mb-4 font-display">
             Student Reviews
           </h2>
@@ -20,43 +23,54 @@ export default function StudentReviewsClient({ reviews }: StudentReviewsClientPr
             See what our students have to say about their experience with us.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviews.map((review, i) => (
-            <motion.div
+      </div>
+
+      <div className="relative flex overflow-hidden py-12 -my-12">
+        <motion.div
+          className="flex gap-8 whitespace-nowrap px-4"
+          animate={{
+            x: [0, "-50%"],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: reviews.length * 8, // Slightly slower for better readability
+              ease: "linear",
+            },
+          }}
+          whileHover={{ animationPlayState: "paused" }}
+        >
+          {duplicatedReviews.map((review, i) => (
+            <div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200"
+              className="inline-block w-[350px] bg-white p-8 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 shrink-0 whitespace-normal transition-transform hover:scale-[1.02] duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+                <div className="w-14 h-14 rounded-2xl overflow-hidden bg-slate-100 relative shadow-inner">
                   <Image
                     src={review.image}
                     alt={review.name}
-                    width={48}
-                    height={48}
+                    fill
                     className="object-cover"
                     referrerPolicy="no-referrer"
                   />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 leading-tight">
+                  <h3 className="text-lg font-bold text-slate-900 leading-tight font-display">
                     {review.name}
                   </h3>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">
                     {review.role}
                   </p>
                 </div>
               </div>
-              <p className="text-slate-600 italic leading-relaxed">
+              <p className="text-slate-500 italic leading-relaxed text-sm">
                 "{review.review}"
               </p>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
