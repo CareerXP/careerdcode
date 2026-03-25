@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
 import { motion, useScroll, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -14,10 +13,6 @@ type Step = {
   footnote?: string;
   highlights?: string[];
   image: string;
-  stat: string;
-  statLabel: string;
-  statSub: string;
-  cta?: { label: string; href: string };
 };
 
 const steps: Step[] = [
@@ -29,11 +24,7 @@ const steps: Step[] = [
     bullets: ["Aptitude", "Technical Concepts", "Coding Skills"],
     footnote:
       "Based on your performance, we create a personalised training roadmap focusing on your weak areas.",
-    image: "https://picsum.photos/seed/evaluation/800/600",
-    stat: "01",
-    statLabel: "Measure first",
-    statSub: "Your roadmap targets real gaps — not guesswork.",
-    cta: { label: "Choose your learning path", href: "/#courses" }
+    image: "https://picsum.photos/seed/evaluation/800/600"
   },
   {
     id: 2,
@@ -41,11 +32,7 @@ const steps: Step[] = [
     title: "Learn exactly what companies ask in interviews.",
     intro:
       "Get trained by mentors who are already working in top product & service-based companies — teaching you what actually matters.",
-    image: "https://picsum.photos/seed/training/800/600",
-    stat: "100%",
-    statLabel: "Interview-aligned",
-    statSub: "Curriculum shaped by what hiring teams really evaluate.",
-    cta: { label: "Meet our mentors", href: "/#mentors" }
+    image: "https://picsum.photos/seed/training/800/600"
   },
   {
     id: 3,
@@ -54,10 +41,7 @@ const steps: Step[] = [
     intro: "We make you practice on:",
     bullets: ["HackerRank", "LeetCode", "CodeChef", "Codeforces"],
     footnote: "So you're ready for real coding rounds.",
-    image: "https://picsum.photos/seed/coding/800/600",
-    stat: "4+",
-    statLabel: "Judge platforms",
-    statSub: "Train where real screens and timed rounds happen."
+    image: "https://picsum.photos/seed/coding/800/600"
   },
   {
     id: 4,
@@ -70,10 +54,7 @@ const steps: Step[] = [
       "Real Projects",
       "Community access (Discord)"
     ],
-    image: "https://picsum.photos/seed/profile/800/600",
-    stat: "5+",
-    statLabel: "Placement pillars",
-    statSub: "Everything recruiters scan before they say yes."
+    image: "https://picsum.photos/seed/profile/800/600"
   },
   {
     id: 5,
@@ -84,10 +65,7 @@ const steps: Step[] = [
       "Real interview scenarios",
       "Feedback from industry experts"
     ],
-    image: "https://picsum.photos/seed/mock/800/600",
-    stat: "∞",
-    statLabel: "Mocks that feel real",
-    statSub: "Repeat, refine, and walk in calm on interview day."
+    image: "https://picsum.photos/seed/mock/800/600"
   },
   {
     id: 6,
@@ -100,10 +78,7 @@ const steps: Step[] = [
       "Unlimited interview opportunities",
       "Continuous support until you get placed"
     ],
-    image: "https://picsum.photos/seed/placed/800/600",
-    stat: "Day 1",
-    statLabel: "Interview access",
-    statSub: "New partners onboarded continuously — support until you land the role."
+    image: "https://picsum.photos/seed/placed/800/600"
   }
 ];
 
@@ -127,13 +102,13 @@ export default function StepsToSuccess() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
+  const step = steps[activeStep];
+
   return (
     <section ref={containerRef} className="relative bg-white z-40">
-      {/* Scrollable height - 100vh per step */}
       <div className="h-[600vh]">
         <div className="sticky top-20 bg-white py-3 sm:py-5 md:py-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            {/* Header */}
             <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mb-3 sm:mb-5 md:mb-6 lg:mb-8">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 font-display tracking-tight whitespace-nowrap shrink-0">
                 Your Steps To <span className="text-indigo-600">Success</span>
@@ -141,111 +116,70 @@ export default function StepsToSuccess() {
               <div className="flex-grow h-0.5 sm:h-1 md:h-1.5 bg-slate-900 rounded-full min-w-0" />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 lg:gap-8 items-start">
-              {/* Content Area - Full Width */}
-              <div className="w-full min-h-0">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeStep}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 xl:gap-10 items-start"
-                  >
-                    <div className="space-y-3 sm:space-y-4 lg:space-y-5 min-h-0">
-                      <div className="space-y-2 sm:space-y-3 lg:space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-indigo-100 text-indigo-700 rounded-lg text-[9px] sm:text-[10px] font-black uppercase tracking-widest font-display">
-                            Step {steps[activeStep].id}: {steps[activeStep].label}
+            <div className="w-full min-h-0">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col gap-4 sm:gap-5 lg:gap-6 max-w-3xl"
+                >
+                  <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-indigo-100 text-indigo-700 rounded-lg text-[9px] sm:text-[10px] font-black uppercase tracking-widest font-display">
+                        Step {step.id}: {step.label}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-5xl font-black text-slate-900 font-display tracking-tight leading-[1.12]">
+                      {step.title}
+                    </h3>
+                    <div className="text-slate-500 text-sm sm:text-base lg:text-lg font-medium leading-relaxed space-y-2 sm:space-y-3">
+                      {step.intro && <p>{step.intro}</p>}
+                      {step.bullets && step.bullets.length > 0 && (
+                        <ul className="list-disc pl-5 space-y-1 text-slate-600 text-sm sm:text-base">
+                          {step.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {step.footnote && (
+                        <p className="text-slate-700 flex gap-2 items-start text-sm sm:text-base">
+                          <span className="shrink-0" aria-hidden>
+                            👉
                           </span>
-                        </div>
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-5xl font-black text-slate-900 font-display tracking-tight leading-[1.12] max-w-xl lg:max-w-none">
-                          {steps[activeStep].title}
-                        </h3>
-                        <div className="text-slate-500 text-sm sm:text-base lg:text-lg font-medium leading-relaxed max-w-2xl space-y-2 sm:space-y-3">
-                          {steps[activeStep].intro && (
-                            <p>{steps[activeStep].intro}</p>
-                          )}
-                          {steps[activeStep].bullets && steps[activeStep].bullets!.length > 0 && (
-                            <ul className="list-disc pl-5 space-y-1 text-slate-600 text-sm sm:text-base">
-                              {steps[activeStep].bullets!.map((item) => (
-                                <li key={item}>{item}</li>
-                              ))}
-                            </ul>
-                          )}
-                          {steps[activeStep].footnote && (
-                            <p className="text-slate-700 flex gap-2 items-start text-sm sm:text-base">
+                          <span>{step.footnote}</span>
+                        </p>
+                      )}
+                      {step.highlights && (
+                        <ul className="space-y-2 text-slate-700 text-sm sm:text-base">
+                          {step.highlights.map((line) => (
+                            <li key={line} className="flex gap-2 items-start">
                               <span className="shrink-0" aria-hidden>
                                 👉
                               </span>
-                              <span>{steps[activeStep].footnote}</span>
-                            </p>
-                          )}
-                          {steps[activeStep].highlights && (
-                            <ul className="space-y-2 text-slate-700 text-sm sm:text-base">
-                              {steps[activeStep].highlights!.map((line) => (
-                                <li key={line} className="flex gap-2 items-start">
-                                  <span className="shrink-0" aria-hidden>
-                                    👉
-                                  </span>
-                                  <span>{line}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="relative w-full h-36 sm:h-40 md:h-44 lg:h-40 xl:h-44 rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl group shrink-0">
-                        <Image
-                          src={steps[activeStep].image}
-                          alt={steps[activeStep].title}
-                          fill
-                          className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </div>
+                              <span>{line}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
+                  </div>
 
-                    <div className="flex flex-col min-h-0">
-                      <div className="bg-indigo-600 rounded-2xl sm:rounded-3xl lg:rounded-[2rem] p-5 sm:p-8 lg:p-9 xl:p-10 flex flex-col justify-center relative overflow-hidden group shadow-2xl shadow-indigo-200">
-                        {/* Decorative background elements */}
-                        <div className="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-colors duration-700" />
-                        <div className="absolute -left-20 -bottom-20 w-60 h-60 bg-indigo-400/20 rounded-full blur-3xl" />
-                        
-                        <div className="relative z-10">
-                          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white font-display tracking-tighter mb-1 sm:mb-3 block leading-none">
-                            {steps[activeStep].stat}
-                          </span>
-                          <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-indigo-100 mb-1 sm:mb-2">
-                            {steps[activeStep].statLabel}
-                          </h4>
-                          <p className="text-indigo-100/80 text-xs sm:text-sm lg:text-base font-medium max-w-md leading-relaxed">
-                            {steps[activeStep].statSub}
-                          </p>
-                        </div>
-
-                        {steps[activeStep].cta && (
-                          <div className="mt-4 sm:mt-8 relative z-10">
-                            <Link
-                              href={steps[activeStep].cta!.href}
-                              className="group/btn relative inline-flex px-5 py-2.5 sm:px-8 sm:py-3.5 bg-white text-indigo-600 font-black text-xs sm:text-sm md:text-base rounded-lg sm:rounded-xl hover:bg-indigo-50 transition-all shadow-lg items-center gap-2 sm:gap-3 overflow-hidden"
-                            >
-                              <span className="relative z-10">{steps[activeStep].cta!.label}</span>
-                              <svg className="w-3.5 h-3.5 sm:w-5 sm:h-5 transition-transform group-hover/btn:translate-x-1 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                              </svg>
-                            </Link>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                  <div className="relative w-full max-w-3xl h-40 sm:h-48 md:h-52 lg:h-56 rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl group shrink-0">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 768px"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
