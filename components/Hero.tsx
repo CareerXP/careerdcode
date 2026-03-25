@@ -17,18 +17,17 @@ export default function Hero() {
             Accelerate Your Career
           </span>
           <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-6 font-display">
-            Master High-Demand <span className="text-indigo-600">Tech Skills</span>
+          Tired of learning but not getting placed
           </h1>
           <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-            Join thousands of students learning from industry experts at top tech companies. 
-            Get mentored, build projects, and land your dream job.
+          Here’s how CareerXP turns your effort into offers — with a structured, placement-first approach.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
-              Explore Courses
+            Book Free Career Call
             </button>
             <button className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200">
-              View Curriculum
+            Download Broucher
             </button>
           </div>
         </motion.div>
