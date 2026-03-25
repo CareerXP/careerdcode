@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, useScroll, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -13,6 +14,7 @@ type Step = {
   footnote?: string;
   highlights?: string[];
   image: string;
+  cta?: { label: string; href: string };
 };
 
 const steps: Step[] = [
@@ -24,7 +26,8 @@ const steps: Step[] = [
     bullets: ["Aptitude", "Technical Concepts", "Coding Skills"],
     footnote:
       "Based on your performance, we create a personalised training roadmap focusing on your weak areas.",
-    image: "https://picsum.photos/seed/evaluation/800/600"
+    image: "https://picsum.photos/seed/evaluation/800/600",
+    cta: { label: "Choose your learning path", href: "/#courses" }
   },
   {
     id: 2,
@@ -32,7 +35,8 @@ const steps: Step[] = [
     title: "Learn exactly what companies ask in interviews.",
     intro:
       "Get trained by mentors who are already working in top product & service-based companies — teaching you what actually matters.",
-    image: "https://picsum.photos/seed/training/800/600"
+    image: "https://picsum.photos/seed/training/800/600",
+    cta: { label: "Meet our mentors", href: "/#mentors" }
   },
   {
     id: 3,
@@ -167,17 +171,41 @@ export default function StepsToSuccess() {
                           </ul>
                         )}
                       </div>
+                      {step.cta && (
+                        <div className="pt-2 sm:pt-3">
+                          <Link
+                            href={step.cta.href}
+                            className="group/cta inline-flex items-center gap-2 sm:gap-3 px-5 py-2.5 sm:px-6 sm:py-3 bg-indigo-600 text-white font-black text-xs sm:text-sm rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/25"
+                          >
+                            <span>{step.cta.label}</span>
+                            <svg
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover/cta:translate-x-0.5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              aria-hidden
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2.5}
+                                d="M13 7l5 5m0 0l-5 5m5-5H6"
+                              />
+                            </svg>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  {/* Right: image fills column height on lg */}
-                  <div className="relative w-full min-h-[200px] h-48 sm:h-56 md:h-64 lg:min-h-0 lg:h-full rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl group shrink-0">
+                  {/* Right: slightly smaller than before; centered in row on lg */}
+                  <div className="relative w-full min-h-[160px] h-40 sm:h-44 md:h-48 lg:h-[min(17.5rem,calc(100dvh-12.5rem))] lg:max-w-md xl:max-w-lg lg:mx-auto lg:self-center rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl group shrink-0">
                     <Image
                       src={step.image}
                       alt={step.title}
                       fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 1024px) 100vw, 420px"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
