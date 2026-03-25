@@ -78,7 +78,7 @@ export default function StepsToSuccess() {
   }, [scrollYProgress]);
 
   return (
-    <section ref={containerRef} className="relative bg-white z-30 my-20">
+    <section ref={containerRef} className="relative bg-white  my-20">
       {/* Scrollable height - 100vh per step */}
       <div className="h-[500vh]">
         <div className="sticky top-20 h-[calc(100vh-5rem)] flex flex-col justify-center overflow-hidden pt-12">
