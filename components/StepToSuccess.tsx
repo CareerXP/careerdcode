@@ -80,7 +80,7 @@ export default function StepsToSuccess() {
   return (
     <section ref={containerRef} className="relative bg-white  my-20 h-full">
       {/* Scrollable height - 100vh per step */}
-      <div className="h-full">
+      <div className="h-100vh">
         <div className="sticky top-20 h-[calc(100vh-5rem)] flex flex-col justify-center overflow-hidden pt-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {/* Header */}
