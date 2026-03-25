@@ -30,6 +30,7 @@ export default function Hero() {
             Download Broucher
             </button>
           </div>
+          
         </motion.div>
       </div>
 

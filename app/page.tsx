@@ -10,6 +10,7 @@ import MentorSection from '@/components/MentorSection';
 import FoundersSection from '@/components/FoundersSection';
 import FAQSection from '@/components/FAQSection';
 import ApplySection from '@/components/ApplySection';
+import StepsToSuccess from '@/components/StepToSuccess';
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <StepsToSuccess />
         <ImpactStats />
         <StudentTransformations />
         <CourseSection />
