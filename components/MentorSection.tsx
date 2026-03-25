@@ -30,7 +30,7 @@ export default function MentorSection() {
   const duplicatedMentors = [...mentors, ...mentors, ...mentors];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section id="mentors" className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 mb-16">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-slate-900 mb-4 font-display">
