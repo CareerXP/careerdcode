@@ -54,6 +54,16 @@ const steps = [
     stat: "₹45 LPA",
     statLabel: "Highest Package",
     statSub: "Transforming careers, one step at a time"
+  },
+  {
+    id: 6,
+    label: "Alumni",
+    title: "Join the Elite Network",
+    description: "Become part of an elite community of professionals working at top tech companies worldwide. Network, collaborate, and grow together.",
+    image: "https://picsum.photos/seed/alumni/800/600",
+    stat: "10k+",
+    statLabel: "Global Alumni",
+    statSub: "A community that grows with you"
   }
 ];
 
@@ -78,10 +88,10 @@ export default function StepsToSuccess() {
   }, [scrollYProgress]);
 
   return (
-    <section ref={containerRef} className="relative bg-white  my-20 h-full">
+    <section ref={containerRef} className="relative bg-white z-30 py-20">
       {/* Scrollable height - 100vh per step */}
-      <div className="h-100vh">
-        <div className="sticky top-20 h-[calc(100vh-5rem)] flex flex-col justify-center overflow-hidden pt-12">
+      <div className="h-[600vh]">
+        <div className="sticky top-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center bg-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {/* Header */}
             <div className="flex items-center gap-6 mb-16">
