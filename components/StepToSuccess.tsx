@@ -131,7 +131,7 @@ export default function StepsToSuccess() {
     <section ref={containerRef} className="relative bg-white z-40">
       {/* Scrollable height - 100vh per step */}
       <div className="h-[600vh]">
-        <div className="sticky top-20 z-30 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-y-contain bg-white py-3 sm:py-5 md:py-6">
+        <div className="sticky top-20 bg-white py-3 sm:py-5 md:py-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {/* Header */}
             <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mb-3 sm:mb-5 md:mb-6 lg:mb-8">
