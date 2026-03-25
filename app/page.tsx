@@ -19,7 +19,7 @@ export default function HomePage() {
       <main className="flex-grow">
         <Hero />
         <StepsToSuccess />
-        <ImpactStats />
+        {/* <ImpactStats /> */}
         <StudentTransformations />
         <CourseSection />
         <TrustedCompanies />
