@@ -113,11 +113,16 @@ export default function StepsToSuccess() {
       <div className="h-[600vh]">
         <div className="sticky top-20 bg-white py-3 sm:py-5 md:py-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mb-3 sm:mb-5 md:mb-6 lg:mb-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 font-display tracking-tight whitespace-nowrap shrink-0">
-                Your Steps To <span className="text-indigo-600">Success</span>
+          <div className="mb-12 md:mb-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-8 h-[1px] bg-indigo-600"></span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
+                  The Roadmap
+                </span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold text-slate-400 font-display tracking-tight uppercase">
+                Your Steps To <span className="text-slate-900">Success</span>
               </h2>
-              <div className="flex-grow h-0.5 sm:h-1 md:h-1.5 bg-slate-900 rounded-full min-w-0" />
             </div>
 
             <div className="w-full min-h-0">
