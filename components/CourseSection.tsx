@@ -1,24 +1,27 @@
 "use client";
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import { 
   Code, 
   BarChart3, 
   Cpu, 
-  ChevronRight, 
-  ChevronDown, 
+  ArrowUpRight,
   Clock,
-  MonitorPlay,
-  MapPin,
-  Zap
+  Zap,
+  Globe
 } from 'lucide-react';
 import { coursesData } from '@/data/courses';
 
+const categories = [
+  { id: 'Full Stack Development', icon: <Code size={18} />, label: 'Engineering' },
+  { id: 'Data Analytics', icon: <BarChart3 size={18} />, label: 'Analytics' },
+  { id: 'Data Science', icon: <Cpu size={18} />, label: 'Intelligence' }
+];
+
 export default function CourseSection() {
   const [activeCategory, setActiveCategory] = useState('Full Stack Development');
-  const [activeType, setActiveType] = useState('Live Online Courses');
 
   const getTechIcon = (tech: string) => {
     const baseUrl = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/";
@@ -48,200 +51,171 @@ export default function CourseSection() {
   };
 
   return (
-    <section id="courses" className="py-32 bg-white relative overflow-hidden">
-      {/* Background Accents */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 -skew-x-12 transform origin-top-right -z-10"></div>
-      
+    <section id="courses" className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-24 flex flex-col lg:flex-row lg:items-end justify-between gap-12">
-          <div className="max-w-3xl">
-            <div className="mb-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-display">
-                TECHNICAL PROGRAMS
+        
+        {/* Editorial Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-24 items-end">
+          <div className="space-y-8">
+            <div className="flex items-center gap-3">
+              <span className="w-12 h-[1px] bg-indigo-600"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
+                Curated Programs
               </span>
             </div>
-            <h2 className="text-5xl lg:text-8xl font-bold text-slate-900 font-display tracking-tight leading-[0.9]">
-              Tailored for <br />
-              <span className="text-indigo-600">Modern Engineers.</span>
+            <h2 className="text-6xl sm:text-7xl lg:text-9xl font-black text-slate-900 font-display tracking-tight leading-[0.85] uppercase">
+              Build <br />
+              <span className="text-indigo-600">Future.</span>
             </h2>
           </div>
-          <p className="text-slate-500 text-xl max-w-md font-medium leading-relaxed border-l-2 border-indigo-600 pl-8">
-            Industry-aligned curriculum designed to bridge the gap between academia and professional excellence.
-          </p>
+          <div className="space-y-8 lg:pb-4">
+            <p className="text-slate-500 text-lg sm:text-xl font-medium leading-relaxed max-w-md">
+              Our curriculum is designed by engineers from top tech companies to bridge the gap between theory and professional excellence.
+            </p>
+            {/* <div className="flex items-center gap-8">
+              <div className="flex -space-x-4">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-slate-100 overflow-hidden relative">
+                    <img src={`https://picsum.photos/seed/user${i}/100/100`} alt="User" className="object-cover" />
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                Join <span className="text-slate-900">10k+</span> Students
+              </p>
+            </div> */}
+          </div>
         </div>
 
-        {/* Main Content Layout */}
-        <div className="flex flex-col lg:flex-row gap-16">
-          
-          {/* Sidebar - Control Panel Style */}
-          <div className="lg:w-1/4">
-            <div className="sticky top-32">
-              <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 font-display">Learning Mode</h3>
-              <div className="space-y-4">
-                {/* Live Online Courses */}
-                <button
-                  onClick={() => setActiveType('Live Online Courses')}
-                  className={`w-full group relative flex items-center justify-between p-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-500 ${
-                    activeType === 'Live Online Courses' 
-                      ? 'bg-slate-900 text-white shadow-2xl shadow-slate-200 translate-x-2' 
-                      : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${activeType === 'Live Online Courses' ? 'bg-indigo-600' : 'bg-slate-100 group-hover:bg-slate-200'}`}>
-                      <MonitorPlay size={20} />
-                    </div>
-                    Live Online
-                  </div>
-                  {activeType === 'Live Online Courses' && (
-                    <motion.div layoutId="active-indicator" className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_10px_rgba(129,140,248,0.8)]"></motion.div>
-                  )}
-                </button>
-
-                {/* Self Paced Courses */}
-                <div className="relative group/tooltip">
-                  <button
-                    disabled
-                    className="w-full flex items-center justify-between p-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all text-slate-300 bg-slate-50/50 cursor-not-allowed border border-dashed border-slate-200"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
-                        <Zap size={20} />
-                      </div>
-                      Offline Learning
-                    </div>
-                    <span className="text-[8px] font-black uppercase tracking-tighter bg-slate-200 text-slate-500 px-2 py-1 rounded">
-                      Coming Soon
-                    </span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Sidebar Decoration */}
-              {/* <div className="mt-12 p-8 bg-indigo-50 rounded-3xl border border-indigo-100/50 hidden lg:block">
-                <div className="w-12 h-1 bg-indigo-600 mb-6"></div>
-                <p className="text-[10px] font-black text-indigo-900/60 uppercase tracking-widest leading-relaxed">
-                  All programs include 1:1 mentorship from IIT Delhi alumni.
-                </p>
-              </div> */}
-            </div>
+        {/* Minimalist Filter */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 border-b border-slate-100 pb-8">
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 ${
+                  activeCategory === cat.id
+                    ? 'bg-slate-900 text-white shadow-xl shadow-slate-200'
+                    : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                {cat.icon}
+                {cat.label}
+              </button>
+            ))}
           </div>
+          <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <Globe size={14} className="text-indigo-600" />
+            <span>Live Online & Self-Paced</span>
+          </div>
+        </div>
 
-          {/* Main Display Area */}
-          <div className="lg:w-3/4">
-            {/* Top Tabs - Segmented Control Style */}
-            <div className="inline-flex p-2 bg-slate-100 rounded-[24px] mb-12 w-full lg:w-auto overflow-x-auto no-scrollbar">
-              {[
-                { id: 'Full Stack Development', icon: <Code size={16} /> },
-                { id: 'Data Analytics', icon: <BarChart3 size={16} /> },
-                { id: 'Data Science & AI', icon: <Cpu size={16} /> }
-              ].map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-[18px] text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all duration-300 ${
-                    activeCategory === cat.id
-                      ? 'bg-white text-slate-900 shadow-xl shadow-slate-200/50'
-                      : 'text-slate-400 hover:text-slate-600'
-                  }`}
-                >
-                  <span className={activeCategory === cat.id ? 'text-indigo-600' : ''}>{cat.icon}</span>
-                  {cat.id}
-                </button>
-              ))}
-            </div>
-
-            {/* Course Cards Grid */}
-            <div className="grid md:grid-cols-2 gap-10">
-              {coursesData.filter(c => c.category === activeCategory).map((course) => (
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="wait">
+            {coursesData
+              .filter(c => c.category === activeCategory || (activeCategory === 'Data Science' && c.category === 'Data Science'))
+              .map((course, idx) => (
                 <motion.div
                   key={course.id}
+                  layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="group bg-white rounded-[32px] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-indigo-100/50 transition-all duration-500 flex flex-col"
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="group relative bg-white rounded-[40px] border border-slate-100 p-8 hover:border-indigo-100 hover:shadow-2xl hover:shadow-indigo-100/30 transition-all duration-500 flex flex-col h-full"
                 >
-                  {/* Course Illustration Area */}
-                  <div className="relative h-64 bg-slate-50 p-8 overflow-hidden">
-                    <div className="absolute inset-0 bg-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <img 
-                      src={course.image} 
-                      alt={course.title} 
-                      className="w-full h-full object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-700"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute top-10 right-10">
-                      <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-xl text-indigo-600 group-hover:rotate-12 transition-transform">
-                        <Zap size={20} />
-                      </div>
+                  {/* Top Section */}
+                  <div className="flex justify-between items-start mb-8">
+                    <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
+                      <Zap size={24} />
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1 font-mono">
+                        {course.duration}
+                      </span>
+                      <span className="px-2 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase tracking-tighter rounded">
+                        Live Now
+                      </span>
                     </div>
                   </div>
 
-                  {/* Course Info */}
-                  <div className="p-10 flex flex-col flex-grow">
-                    <div className="mb-8">
-                      <h4 className="text-2xl font-bold font-display text-slate-900 leading-tight mb-4 group-hover:text-indigo-600 transition-colors">
-                        {course.title}
-                      </h4>
-                      <p className="text-sm text-slate-500 font-medium leading-relaxed line-clamp-2">
-                        {course.description}
-                      </p>
-                    </div>
+                  {/* Title & Description */}
+                  <div className="mb-8 flex-grow">
+                    <h3 className="text-3xl font-bold text-slate-900 font-display tracking-tight leading-tight mb-4 group-hover:text-indigo-600 transition-colors">
+                      {course.title}
+                    </h3>
+                    <p className="text-slate-500 text-sm font-medium leading-relaxed line-clamp-3">
+                      {course.description}
+                    </p>
+                  </div>
 
-                    {/* Tech Stack Icons */}
-                    <div className="flex flex-wrap gap-2 mb-10">
-                      {course.techStack.slice(0, 4).map((tech) => {
-                        const icon = getTechIcon(tech);
-                        return (
-                          <div key={tech} className="px-3 py-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 group/tech hover:border-indigo-200 transition-colors">
-                            {icon && (
-                              <img 
-                                src={icon} 
-                                alt={tech} 
-                                className="w-4 h-4 object-contain grayscale group-hover/tech:grayscale-0 transition-all"
-                                referrerPolicy="no-referrer"
-                              />
-                            )}
-                            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover/tech:text-indigo-600">{tech}</span>
-                          </div>
-                        );
-                      })}
-                      {course.techStack.length > 4 && (
-                        <div className="px-3 py-2 bg-indigo-50 rounded-xl border border-indigo-100 flex items-center">
-                          <span className="text-[9px] font-black text-indigo-600 uppercase tracking-widest">
-                            +{course.techStack.length - 4} More
-                          </span>
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {course.techStack.slice(0, 3).map((tech) => {
+                      const icon = getTechIcon(tech);
+                      return (
+                        <div key={tech} className="px-3 py-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 group/tech hover:border-indigo-200 transition-colors">
+                          {icon && (
+                            <img 
+                              src={icon} 
+                              alt={tech} 
+                              className="w-3.5 h-3.5 object-contain grayscale group-hover/tech:grayscale-0 transition-all"
+                              referrerPolicy="no-referrer"
+                            />
+                          )}
+                          <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover/tech:text-indigo-600 font-mono">{tech}</span>
                         </div>
-                      )}
-                    </div>
-
-                    <div className="mt-auto flex items-center justify-between pt-8 border-t border-slate-50">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
-                          <Clock size={14} />
-                        </div>
-                        <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest font-display">
-                          {course.duration}
+                      );
+                    })}
+                    {course.techStack.length > 3 && (
+                      <div className="px-3 py-2 bg-indigo-50 rounded-xl border border-indigo-100 flex items-center">
+                        <span className="text-[9px] font-black text-indigo-600 uppercase tracking-widest font-mono">
+                          +{course.techStack.length - 3}
                         </span>
                       </div>
-                      <Link 
-                        href={`/courses/${course.id}`}
-                        className="group/link flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600"
-                      >
-                        View Details 
-                        <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center group-hover/link:bg-indigo-600 group-hover/link:text-white transition-all">
-                          <ChevronRight size={16} />
-                        </div>
-                      </Link>
+                    )}
+                  </div>
+
+                  {/* Footer Action */}
+                  <div className="pt-8 border-t border-slate-50 flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 font-mono">Starting at</span>
+                      <span className="text-xl font-bold text-slate-900 font-display">{course.price}</span>
                     </div>
+                    <Link 
+                      href={`/courses/${course.id}`}
+                      className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-900 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all duration-500"
+                    >
+                      <ArrowUpRight size={20} />
+                    </Link>
+                  </div>
+
+                  {/* Hover Image Reveal (Subtle) */}
+                  <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 pointer-events-none">
+                    <img src={course.image} alt="" className="w-full h-full object-cover grayscale" />
                   </div>
                 </motion.div>
               ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-24 text-center">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.3em] mb-8">
+            Not sure which path to choose?
+          </p>
+          <button className="px-10 py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-4 mx-auto group">
+            Book Free Career Counseling
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+              <ArrowUpRight size={16} />
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </section>
   );
 }
+
 
