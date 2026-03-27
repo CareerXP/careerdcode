@@ -27,6 +27,7 @@ function pickFirstDateField(fields: unknown): string | null {
 
   const record = fields as Record<string, unknown>;
   const preferredKeys = [
+    'BatchStartDate',
     'nextBatchDate',
     'nextBatchStartDate',
     'batchDate',
