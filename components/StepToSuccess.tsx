@@ -130,8 +130,8 @@ export default function StepsToSuccess() {
   return (
     <section id="steps" ref={containerRef} className="relative bg-white z-40">
       <div className="h-[600vh]">
-        <div className="sticky top-0 h-screen flex flex-col justify-center bg-white overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-12">
+        <div className="sticky top-0 h-screen flex flex-col justify-start bg-white overflow-x-hidden overflow-y-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-10 md:py-12">
             <div className="mb-8 md:mb-12">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-8 h-[1px] bg-indigo-600"></span>
