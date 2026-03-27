@@ -4,6 +4,7 @@ import { useState, createContext, useContext } from 'react';
 import Footer from './Footer';
 import WhatsAppFAB from './WhatsAppFAB';
 import CallbackModal from './CallbackModal';
+import ScrollToTop from '@/components/ScrollToTop';
 
 interface ModalContextType {
   openModal: (type?: 'callback' | 'brochure') => void;
@@ -36,6 +37,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         />
 
         <WhatsAppFAB />
+        <ScrollToTop />
 
         <CallbackModal isOpen={isModalOpen} onClose={closeModal} type={modalType} />
       </ModalContext.Provider>
