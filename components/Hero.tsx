@@ -81,48 +81,11 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          {/* Social Proof Muted */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="pt-16 flex flex-wrap justify-center gap-12 opacity-60"
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 overflow-hidden">
-                    <img src={`https://picsum.photos/seed/hero${i}/100/100`} alt="User" className="object-cover" />
-                  </div>
-                ))}
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-white uppercase tracking-widest">12k+ Students</p>
-                <p className="text-[10px] text-white/50 uppercase tracking-tighter">Active Learners</p>
-              </div>
-            </div>
-            
-            <div className="h-10 w-[1px] bg-white/10 hidden sm:block"></div>
-            
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1 text-amber-400">
-                {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-white uppercase tracking-widest">4.9/5 Rating</p>
-                <p className="text-[10px] text-white/50 uppercase tracking-tighter">Student Success</p>
-              </div>
-            </div>
-          </motion.div>
+        
         </div>
       </div>
 
-      {/* Bottom Decorative Logo/Icon like HackerEarth */}
-      <div className="absolute bottom-10 right-10 opacity-20 hover:opacity-100 transition-opacity cursor-default">
-        <div className="w-12 h-12 border-4 border-white rounded-xl flex items-center justify-center">
-          <span className="text-2xl font-black text-white">C</span>
-        </div>
-      </div>
+     
     </section>
   );
 }
