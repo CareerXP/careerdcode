@@ -2,105 +2,125 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { ArrowUpRight, Download, Users, Star } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight, Users, Star } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white">
-      {/* Background Grid Accent */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+    <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-[#050505]">
+      {/* HackerEarth-style Vibrant Gradient Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#4c1d95] to-[#be185d] opacity-90"></div>
+        
+        {/* Animated Glows */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px]"
+        ></motion.div>
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 -right-20 w-[700px] h-[700px] bg-pink-600/20 rounded-full blur-[150px]"
+        ></motion.div>
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div className="max-w-5xl mx-auto text-center space-y-12">
           
-          {/* Left Content: Massive Typography */}
-          <div className="lg:col-span-7 space-y-10">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-6"
-            >
-              <div className="flex items-center gap-3">
-                <span className="w-12 h-[1px] bg-indigo-600"></span>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
-                  Next Gen Learning
-                </span>
-              </div>
-              
-              <h1 className="text-6xl sm:text-8xl lg:text-[110px] font-black text-slate-900 leading-[0.88] tracking-tight uppercase font-display">
-                Tired of learning <br />
-                <span className="text-indigo-600">but not getting placed.</span>
-              </h1>
-              
-              <p className="text-slate-500 text-lg sm:text-xl font-medium leading-relaxed max-w-xl">
-                Here’s how CareerXP turns your effort into offers — with a structured, placement-first approach.
-              </p>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-8"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <span className="w-8 h-[1px] bg-white/30"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/60 font-mono">
+                Placement-First Learning
+              </span>
+              <span className="w-8 h-[1px] bg-white/30"></span>
+            </div>
+            
+            <h1 className="text-5xl sm:text-7xl lg:text-[90px] font-black text-white leading-[1.1] tracking-tight font-display">
+              Tired of learning <br />
+              <span className="text-white/90">but not getting placed.</span>
+            </h1>
+            
+            <p className="text-white/70 text-lg sm:text-2xl font-medium leading-relaxed max-w-3xl mx-auto">
+              Here’s how CareerXP turns your effort into offers — with a structured, placement-first approach.
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap gap-6 items-center"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap gap-6 items-center justify-center"
+          >
+            <Link 
+              href="#steps"
+              className="group px-12 py-5 bg-white text-slate-900 font-black text-sm uppercase tracking-widest rounded-xl hover:bg-indigo-50 transition-all shadow-2xl shadow-white/10 flex items-center gap-4"
             >
-              <button className="group px-10 py-5 bg-slate-900 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-600 transition-all shadow-2xl shadow-slate-200 flex items-center gap-4">
-                Book Free Call
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:rotate-45 transition-transform">
-                  <ArrowUpRight size={18} />
-                </div>
-              </button>
-              
-              <button className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-900 group">
-                <div className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-50 transition-colors">
-                  <Download size={16} />
-                </div>
-                Download Brochure
-              </button>
-            </motion.div>
-
-         
-           
-          </div>
-
-          {/* Right Content: Immersive Image */}
-          <div className="lg:col-span-5 relative">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl shadow-indigo-100 group"
+              Job Seekers
+              <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+            
+            <Link 
+              href="/recruiters"
+              className="px-12 py-5 bg-transparent border-2 border-white/30 text-white font-black text-sm uppercase tracking-widest rounded-xl hover:bg-white/10 hover:border-white transition-all flex items-center gap-4 group"
             >
-              <Image
-                src="https://picsum.photos/seed/engineering/1200/1500"
-                alt="Engineering Excellence"
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                referrerPolicy="no-referrer"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-60"></div>
-              
-          
-              <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-[32px]">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white">
-                    <Users size={20} />
+              Recruiters
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* Social Proof Muted */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="pt-16 flex flex-wrap justify-center gap-12 opacity-60"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex -space-x-3">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 overflow-hidden">
+                    <img src={`https://picsum.photos/seed/hero${i}/100/100`} alt="User" className="object-cover" />
                   </div>
-                  <div>
-                    <p className="text-[10px] font-black text-white/60 uppercase tracking-widest">Mentorship</p>
-                    <p className="text-sm font-bold text-white">Learn from IIT Delhi Alumni</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            </motion.div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-white uppercase tracking-widest">12k+ Students</p>
+                <p className="text-[10px] text-white/50 uppercase tracking-tighter">Active Learners</p>
+              </div>
+            </div>
+            
+            <div className="h-10 w-[1px] bg-white/10 hidden sm:block"></div>
+            
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1 text-amber-400">
+                {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-white uppercase tracking-widest">4.9/5 Rating</p>
+                <p className="text-[10px] text-white/50 uppercase tracking-tighter">Student Success</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
-         
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-600/5 rounded-full blur-3xl -z-10"></div>
-          </div>
-
+      {/* Bottom Decorative Logo/Icon like HackerEarth */}
+      <div className="absolute bottom-10 right-10 opacity-20 hover:opacity-100 transition-opacity cursor-default">
+        <div className="w-12 h-12 border-4 border-white rounded-xl flex items-center justify-center">
+          <span className="text-2xl font-black text-white">C</span>
         </div>
       </div>
     </section>
