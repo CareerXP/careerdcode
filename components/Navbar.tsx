@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Action Buttons */}
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => openModal('callback')}
+              onClick={() => openModal('callback', 'general')}
               className="flex items-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200"
             >
               <PhoneCall size={14} />

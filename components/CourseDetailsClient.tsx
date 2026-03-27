@@ -102,7 +102,7 @@ export default function CourseDetailsClient({ course }: CourseDetailsClientProps
                 
                 <div className="flex flex-wrap gap-4 sm:gap-6 pt-10">
                   <button 
-                    onClick={() => openModal('brochure')}
+                    onClick={() => openModal('brochure', 'course-inquiry')}
                     className="w-full sm:w-auto px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold font-display text-xs uppercase tracking-widest hover:bg-indigo-600 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-slate-200 group"
                   >
                     <Download size={18} className="group-hover:translate-y-1 transition-transform" />

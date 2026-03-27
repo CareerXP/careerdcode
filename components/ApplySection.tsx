@@ -31,7 +31,7 @@ export default function ApplySection() {
               Apply Now
             </a>
             <button 
-              onClick={() => openModal('callback')}
+              onClick={() => openModal('callback', 'general')}
               className="px-10 py-5 bg-indigo-700 text-white font-bold rounded-2xl border border-indigo-500 hover:bg-indigo-800 transition-colors"
             >
               Request Callback

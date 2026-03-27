@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { useModal } from '@/components/ClientLayout';
 import { 
   Code, 
   BarChart3, 
@@ -15,6 +16,7 @@ import {
 import { coursesData } from '@/data/courses';
 
 export default function CourseSection() {
+  const { openModal } = useModal();
   const [activeTab, setActiveTab] = useState('Live Course');
 
   const getTechIcon = (tech: string) => {
@@ -208,7 +210,10 @@ export default function CourseSection() {
           <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.3em] mb-8">
             Not sure which path to choose?
           </p>
-          <button className="px-10 py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-4 mx-auto group">
+          <button
+            onClick={() => openModal('callback', 'course-inquiry')}
+            className="px-10 py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-4 mx-auto group"
+          >
             Book Free Career Counseling
             <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
               <ArrowUpRight size={16} />

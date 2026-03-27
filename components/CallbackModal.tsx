@@ -17,9 +17,15 @@ interface CallbackModalProps {
   isOpen: boolean;
   onClose: () => void;
   type: 'callback' | 'brochure';
+  triggerPoint?: 'course-inquiry' | 'general';
 }
 
-export default function CallbackModal({ isOpen, onClose, type }: CallbackModalProps) {
+export default function CallbackModal({
+  isOpen,
+  onClose,
+  type,
+  triggerPoint = "general",
+}: CallbackModalProps) {
   const WEBHOOK_URL = useMemo(
     () =>
       "https://n8n.srv1534167.hstgr.cloud/webhook/33db196a-d3d5-42ce-9fcc-985cb59a7a17",
@@ -59,6 +65,7 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
         },
         body: JSON.stringify({
           type,
+          triggerPoint,
           name: name.trim(),
           whatsapp: {
             countryCode,
