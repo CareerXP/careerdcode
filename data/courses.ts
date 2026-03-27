@@ -9,9 +9,8 @@ export interface Course {
   techStack: string[];
   features: string[];
   curriculum: {
-    week: string;
-    topic: string;
-    description: string;
+    module: string;
+    topics: string[];
   }[];
   faqs: {
     question: string;
@@ -21,66 +20,208 @@ export interface Course {
 
 export const coursesData: Course[] = [
   {
-    id: "full-stack-dev",
-    title: "Full-Stack Development",
+    id: "fsd-java",
+    title: "Full Stack Development (Java)",
     category: "Full Stack Development",
-    description: "Master both frontend and backend technologies to build complete web applications.",
     duration: "6 Months",
+    description:
+      "Learn end-to-end full stack development using Java, Spring Boot, React, and real-world project architecture.",
+    techStack: ["java", "spring", "mysql", "html5", "css3", "javascript", "react"],
     price: "₹49,999",
-    image: "https://picsum.photos/seed/fsd/800/600",
-    techStack: ["react", "nodejs", "mongodb", "express", "typescript", "nextjs"],
-    features: ["Live Classes", "Project-based Learning", "Placement Support", "Mentorship"],
+    image: "/images/fullstack-java.jpg",
+    features: [
+      "Live classes with mentor support",
+      "Real-world capstone projects",
+      "Interview and placement preparation"
+    ],
     curriculum: [
-      { week: "Week 1-4", topic: "Frontend Basics", description: "HTML, CSS, and JavaScript fundamentals." },
-      { week: "Week 5-8", topic: "React.js", description: "Building modern UIs with React." },
-      { week: "Week 9-12", topic: "Node.js & Express", description: "Backend development with Node.js." },
-      { week: "Week 13-16", topic: "Databases", description: "SQL and NoSQL databases." },
+      {
+        module: "Programming Fundamentals",
+        topics: ["Java Basics", "OOP Concepts", "Data Structures"]
+      },
+      {
+        module: "Backend Development",
+        topics: ["Spring Boot", "REST APIs", "Authentication", "Microservices"]
+      },
+      {
+        module: "Frontend Development",
+        topics: ["HTML", "CSS", "JavaScript", "React"]
+      },
+      {
+        module: "Database",
+        topics: ["MySQL", "JPA", "Database Design"]
+      },
+      {
+        module: "Projects",
+        topics: ["Full Stack Projects", "Deployment", "System Design Basics"]
+      }
     ],
     faqs: [
-      { question: "What are the prerequisites?", answer: "No prior experience required." },
-      { question: "Is there a certificate?", answer: "Yes, you get a certificate upon completion." },
-    ],
+      {
+        question: "Do I need prior Java experience?",
+        answer: "No. The course starts with fundamentals and gradually moves to advanced full-stack concepts."
+      },
+      {
+        question: "Will I build production-ready projects?",
+        answer: "Yes. You will build multiple projects with backend, frontend, and deployment workflows."
+      },
+      {
+        question: "Is placement support included?",
+        answer: "Yes. Resume reviews, mock interviews, and placement guidance are part of the program."
+      }
+    ]
   },
+
   {
-    id: "data-science",
-    title: "Data Science & AI",
-    category: "Data Science",
-    description: "Learn to analyze data and build intelligent systems using Python and Machine Learning.",
+    id: "fsd-mern",
+    title: "Full Stack Development (MERN)",
+    category: "Full Stack Development",
     duration: "6 Months",
-    price: "₹59,999",
-    image: "https://picsum.photos/seed/ds/800/600",
-    techStack: ["python", "pandas", "numpy", "tensorflow", "pytorch", "scikitlearn"],
-    features: ["Python", "Machine Learning", "Deep Learning", "Real-world Projects"],
+    description:
+      "Build scalable web apps using MongoDB, Express, React, and Node.js with production-grade practices.",
+    techStack: ["mongodb", "express", "react", "nodejs", "javascript"],
+    price: "₹49,999",
+    image: "/images/fullstack-mern.jpg",
+    features: [
+      "Hands-on MERN architecture training",
+      "API-first development approach",
+      "Portfolio-ready deployment projects"
+    ],
     curriculum: [
-      { week: "Week 1-4", topic: "Python for Data Science", description: "Python basics and libraries like NumPy, Pandas." },
-      { week: "Week 5-8", topic: "Statistics", description: "Foundational statistics for data analysis." },
-      { week: "Week 9-12", topic: "Machine Learning", description: "Supervised and unsupervised learning." },
-      { week: "Week 13-16", topic: "Deep Learning", description: "Neural networks and AI applications." },
+      {
+        module: "Frontend Core",
+        topics: ["HTML", "CSS", "JavaScript", "React"]
+      },
+      {
+        module: "Backend Core",
+        topics: ["Node.js", "Express.js", "REST APIs"]
+      },
+      {
+        module: "Database",
+        topics: ["MongoDB", "Mongoose", "Schema Design"]
+      },
+      {
+        module: "Advanced",
+        topics: ["Authentication", "JWT", "Performance Optimization"]
+      },
+      {
+        module: "Projects",
+        topics: ["Real-world Apps", "Deployment", "System Design"]
+      }
     ],
     faqs: [
-      { question: "Do I need to know math?", answer: "Basic high school math is sufficient." },
-    ],
+      {
+        question: "Is this course beginner friendly?",
+        answer: "Yes. It begins with frontend and JavaScript foundations before moving to full MERN development."
+      },
+      {
+        question: "Do I learn authentication and security?",
+        answer: "Yes. The course includes JWT authentication, secure API practices, and session handling."
+      },
+      {
+        question: "Will I get project feedback?",
+        answer: "Yes. Mentors review assignments and projects with actionable feedback."
+      }
+    ]
   },
+
   {
     id: "data-analytics",
     title: "Data Analytics",
     category: "Data Analytics",
-    description: "Learn to interpret complex data and turn it into actionable insights using Excel, SQL, and Tableau.",
     duration: "4 Months",
-    price: "₹39,999",
-    image: "https://picsum.photos/seed/da/800/600",
+    description:
+      "Master Excel, SQL, Power BI, and Tableau to analyze data and drive business decisions.",
     techStack: ["excel", "mysql", "tableau", "powerbi"],
-    features: ["Excel", "SQL", "Tableau", "Power BI", "Real-world Projects"],
+    price: "₹39,999",
+    image: "/images/data-analytics.jpg",
+    features: [
+      "Business-focused analytics training",
+      "Dashboard and reporting projects",
+      "Case-study based learning"
+    ],
     curriculum: [
-      { week: "Week 1-4", topic: "Excel for Analytics", description: "Advanced Excel functions and data visualization." },
-      { week: "Week 5-8", topic: "SQL Fundamentals", description: "Querying databases and data manipulation." },
-      { week: "Week 9-12", topic: "Data Visualization", description: "Creating dashboards with Tableau and Power BI." },
-      { week: "Week 13-16", topic: "Capstone Project", description: "End-to-end data analysis project." },
+      {
+        module: "Excel & Basics",
+        topics: ["Excel Functions", "Data Cleaning", "Pivot Tables"]
+      },
+      {
+        module: "SQL",
+        topics: ["Queries", "Joins", "Aggregation", "Optimization"]
+      },
+      {
+        module: "Visualization",
+        topics: ["Tableau", "Power BI", "Dashboards"]
+      },
+      {
+        module: "Business Analytics",
+        topics: ["Case Studies", "KPIs", "Decision Making"]
+      }
     ],
     faqs: [
-      { question: "What tools will I learn?", answer: "Excel, SQL, Tableau, and Power BI." },
-    ],
+      {
+        question: "Do I need coding knowledge for this course?",
+        answer: "No prior coding background is required. The curriculum is designed for beginners."
+      },
+      {
+        question: "Which tools are covered in depth?",
+        answer: "You will work extensively with Excel, SQL, Tableau, and Power BI."
+      },
+      {
+        question: "Will I work on real datasets?",
+        answer: "Yes. You will analyze practical datasets and build decision-ready dashboards."
+      }
+    ]
   },
+
+  {
+    id: "data-science",
+    title: "Data Science & Machine Learning",
+    category: "Data Science",
+    duration: "6 Months",
+    description:
+      "Learn Python, ML, deep learning, and AI concepts with hands-on real-world datasets.",
+    techStack: ["python", "numpy", "pandas", "tensorflow", "pytorch"],
+    price: "₹59,999",
+    image: "/images/data-science.jpg",
+    features: [
+      "End-to-end machine learning workflow",
+      "Deep learning with modern frameworks",
+      "Model deployment and evaluation"
+    ],
+    curriculum: [
+      {
+        module: "Python & Math",
+        topics: ["Python Basics", "NumPy", "Pandas", "Statistics"]
+      },
+      {
+        module: "Machine Learning",
+        topics: ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"]
+      },
+      {
+        module: "Deep Learning",
+        topics: ["Neural Networks", "TensorFlow", "PyTorch"]
+      },
+      {
+        module: "Projects",
+        topics: ["Real-world ML Projects", "Model Deployment"]
+      }
+    ],
+    faqs: [
+      {
+        question: "Is mathematics mandatory before joining?",
+        answer: "Basic school-level math is enough to start. Required concepts are taught during the course."
+      },
+      {
+        question: "Which ML and DL libraries are taught?",
+        answer: "The curriculum covers NumPy, Pandas, TensorFlow, and PyTorch with practical use cases."
+      },
+      {
+        question: "Will this include deployment skills?",
+        answer: "Yes. You will learn model packaging, serving basics, and deployment-oriented best practices."
+      }
+    ]
+  }
 ];
 
 export function getCourseById(id: string): Course | undefined {

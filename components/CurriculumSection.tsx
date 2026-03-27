@@ -4,9 +4,8 @@ import { motion } from "motion/react";
 
 interface CurriculumSectionProps {
   curriculum: {
-    week: string;
-    topic: string;
-    description: string;
+    module: string;
+    topics: string[];
   }[];
 }
 
@@ -35,17 +34,19 @@ export default function CurriculumSection({ curriculum }: CurriculumSectionProps
             >
               <div className="flex-shrink-0 w-full sm:w-24 text-left sm:text-right">
                 <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest">
-                  {item.week}
+                  Module {i + 1}
                 </span>
               </div>
               <div className="flex-grow pb-12 border-l-2 border-indigo-200 pl-8 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white"></div>
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-                  {item.topic}
+                  {item.module}
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-                  {item.description}
-                </p>
+                <ul className="text-slate-600 leading-relaxed text-sm sm:text-base list-disc pl-5 space-y-1">
+                  {item.topics.map((topic) => (
+                    <li key={topic}>{topic}</li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}
