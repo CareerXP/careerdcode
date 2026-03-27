@@ -14,14 +14,8 @@ import {
 } from 'lucide-react';
 import { coursesData } from '@/data/courses';
 
-const categories = [
-  { id: 'Computer Science', icon: <Code size={18} />, label: 'CS & Algorithms' },
-  { id: 'Full Stack Development', icon: <BarChart3 size={18} />, label: 'Web & AI' },
-  { id: 'Quality Assurance', icon: <Cpu size={18} />, label: 'Testing' }
-];
-
 export default function CourseSection() {
-  const [activeCategory, setActiveCategory] = useState('Computer Science');
+  const [activeTab, setActiveTab] = useState('Live Course');
 
   const getTechIcon = (tech: string) => {
     const baseUrl = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/";
@@ -73,7 +67,7 @@ export default function CourseSection() {
             <p className="text-slate-500 text-lg sm:text-xl font-medium leading-relaxed max-w-md">
               Industry-standard tracks designed to take you from zero to job-ready with a placement-first approach.
             </p>
-            <div className="flex items-center gap-8">
+            {/* <div className="flex items-center gap-8">
               <div className="flex -space-x-4">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-slate-100 overflow-hidden relative">
@@ -84,31 +78,34 @@ export default function CourseSection() {
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
                 Trusted by <span className="text-slate-900">12,000+</span> Alumni
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 
-        {/* Minimalist Filter */}
+        {/* Minimalist Tab Navigation */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 border-b border-slate-100 pb-8">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 ${
-                  activeCategory === cat.id
-                    ? 'bg-slate-900 text-white shadow-xl shadow-slate-200'
-                    : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                {cat.icon}
-                {cat.label}
-              </button>
-            ))}
-          </div>
-          <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-400">
-            <Globe size={14} className="text-indigo-600" />
-            <span>Placement-First Curriculum</span>
+          <div className="flex flex-wrap gap-4">
+            <button
+              onClick={() => setActiveTab('Live Course')}
+              className={`px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 ${
+                activeTab === 'Live Course'
+                  ? 'bg-slate-900 text-white shadow-xl shadow-slate-200'
+                  : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <Zap size={14} className={activeTab === 'Live Course' ? 'text-indigo-400' : 'text-slate-400'} />
+              Live Course
+            </button>
+            <button
+              disabled
+              className="px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300 cursor-not-allowed flex items-center gap-3 bg-slate-50/50 border border-dashed border-slate-200 group relative"
+            >
+              <Clock size={14} className="text-slate-300" />
+              Offline Learning
+              <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[8px] font-black uppercase tracking-tighter rounded-full ml-1">
+                Coming Soon
+              </span>
+            </button>
           </div>
         </div>
 
@@ -116,7 +113,6 @@ export default function CourseSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="wait">
             {coursesData
-              .filter(c => c.category === activeCategory)
               .map((course, idx) => (
                 <motion.div
                   key={course.id}
