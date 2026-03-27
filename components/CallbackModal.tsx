@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useMemo, useState } from "react";
 import { 
   X, 
   User, 
@@ -19,6 +20,77 @@ interface CallbackModalProps {
 }
 
 export default function CallbackModal({ isOpen, onClose, type }: CallbackModalProps) {
+  const WEBHOOK_URL = useMemo(
+    () =>
+      "https://n8n.srv1534167.hstgr.cloud/webhook/33db196a-d3d5-42ce-9fcc-985cb59a7a17",
+    []
+  );
+
+  const [name, setName] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
+  const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [state, setState] = useState("");
+  const [degree, setDegree] = useState("");
+  const [graduationYear, setGraduationYear] = useState("");
+
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "loading" }
+    | { kind: "success"; message: string }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
+
+  useEffect(() => {
+    if (!isOpen) return;
+    setStatus({ kind: "idle" });
+  }, [isOpen]);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (status.kind === "loading") return;
+
+    setStatus({ kind: "loading" });
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type,
+          name: name.trim(),
+          whatsapp: {
+            countryCode,
+            number: whatsappNumber.trim(),
+            full: `${countryCode}${whatsappNumber.trim()}`,
+          },
+          state,
+          degree,
+          graduationYear,
+          source: "CallbackModal",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Webhook request failed (${res.status})`);
+      }
+
+      setStatus({
+        kind: "success",
+        message:
+          type === "callback"
+            ? "Submitted! We'll call you shortly."
+            : "Submitted! You'll receive the brochure soon.",
+      });
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setStatus({ kind: "error", message });
+    }
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -54,7 +126,7 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
               </p>
             </div>
             
-            <form className="space-y-3">
+            <form className="space-y-3" onSubmit={onSubmit}>
               {/* Name Field */}
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -62,6 +134,8 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                 </div>
                 <input 
                   type="text" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
                   placeholder="Enter name"
                 />
@@ -73,7 +147,11 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <Phone className="h-5 w-5 text-slate-400" />
                   </div>
-                  <select className="w-full pl-12 pr-8 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 appearance-none cursor-pointer">
+                  <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                    className="w-full pl-12 pr-8 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 appearance-none cursor-pointer"
+                  >
                     <option>+91</option>
                     <option>+1</option>
                     <option>+44</option>
@@ -85,6 +163,8 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                 <div className="relative flex-grow">
                   <input 
                     type="tel" 
+                    value={whatsappNumber}
+                    onChange={(e) => setWhatsappNumber(e.target.value)}
                     className="w-full px-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
                     placeholder="Enter whatsapp number"
                   />
@@ -96,7 +176,13 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <MapPin className="h-5 w-5 text-slate-400" />
                 </div>
-                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                <select
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  className={`w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans appearance-none cursor-pointer ${
+                    state ? "text-slate-600" : "text-slate-400"
+                  }`}
+                >
                   <option value="" disabled>Select State</option>
                   <option value="Delhi">Delhi</option>
                   <option value="Maharashtra">Maharashtra</option>
@@ -113,7 +199,13 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <BookOpen className="h-5 w-5 text-slate-400" />
                 </div>
-                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                <select
+                  value={degree}
+                  onChange={(e) => setDegree(e.target.value)}
+                  className={`w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans appearance-none cursor-pointer ${
+                    degree ? "text-slate-600" : "text-slate-400"
+                  }`}
+                >
                   <option value="" disabled>Select Degree</option>
                   <option value="B.Tech">B.Tech</option>
                   <option value="BCA">BCA</option>
@@ -130,7 +222,13 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <GraduationCap className="h-5 w-5 text-slate-400" />
                 </div>
-                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
+                <select
+                  value={graduationYear}
+                  onChange={(e) => setGraduationYear(e.target.value)}
+                  className={`w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans appearance-none cursor-pointer ${
+                    graduationYear ? "text-slate-600" : "text-slate-400"
+                  }`}
+                >
                   <option value="" disabled>Select Graduation Year</option>
                   <option value="2024">2024</option>
                   <option value="2025">2025</option>
@@ -142,27 +240,24 @@ export default function CallbackModal({ isOpen, onClose, type }: CallbackModalPr
                 </div>
               </div>
 
-              {/* Job Status Field */}
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Briefcase className="h-5 w-5 text-slate-400" />
-                </div>
-                <select defaultValue="" className="w-full pl-12 pr-10 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-400 appearance-none cursor-pointer">
-                  <option value="" disabled>Job Status</option>
-                  <option value="Student">Student</option>
-                  <option value="Working Professional">Working Professional</option>
-                  <option value="Job Seeker">Job Seeker</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-                  <ChevronDown className="h-5 w-5 text-slate-400" />
-                </div>
-              </div>
+              {status.kind === "error" && (
+                <p className="text-xs font-bold text-red-600 pt-2">{status.message}</p>
+              )}
+              {status.kind === "success" && (
+                <p className="text-xs font-bold text-green-700 pt-2">{status.message}</p>
+              )}
+           
 
               <button 
-                type="button"
-                className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mt-6 font-sans text-lg"
+                type="submit"
+                disabled={status.kind === "loading"}
+                className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mt-6 font-sans text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {type === 'callback' ? 'Request Callback' : 'Download Now'}
+                {status.kind === "loading"
+                  ? "Submitting..."
+                  : type === "callback"
+                    ? "Request Callback"
+                    : "Download Now"}
               </button>
             </form>
           </motion.div>
