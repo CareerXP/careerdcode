@@ -27,9 +27,10 @@ export default function Navbar() {
             <Link href="/about" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">
               About Us
             </Link>
-            <div className="flex items-center gap-1 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 cursor-pointer transition-colors">
-              More <ChevronDown size={12} />
-            </div>
+            <Link href="/campus" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">
+              Campus Connect
+            </Link>
+           
           </div>
 
           {/* Action Buttons */}
