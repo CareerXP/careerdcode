@@ -93,3 +93,22 @@ export async function getStudentReviews(): Promise<StudentReview[]> {
     return mockReviews;
   }
 }
+
+export async function getCurrentBatch(){
+  if (!contentfulClient) {
+    return null;
+  }
+
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: 'carrerXBatch',
+    });
+    if (!response.items || response.items.length === 0) {
+      return null;
+    }
+    return response.items[0].fields;
+  } catch (error: any) {
+    console.error('Error fetching current batch from Contentful:', error.message || error);
+    return null;
+  }
+}

@@ -3,6 +3,51 @@ import { getCourseById, coursesData } from '@/data/courses';
 import CourseDetailsClient from '@/components/CourseDetailsClient';
 import Link from 'next/link';
 import { seoConfig } from '@/config/seo';
+import { getCurrentBatch } from '@/services/contentfulService';
+
+function formatBatchDate(value: unknown): string | null {
+  const asDate =
+    value instanceof Date
+      ? value
+      : typeof value === 'string'
+        ? new Date(value)
+        : null;
+
+  if (!asDate || Number.isNaN(asDate.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-IN', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(asDate);
+}
+
+function pickFirstDateField(fields: unknown): string | null {
+  if (!fields || typeof fields !== 'object') return null;
+
+  const record = fields as Record<string, unknown>;
+  const preferredKeys = [
+    'nextBatchDate',
+    'nextBatchStartDate',
+    'batchDate',
+    'date',
+    'startDate',
+  ];
+
+  for (const key of preferredKeys) {
+    if (key in record) {
+      const formatted = formatBatchDate(record[key]);
+      if (formatted) return formatted;
+    }
+  }
+
+  for (const v of Object.values(record)) {
+    const formatted = formatBatchDate(v);
+    if (formatted) return formatted;
+  }
+
+  return null;
+}
 
 interface Props {
   params: Promise<{ courseId: string }>;
@@ -45,6 +90,8 @@ export async function generateStaticParams() {
 export default async function CourseDetails({ params }: Props) {
   const { courseId } = await params;
   const course = getCourseById(courseId);
+  const batchFields = await getCurrentBatch();
+  const nextBatchDate = pickFirstDateField(batchFields);
 
   if (!course) {
     return (
@@ -55,5 +102,5 @@ export default async function CourseDetails({ params }: Props) {
     );
   }
 
-  return <CourseDetailsClient course={course} />;
+  return <CourseDetailsClient course={course} nextBatchDate={nextBatchDate ?? undefined} />;
 }

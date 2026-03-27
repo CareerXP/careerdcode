@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { 
   X, 
   User, 
@@ -46,6 +46,8 @@ export default function CallbackModal({
     | { kind: "error"; message: string }
   >({ kind: "idle" });
 
+  const closeTimerRef = useRef<number | null>(null);
+
   const resetForm = () => {
     setName("");
     setCountryCode("+91");
@@ -60,6 +62,12 @@ export default function CallbackModal({
     setStatus({ kind: "idle" });
     resetForm();
   }, [isOpen, type]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -102,6 +110,11 @@ export default function CallbackModal({
             : "Submitted! You'll receive the brochure soon.",
       });
       resetForm();
+
+      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = window.setTimeout(() => {
+        onClose();
+      }, 1200);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Something went wrong. Please try again.";

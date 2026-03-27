@@ -35,9 +35,10 @@ const rotatingWords = [
 
 interface CourseDetailsClientProps {
   course: Course;
+  nextBatchDate?: string;
 }
 
-export default function CourseDetailsClient({ course }: CourseDetailsClientProps) {
+export default function CourseDetailsClient({ course, nextBatchDate }: CourseDetailsClientProps) {
   const router = useRouter();
   const { openModal } = useModal();
   const [wordIndex, setWordIndex] = useState(0);
@@ -57,7 +58,7 @@ export default function CourseDetailsClient({ course }: CourseDetailsClientProps
       <div className="sticky top-0 z-50">
         {/* Top Banner */}
         <div className="bg-slate-900 text-white text-center py-2 text-[10px] font-black uppercase tracking-[0.2em] shadow-md">
-          Next batch starting from 8 March 2026
+          Next batch starting from {nextBatchDate ?? '8 March 2026'}
         </div>
         <CourseNavbar />
       </div>
