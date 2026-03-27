@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Send, Instagram, Youtube, Linkedin, Facebook, MessageCircle, Download } from 'lucide-react';
 import Link from 'next/link';
+import { coursesData } from '@/data/courses';
 
 interface FooterProps {
   onCallbackClick: () => void;
@@ -49,10 +50,16 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
                 COURSES
               </span>
               <ul className="space-y-5 text-slate-600 text-sm font-bold">
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Full Stack Dev</a></li>
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Data Science & AI</a></li>
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Data Analytics</a></li>
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Web 3.0</a></li>
+                {coursesData.map((course) => (
+                  <li key={course.id}>
+                    <Link
+                      href={`/courses/${course.id}`}
+                      className="hover:text-indigo-600 transition-colors"
+                    >
+                      {course.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
