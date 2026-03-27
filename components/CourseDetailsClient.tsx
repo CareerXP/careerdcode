@@ -1,7 +1,5 @@
 "use client";
 
-import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronDown, 
@@ -9,20 +7,17 @@ import {
   CheckCircle2, 
   ArrowRight, 
   Download, 
-  Clock, 
-  PhoneCall,
-  ChevronLeft,
   Quote,
   Linkedin
 } from 'lucide-react';
 import { Course } from '@/data/courses';
-import CourseNavbar from '@/components/CourseNavbar';
 import TrustedCompanies from '@/components/TrustedCompanies';
 import PlacedStudents from '@/components/PlacedStudents';
 import CurriculumSection from '@/components/CurriculumSection';
 import CourseFAQ from '@/components/CourseFAQ';
 import { useEffect, useState } from 'react';
 import { useModal } from '@/components/ClientLayout';
+import Navbar from '@/components/Navbar';
 
 const rotatingWords = [
   'Knowledge',
@@ -39,7 +34,6 @@ interface CourseDetailsClientProps {
 }
 
 export default function CourseDetailsClient({ course, nextBatchDate }: CourseDetailsClientProps) {
-  const router = useRouter();
   const { openModal } = useModal();
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -60,7 +54,7 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
         <div className="bg-slate-900 text-white text-center py-2 text-[10px] font-black uppercase tracking-[0.2em] shadow-md">
           Next batch starting from {nextBatchDate ?? '8 March 2026'}
         </div>
-        <CourseNavbar />
+        <Navbar />
       </div>
       
       {/* Hero Section */}
