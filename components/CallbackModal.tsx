@@ -46,10 +46,20 @@ export default function CallbackModal({
     | { kind: "error"; message: string }
   >({ kind: "idle" });
 
+  const resetForm = () => {
+    setName("");
+    setCountryCode("+91");
+    setWhatsappNumber("");
+    setState("");
+    setDegree("");
+    setGraduationYear("");
+  };
+
   useEffect(() => {
     if (!isOpen) return;
     setStatus({ kind: "idle" });
-  }, [isOpen]);
+    resetForm();
+  }, [isOpen, type]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -91,6 +101,7 @@ export default function CallbackModal({
             ? "Submitted! We'll call you shortly."
             : "Submitted! You'll receive the brochure soon.",
       });
+      resetForm();
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Something went wrong. Please try again.";
