@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, AnimatePresence } from "motion/react";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 type Step = {
   id: number;
@@ -95,6 +96,24 @@ export default function StepsToSuccess() {
     offset: ["start start", "end end"]
   });
 
+  const scrollToStep = (index: number) => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const rect = container.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const containerTop = rect.top + scrollTop;
+    const containerHeight = rect.height;
+    
+    // Calculate target scroll based on step index
+    // We add a small buffer to ensure the scroll listener picks up the correct index
+    const targetScroll = containerTop + (index / steps.length) * containerHeight + 100;
+    
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       const stepIndex = Math.min(
@@ -111,9 +130,9 @@ export default function StepsToSuccess() {
   return (
     <section id="steps" ref={containerRef} className="relative bg-white z-40">
       <div className="h-[600vh]">
-        <div className="sticky top-20 bg-white py-3 sm:py-5 md:py-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="mb-12 md:mb-20">
+        <div className="sticky top-0 h-screen flex flex-col justify-center bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-12">
+            <div className="mb-8 md:mb-12">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-8 h-[1px] bg-indigo-600"></span>
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
@@ -125,7 +144,25 @@ export default function StepsToSuccess() {
               </h2>
             </div>
 
-            <div className="w-full min-h-0">
+            {/* Clickable Step Navigation */}
+            <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 md:mb-12">
+              {steps.map((s, idx) => (
+                <button
+                  key={s.id}
+                  onClick={() => scrollToStep(idx)}
+                  className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
+                    activeStep === idx 
+                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-200' 
+                      : 'bg-white text-slate-400 border-slate-100 hover:border-indigo-200 hover:text-indigo-600'
+                  }`}
+                >
+                  <span className="mr-2 opacity-50">0{s.id}</span>
+                  {s.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="w-full">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -133,87 +170,72 @@ export default function StepsToSuccess() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10 xl:gap-14 items-stretch min-h-0 lg:h-[min(calc(100dvh-9rem),40rem)] lg:max-h-[min(calc(100dvh-9rem),40rem)]"
+                  className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center"
                 >
-                  {/* Left: copy (scrolls inside row on lg if tall) */}
-                  <div className="min-w-0 flex flex-col justify-center gap-3 sm:gap-4 lg:min-h-0 lg:h-full lg:overflow-y-auto lg:pr-2 [scrollbar-width:thin]">
-                    <div className="space-y-2 sm:space-y-3 lg:space-y-3">
+                  {/* Left: copy */}
+                  <div className="min-w-0 space-y-4 sm:space-y-6">
+                    <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-indigo-100 text-indigo-700 rounded-lg text-[9px] sm:text-[10px] font-black uppercase tracking-widest font-display">
+                        <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-lg text-[10px] font-black uppercase tracking-widest font-display">
                           Step {step.id}: {step.label}
                         </span>
                       </div>
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-black text-slate-900 font-display tracking-tight leading-[1.15]">
+                      <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-display tracking-tight leading-[1.1]">
                         {step.title}
                       </h3>
-                      <div className="text-slate-500 text-sm sm:text-base lg:text-[0.9375rem] xl:text-base font-medium leading-relaxed space-y-2 sm:space-y-2.5">
-                        {step.intro && <p>{step.intro}</p>}
-                        {step.bullets && step.bullets.length > 0 && (
-                          <ul className="list-disc pl-5 space-y-1 text-slate-600 text-sm sm:text-base lg:text-[0.9375rem]">
-                            {step.bullets.map((item) => (
-                              <li key={item}>{item}</li>
-                            ))}
-                          </ul>
-                        )}
-                        {step.footnote && (
-                          <p className="text-slate-700 flex gap-2 items-start text-sm sm:text-base lg:text-[0.9375rem]">
-                            <span className="shrink-0" aria-hidden>
-                              👉
-                            </span>
-                            <span>{step.footnote}</span>
-                          </p>
-                        )}
-                        {step.highlights && (
-                          <ul className="space-y-2 text-slate-700 text-sm sm:text-base lg:text-[0.9375rem]">
-                            {step.highlights.map((line) => (
-                              <li key={line} className="flex gap-2 items-start">
-                                <span className="shrink-0" aria-hidden>
-                                  👉
-                                </span>
-                                <span>{line}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                      {step.cta && (
-                        <div className="pt-2 sm:pt-3">
-                          <Link
-                            href={step.cta.href}
-                            className="group/cta inline-flex items-center gap-2 sm:gap-3 px-5 py-2.5 sm:px-6 sm:py-3 bg-indigo-600 text-white font-black text-xs sm:text-sm rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/25"
-                          >
-                            <span>{step.cta.label}</span>
-                            <svg
-                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover/cta:translate-x-0.5"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              aria-hidden
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2.5}
-                                d="M13 7l5 5m0 0l-5 5m5-5H6"
-                              />
-                            </svg>
-                          </Link>
-                        </div>
+                    </div>
+
+                    <div className="text-slate-500 text-base sm:text-lg lg:text-xl font-medium leading-relaxed space-y-4">
+                      {step.intro && <p>{step.intro}</p>}
+                      {step.bullets && step.bullets.length > 0 && (
+                        <ul className="list-disc pl-5 space-y-2 text-slate-600">
+                          {step.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {step.footnote && (
+                        <p className="text-slate-700 flex gap-2 items-start italic">
+                          <span className="shrink-0" aria-hidden>👉</span>
+                          <span>{step.footnote}</span>
+                        </p>
+                      )}
+                      {step.highlights && (
+                        <ul className="space-y-3 text-slate-700">
+                          {step.highlights.map((line) => (
+                            <li key={line} className="flex gap-2 items-start">
+                              <span className="shrink-0 text-indigo-600" aria-hidden>👉</span>
+                              <span>{line}</span>
+                            </li>
+                          ))}
+                        </ul>
                       )}
                     </div>
+
+                    {step.cta && (
+                      <div className="pt-4">
+                        <Link
+                          href={step.cta.href}
+                          className="group/cta inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white font-black text-sm rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200"
+                        >
+                          <span>{step.cta.label}</span>
+                          <ArrowRight size={18} className="transition-transform group-hover/cta:translate-x-1" />
+                        </Link>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Right: slightly smaller than before; centered in row on lg */}
-                  <div className="relative w-full min-h-[160px] h-40 sm:h-44 md:h-48 lg:h-[min(17.5rem,calc(100dvh-12.5rem))] lg:max-w-md xl:max-w-lg lg:mx-auto lg:self-center rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl group shrink-0">
+                  {/* Right: Image */}
+                  <div className="relative w-full aspect-video lg:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group">
                     <Image
                       src={step.image}
                       alt={step.title}
                       fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 420px"
+                      sizes="(max-width: 1024px) 100vw, 600px"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                 </motion.div>
               </AnimatePresence>
