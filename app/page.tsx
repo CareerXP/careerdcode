@@ -24,7 +24,7 @@ export default function HomePage() {
         <CourseSection />
         <TrustedCompanies />
         <HiringPartnerReview />
-        <StudentReviews />
+        <StudentReviews animate={false} />
         <MentorSection />
         {/* <FoundersSection /> */}
         <FAQSection />

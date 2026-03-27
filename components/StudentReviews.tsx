@@ -1,8 +1,12 @@
 import { getStudentReviews } from "@/services/contentfulService";
 import StudentReviewsClient from "./StudentReviewsClient";
 
-export default async function StudentReviews() {
+interface StudentReviewsProps {
+  animate?: boolean;
+}
+
+export default async function StudentReviews({ animate = true }: StudentReviewsProps) {
   const reviews = await getStudentReviews();
 
-  return <StudentReviewsClient reviews={reviews} />;
+  return <StudentReviewsClient reviews={reviews} animate={animate} />;
 }
