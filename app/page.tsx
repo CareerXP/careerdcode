@@ -20,7 +20,7 @@ export default function HomePage() {
         <Hero />
         <StepsToSuccess />
         {/* <ImpactStats /> */}
-        <StudentTransformations />
+        {/* <StudentTransformations /> */}
         <CourseSection />
         <TrustedCompanies />
         <HiringPartnerReview />
