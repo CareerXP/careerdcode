@@ -15,13 +15,13 @@ import {
 import { coursesData } from '@/data/courses';
 
 const categories = [
-  { id: 'Full Stack Development', icon: <Code size={18} />, label: 'Engineering' },
-  { id: 'Data Analytics', icon: <BarChart3 size={18} />, label: 'Analytics' },
-  { id: 'Data Science', icon: <Cpu size={18} />, label: 'Intelligence' }
+  { id: 'Computer Science', icon: <Code size={18} />, label: 'CS & Algorithms' },
+  { id: 'Full Stack Development', icon: <BarChart3 size={18} />, label: 'Web & AI' },
+  { id: 'Quality Assurance', icon: <Cpu size={18} />, label: 'Testing' }
 ];
 
 export default function CourseSection() {
-  const [activeCategory, setActiveCategory] = useState('Full Stack Development');
+  const [activeCategory, setActiveCategory] = useState('Computer Science');
 
   const getTechIcon = (tech: string) => {
     const baseUrl = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/";
@@ -45,7 +45,8 @@ export default function CourseSection() {
       pytorch: "pytorch/pytorch-original.svg",
       excel: "microsoft-excel/microsoft-excel-original.svg",
       tableau: "tableau/tableau-original.svg",
-      powerbi: "powerbi/powerbi-original.svg"
+      powerbi: "powerbi/powerbi-original.svg",
+      selenium: "selenium/selenium-original.svg"
     };
     return mapping[tech] ? `${baseUrl}${mapping[tech]}` : null;
   };
@@ -60,19 +61,19 @@ export default function CourseSection() {
             <div className="flex items-center gap-3">
               <span className="w-12 h-[1px] bg-indigo-600"></span>
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
-                Curated Programs
+                Specialized Tracks
               </span>
             </div>
             <h2 className="text-6xl sm:text-7xl lg:text-9xl font-black text-slate-900 font-display tracking-tight leading-[0.85] uppercase">
-              Build <br />
-              <span className="text-indigo-600">Future.</span>
+              Choose <br />
+              <span className="text-indigo-600">Your Path.</span>
             </h2>
           </div>
           <div className="space-y-8 lg:pb-4">
             <p className="text-slate-500 text-lg sm:text-xl font-medium leading-relaxed max-w-md">
-              Our curriculum is designed by engineers from top tech companies to bridge the gap between theory and professional excellence.
+              Industry-standard tracks designed to take you from zero to job-ready with a placement-first approach.
             </p>
-            {/* <div className="flex items-center gap-8">
+            <div className="flex items-center gap-8">
               <div className="flex -space-x-4">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-slate-100 overflow-hidden relative">
@@ -81,9 +82,9 @@ export default function CourseSection() {
                 ))}
               </div>
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                Join <span className="text-slate-900">10k+</span> Students
+                Trusted by <span className="text-slate-900">12,000+</span> Alumni
               </p>
-            </div> */}
+            </div>
           </div>
         </div>
 
@@ -107,7 +108,7 @@ export default function CourseSection() {
           </div>
           <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-400">
             <Globe size={14} className="text-indigo-600" />
-            <span>Live Online & Self-Paced</span>
+            <span>Placement-First Curriculum</span>
           </div>
         </div>
 
@@ -115,7 +116,7 @@ export default function CourseSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="wait">
             {coursesData
-              .filter(c => c.category === activeCategory || (activeCategory === 'Data Science' && c.category === 'Data Science'))
+              .filter(c => c.category === activeCategory)
               .map((course, idx) => (
                 <motion.div
                   key={course.id}
@@ -135,8 +136,8 @@ export default function CourseSection() {
                       <span className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1 font-mono">
                         {course.duration}
                       </span>
-                      <span className="px-2 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase tracking-tighter rounded">
-                        Live Now
+                      <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-[8px] font-black uppercase tracking-tighter rounded">
+                        {course.features[0]}
                       </span>
                     </div>
                   </div>
@@ -146,14 +147,26 @@ export default function CourseSection() {
                     <h3 className="text-3xl font-bold text-slate-900 font-display tracking-tight leading-tight mb-4 group-hover:text-indigo-600 transition-colors">
                       {course.title}
                     </h3>
-                    <p className="text-slate-500 text-sm font-medium leading-relaxed line-clamp-3">
+                    <p className="text-slate-500 text-sm font-medium leading-relaxed line-clamp-3 mb-6">
                       {course.description}
                     </p>
+                    
+                    {/* Key Highlights from Image */}
+                    <div className="space-y-2">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest font-mono">Key Highlights</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {course.features.slice(1).map((highlight, i) => (
+                          <span key={i} className="text-[10px] font-bold text-slate-700 bg-slate-50 px-2 py-1 rounded-lg border border-slate-100">
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-10">
-                    {course.techStack.slice(0, 3).map((tech) => {
+                    {course.techStack.slice(0, 4).map((tech) => {
                       const icon = getTechIcon(tech);
                       return (
                         <div key={tech} className="px-3 py-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 group/tech hover:border-indigo-200 transition-colors">
@@ -169,19 +182,12 @@ export default function CourseSection() {
                         </div>
                       );
                     })}
-                    {course.techStack.length > 3 && (
-                      <div className="px-3 py-2 bg-indigo-50 rounded-xl border border-indigo-100 flex items-center">
-                        <span className="text-[9px] font-black text-indigo-600 uppercase tracking-widest font-mono">
-                          +{course.techStack.length - 3}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Footer Action */}
                   <div className="pt-8 border-t border-slate-50 flex items-center justify-between">
                     <div className="flex flex-col">
-                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 font-mono">Starting at</span>
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 font-mono">Investment</span>
                       <span className="text-xl font-bold text-slate-900 font-display">{course.price}</span>
                     </div>
                     <Link 
