@@ -434,7 +434,7 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
       </div>
 
       {/* Placed Students Section */}
-      <PlacedStudents />
+      {/* <PlacedStudents /> */}
 
       {/* Technologies Section */}
       <section className="py-32 bg-white overflow-hidden border-t border-slate-50">
