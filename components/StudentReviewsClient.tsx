@@ -17,7 +17,7 @@ export default function StudentReviewsClient({
   const duplicatedReviews = [...reviews, ...reviews];
 
   return (
-    <section className="py-24 bg-slate-50 overflow-hidden">
+    <section id="reviews" className="py-24 bg-slate-50 overflow-hidden">
       <div className="container mx-auto px-4 mb-16">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-slate-900 mb-4 font-display">
