@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
     '/about',
+    '/contact',
+    '/privacy',
+    '/terms',
+    '/refunds',
+    '/careers',
+    '/recruiters',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
