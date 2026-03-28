@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  ChevronDown, 
   ChevronRight,
   CheckCircle2, 
   ArrowRight, 
@@ -33,9 +32,100 @@ interface CourseDetailsClientProps {
   nextBatchDate?: string;
 }
 
+const COURSE_APPLY_WEBHOOK =
+  'https://n8n.srv1534167.hstgr.cloud/webhook/02e7e7d0-fade-4993-9d44-659a7c97c62b';
+
+const IN_COUNTRY_CODE = '+91';
+
+/** Digits only; accepts 10-digit mobile or common prefixes (0 / 91). */
+function normalizeIndianMobile(input: string): string {
+  let d = input.replace(/\D/g, '');
+  if (d.length === 12 && d.startsWith('91')) d = d.slice(2);
+  if (d.length === 11 && d.startsWith('0')) d = d.slice(1);
+  return d;
+}
+
+function validateCourseApply(name: string, phoneDigits: string): string | null {
+  const n = name.trim();
+  if (n.length < 2) {
+    return 'Please enter your full name (at least 2 characters).';
+  }
+  if (n.length > 120) {
+    return 'Name is too long.';
+  }
+  if (phoneDigits.length !== 10) {
+    return 'Enter a valid 10-digit Indian mobile number.';
+  }
+  if (!/^[6-9]\d{9}$/.test(phoneDigits)) {
+    return 'Mobile number must be 10 digits and start with 6–9.';
+  }
+  return null;
+}
+
 export default function CourseDetailsClient({ course, nextBatchDate }: CourseDetailsClientProps) {
   const { openModal } = useModal();
   const [wordIndex, setWordIndex] = useState(0);
+
+  const [applyName, setApplyName] = useState('');
+  const [applyPhone, setApplyPhone] = useState('');
+  const [applyStatus, setApplyStatus] = useState<
+    | { kind: 'idle' }
+    | { kind: 'loading' }
+    | { kind: 'success'; message: string }
+    | { kind: 'error'; message: string }
+  >({ kind: 'idle' });
+
+  async function onApplySubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (applyStatus.kind === 'loading') return;
+
+    const name = applyName.trim();
+    const number = normalizeIndianMobile(applyPhone);
+    const validationError = validateCourseApply(name, number);
+    if (validationError) {
+      setApplyStatus({ kind: 'error', message: validationError });
+      return;
+    }
+
+    setApplyStatus({ kind: 'loading' });
+
+    try {
+      const res = await fetch(COURSE_APPLY_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'CourseDetailsApplyForm',
+          course: {
+            id: course.id,
+            title: course.title,
+            category: course.category,
+          },
+          name,
+          whatsapp: {
+            countryCode: IN_COUNTRY_CODE,
+            number,
+            full: `${IN_COUNTRY_CODE}${number}`,
+          },
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request failed (${res.status})`);
+      }
+
+      setApplyStatus({
+        kind: 'success',
+        message: "Thanks! We'll reach out shortly.",
+      });
+      setApplyName('');
+      setApplyPhone('');
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setApplyStatus({ kind: 'error', message });
+    }
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -132,42 +222,77 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
                   </p>
                 </div>
 
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={onApplySubmit}>
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
+                    <label htmlFor="course-apply-name" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
                     <input 
+                      id="course-apply-name"
                       type="text" 
+                      name="name"
+                      value={applyName}
+                      onChange={(e) => {
+                        setApplyName(e.target.value);
+                        if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                      }}
+                      autoComplete="name"
                       placeholder="e.g. John Doe"
                       className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
+                    <label htmlFor="course-apply-phone" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
                     <div className="flex gap-3">
-                      <div className="relative w-24 shrink-0">
-                        <select className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-4 text-slate-900 appearance-none focus:outline-none focus:border-indigo-500 transition-colors font-medium">
-                          <option>+91</option>
-                        </select>
-                        <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-400">
-                          <ChevronDown size={16} />
-                        </div>
+                      <div
+                        className="flex shrink-0 items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 sm:px-4 py-4"
+                        title="India (+91)"
+                      >
+                        <span className="text-xl leading-none" role="img" aria-label="India">
+                          🇮🇳
+                        </span>
+                        <span className="text-sm font-semibold text-slate-700 tabular-nums">{IN_COUNTRY_CODE}</span>
                       </div>
                       <input 
+                        id="course-apply-phone"
                         type="tel" 
+                        name="phone"
+                        inputMode="numeric"
+                        value={applyPhone}
+                        onChange={(e) => {
+                          setApplyPhone(e.target.value);
+                          if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                        }}
+                        autoComplete="tel"
                         placeholder="98765 43210"
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
+                        className="min-w-0 flex-1 bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
                       />
                     </div>
                   </div>
 
-                  <button className="w-full py-5 bg-indigo-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 group mt-4">
-                    Apply Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  {applyStatus.kind === 'error' && (
+                    <p className="text-xs font-bold text-red-600">{applyStatus.message}</p>
+                  )}
+                  {applyStatus.kind === 'success' && (
+                    <p className="text-xs font-bold text-emerald-700">{applyStatus.message}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={applyStatus.kind === 'loading'}
+                    className="w-full py-5 bg-indigo-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 group mt-4 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {applyStatus.kind === 'loading' ? (
+                      'Submitting...'
+                    ) : (
+                      <>
+                        Apply Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </button>
 
                   <p className="text-[10px] text-center text-slate-400 leading-relaxed font-medium pt-4">
-                    By clicking 'Apply Now', you agree to our <br />
-                    <a href="#" className="text-indigo-600 hover:underline font-bold">Terms & Conditions</a>
+                    By clicking &apos;Apply Now&apos;, you agree to our <br />
+                    <a href="/terms" className="text-indigo-600 hover:underline font-bold">Terms & Conditions</a>
                   </p>
                 </form>
               </div>
