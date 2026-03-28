@@ -26,17 +26,15 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               </Link>
             </div>
             <p className="text-xl text-slate-500 leading-relaxed mb-12 font-medium max-w-md">
-              Empowering the next generation of tech leaders through industry-aligned curriculum and elite mentorship from IIT Delhi alumni.
+            From learning skills to landing offers — we bridge the gap.
             </p>
             <div className="flex gap-4">
               {[
-                { icon: Instagram, color: 'hover:text-rose-500' },
-                { icon: Youtube, color: 'hover:text-red-600' },
-                { icon: Linkedin, color: 'hover:text-indigo-700' },
-                { icon: Facebook, color: 'hover:text-indigo-600' },
-                { icon: MessageCircle, color: 'hover:text-indigo-500' }
+                { icon: Instagram, color: 'hover:text-rose-500', href: 'https://www.instagram.com/careerxp_/' },
+                { icon: Linkedin, color: 'hover:text-indigo-700', href: ' https://www.linkedin.com/in/career-xp-5114a63ba' },
+                { icon: Facebook, color: 'hover:text-indigo-600', href: 'https://www.facebook.com/profile.php?id=61577590602666' },
               ].map((social, idx) => (
-                <a key={idx} href="#" className={`w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 transition-all hover:bg-white hover:shadow-2xl hover:shadow-slate-200 ${social.color}`}>
+                <a key={idx} href={social.href} className={`w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 transition-all hover:bg-white hover:shadow-2xl hover:shadow-slate-200 ${social.color}`}>
                   <social.icon size={20} />
                 </a>
               ))}
@@ -69,9 +67,9 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               </span>
               <ul className="space-y-5 text-slate-600 text-sm font-bold">
                 <li><Link href="/about" className="hover:text-indigo-600 transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Mentors</a></li>
+                <li><a href="#mentors" className="hover:text-indigo-600 transition-colors">Mentors</a></li>
                 <li><Link href="/careers" className="hover:text-indigo-600 transition-colors">Careers</Link></li>
-                <li><a href="#" className="hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+                <li><Link href="/privacy" className="hover:text-indigo-600 transition-colors">Privacy Policy</Link></li>
               </ul>
             </div>
 
@@ -82,11 +80,11 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               <div className="space-y-8">
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">EMAIL</span>
-                  <a href="mailto:contactus@careerxp.com" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">contactus@careerxp.com</a>
+                  <a href="mailto:support@careerxp.in" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">support@careerxp.in</a>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">PHONE</span>
-                  <a href="tel:+918595563221" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">+91 8595563221</a>
+                  <a href="tel:+917979954605" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">+91 7979954605</a>
                 </div>
               </div>
             </div>
@@ -127,9 +125,9 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
               © 2026 CareerXP. All Rights Reserved
             </p>
             <div className="flex gap-8">
-              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Terms</a>
-              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Privacy</a>
-              <a href="#" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Refunds</a>
+              <Link href="/terms" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Terms</Link>
+              <Link href="/privacy" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Privacy</Link>
+              <Link href="/refunds" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors">Refunds</Link>
             </div>
           </div>
           
