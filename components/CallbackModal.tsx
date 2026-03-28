@@ -107,7 +107,7 @@ export default function CallbackModal({
         message:
           type === "callback"
             ? "Submitted! We'll call you shortly."
-            : "Submitted! You'll receive the brochure soon.",
+            : "",
       });
       resetForm();
 
@@ -137,7 +137,7 @@ export default function CallbackModal({
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl overflow-visible"
           >
             <button
               onClick={onClose}
@@ -274,10 +274,9 @@ export default function CallbackModal({
               {status.kind === "error" && (
                 <p className="text-xs font-bold text-red-600 pt-2">{status.message}</p>
               )}
-              {status.kind === "success" && (
+              {status.kind === "success" && type === "callback" && (
                 <p className="text-xs font-bold text-green-700 pt-2">{status.message}</p>
               )}
-           
 
               <button 
                 type="submit"
@@ -291,6 +290,26 @@ export default function CallbackModal({
                     : "Download Now"}
               </button>
             </form>
+
+            <AnimatePresence>
+              {type === "brochure" && status.kind === "success" && (
+                <motion.div
+                  key="brochure-success"
+                  role="status"
+                  aria-live="polite"
+                  initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ type: "spring", damping: 26, stiffness: 320 }}
+                  className="pointer-events-none absolute bottom-6 left-6 right-6 z-20 flex items-center justify-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3.5 text-center text-sm font-semibold text-emerald-900 shadow-lg"
+                >
+                  <span aria-hidden className="shrink-0 select-none text-base leading-none">
+                    ✅
+                  </span>
+                  <span>You will receive brochure shortly.</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       )}
