@@ -50,10 +50,9 @@ const mentors: Mentor[] = [
   },
 ];
 
-const getAvatar = (name: string) =>
-  `https://ui-avatars.com/api/?name=${encodeURIComponent(
-    name
-  )}&background=0D8ABC&color=fff`;
+function getMentorImageSrc(name: string) {
+  return `/assets/mentors/${encodeURIComponent(name)}.png`;
+}
 
 const CARD_WIDTH = "min-w-[320px] max-w-[320px] sm:min-w-[360px] sm:max-w-[360px]";
 
@@ -95,8 +94,8 @@ export default function MentorSection() {
               <div className="flex gap-5">
                 <div className="h-16 w-16 shrink-0 rounded-2xl overflow-hidden bg-slate-100 relative shadow-inner ring-1 ring-slate-100">
                   <Image
-                    src={getAvatar(mentor.name)}
-                    alt=""
+                    src={getMentorImageSrc(mentor.name)}
+                    alt={mentor.name}
                     fill
                     className="object-cover"
                   />

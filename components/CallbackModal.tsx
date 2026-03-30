@@ -238,10 +238,17 @@ export default function CallbackModal({
                   }`}
                 >
                   <option value="" disabled>Select Degree</option>
+                  <option value="BE">BE</option>
                   <option value="B.Tech">B.Tech</option>
+                  <option value="ME">ME</option>
+                  <option value="M.Tech">M.Tech</option>
                   <option value="BCA">BCA</option>
                   <option value="MCA">MCA</option>
-                  <option value="Other">Other</option>
+                  <option value="B.Sc">B.Sc</option>
+                  <option value="Diploma">Diploma</option>
+                  <option value="BBA">BBA</option>
+                  <option value="MBA">MBA</option>
+                  <option value="Others">Others</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
                   <ChevronDown className="h-5 w-5 text-slate-400" />
@@ -261,10 +268,18 @@ export default function CallbackModal({
                   }`}
                 >
                   <option value="" disabled>Select Graduation Year</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
                   <option value="2024">2024</option>
                   <option value="2025">2025</option>
                   <option value="2026">2026</option>
-                  <option value="Earlier">Earlier</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
                   <ChevronDown className="h-5 w-5 text-slate-400" />

@@ -15,6 +15,13 @@ import {
 } from 'lucide-react';
 import { coursesData } from '@/data/courses';
 
+const COURSE_FEE_OVERRIDES: Record<string, string> = {
+  // Pricing shown on course cards (CourseSection)
+  'mern-genai': '₹49,999', // Full-Stack
+  'dsa-mastery': '₹29,999', // DSA
+  'testing-automation': '₹24,999', // Testing
+};
+
 export default function CourseSection() {
   const { openModal } = useModal();
   const [activeTab, setActiveTab] = useState('Live Course');
@@ -186,7 +193,9 @@ export default function CourseSection() {
                   <div className="pt-8 border-t border-slate-50 flex items-center justify-between">
                     <div className="flex flex-col">
                       <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 font-mono">Investment</span>
-                      <span className="text-xl font-bold text-slate-900 font-display">{course.price}</span>
+                      <span className="text-xl font-bold text-slate-900 font-display">
+                        {COURSE_FEE_OVERRIDES[course.id] ?? course.price}
+                      </span>
                     </div>
                     <Link 
                       href={`/courses/${course.id}`}
