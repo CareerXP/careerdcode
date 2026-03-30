@@ -92,7 +92,7 @@ export default function MentorSection() {
               className={`inline-flex ${CARD_WIDTH} min-h-[340px] sm:min-h-[360px] flex-col bg-white p-8 sm:p-9 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 shrink-0 whitespace-normal transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_24px_60px_rgba(0,0,0,0.08)] hover:border-slate-200/80`}
             >
               <div className="flex gap-5">
-                <div className="h-16 w-16 shrink-0 rounded-2xl overflow-hidden bg-slate-100 relative shadow-inner ring-1 ring-slate-100">
+                <div className="h-16 w-16 shrink-0 rounded-full overflow-hidden bg-slate-100 relative shadow-inner ring-1 ring-slate-100">
                   <Image
                     src={getMentorImageSrc(mentor.name)}
                     alt={mentor.name}
