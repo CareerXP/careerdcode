@@ -9,7 +9,9 @@ type Mentor = {
   position: string;
   company: string;
   experience: string;
+  previous?: string;
   linkedin: string;
+  imageSrc?: string;
 };
 
 const mentors: Mentor[] = [
@@ -18,40 +20,137 @@ const mentors: Mentor[] = [
     position: "SDE-II",
     company: "Microsoft",
     experience: "7+ Years",
+    previous: "",
     linkedin: "https://www.linkedin.com/in/shubhamlal/",
+    imageSrc: "/assets/mentors/Shubham%20Lal.png",
   },
   {
     name: "Yamini Bandi",
     position: "SDE-II",
     company: "Amazon",
     experience: "5+ Years",
+    previous: "",
     linkedin: "https://www.linkedin.com/in/yaminibandi/",
+    imageSrc: "/assets/mentors/Yamini%20Bandi.png",
   },
   {
     name: "Ananth Kumar Vasansetti",
-    position: "Senior Member of Technical Staff",
+    position: "Senior Member of technical staff",
     company: "Salesforce",
-    experience: "11+ Years",
+    experience: "11+",
+    previous: "Microsoft, ServiceNow, Kony INC",
     linkedin: "https://www.linkedin.com/in/ananth-kumar-vasamsetti-60bb7392/",
+    imageSrc: "/assets/mentors/Ananth%20Kumar%20Vasansetti.png",
   },
   {
     name: "Rahul Mohan",
-    position: "Senior Software Engineer",
+    position: "Senior Software Engg.",
     company: "Egnyte",
-    experience: "7+ Years",
+    experience: "7+",
+    previous: "Virtusa",
     linkedin: "https://www.linkedin.com/in/rahul-mohan-4a6610a8/",
+    imageSrc: "/assets/mentors/Rahul%20Mohan.png",
   },
   {
     name: "Divyansh Dubey",
-    position: "Senior Strategist, Generative AI",
+    position: "Senior Strategiest Generative AI, Trust & Safety",
     company: "Google",
-    experience: "7+ Years",
+    experience: "7+",
+    previous: "Tiger Analytics, Maybank",
     linkedin: "https://www.linkedin.com/in/divyansh-dubey/",
+    imageSrc: "/assets/mentors/Divyansh%20Dubey.png",
+  },
+  {
+    name: "Sourov Roy",
+    position: "Senior Member of technical staff",
+    company: "Salesforce",
+    experience: "8.5+",
+    previous: "Amazon, Problem setter in Hackerrank",
+    linkedin: "https://www.linkedin.com/in/sourovroy-ai/",
+    // Asset currently uses different spelling: Sourav Roy.png
+    imageSrc: "/assets/mentors/Sourav%20Roy.png",
+  },
+  {
+    name: "Shreyansh Sinha",
+    position: "Software Engg. 2",
+    company: "Microsoft",
+    experience: "8+",
+    previous: "Siemens, JP Morgan chase & co.",
+    linkedin: "https://www.linkedin.com/in/shreyansh-sinha-2b47a2188/",
+    imageSrc: "/assets/mentors/Shreyansh%20Sinha.png",
+  },
+  {
+    name: "Vivek Kumar astikar",
+    position: "Data & AI Engg.",
+    company: "CloudAI Technologies",
+    experience: "5+",
+    previous: "",
+    linkedin: "https://www.linkedin.com/in/avivek5692/",
+    imageSrc: "/assets/mentors/Vivek%20Kumar%20astikar.png",
+  },
+  {
+    name: "Shahar Banu",
+    position: "Sr. Devops Specialist",
+    company: "Equisoft",
+    experience: "15+",
+    previous: "Amazon web services, JP Morgan chase & co, IBM",
+    linkedin: "https://www.linkedin.com/in/shaharbanu/",
+    imageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      "Shahar Banu"
+    )}&background=0D8ABC&color=fff`,
+  },
+  {
+    name: "Ajeya B Jois",
+    position: "Senior ML Scientist 3",
+    company: "Paypal",
+    experience: "7.5+",
+    previous: "Oracle, Qualcomm",
+    linkedin: "https://www.linkedin.com/in/ajeyabjois/",
+    imageSrc: "/assets/mentors/Ajeya%20B%20Jois.png",
+  },
+  {
+    name: "Yash Mittal",
+    position: "Senior Consultant",
+    company: "Thoughworks",
+    experience: "6+",
+    previous: "",
+    linkedin: "https://www.linkedin.com/in/yashmittal00",
+    imageSrc: "/assets/mentors/Yash%20Mittal.png",
+  },
+  {
+    name: "Raghav Nakra",
+    position: "Software Engg.(L60)",
+    company: "Microsoft",
+    experience: "2+",
+    previous: "",
+    linkedin: "https://www.linkedin.com/in/raghav-nakra/",
+    imageSrc: "/assets/mentors/Raghav%20Nakra.png",
+  },
+  {
+    name: "MaheshwaraRao Botta",
+    position: "Senior Software Engg.",
+    company: "Terradata",
+    experience: "5+",
+    previous: "Amazon, Amdocs",
+    linkedin: "https://www.linkedin.com/in/mahesh1133/",
+    imageSrc: "/assets/mentors/MaheshwaraRao%20Botta.png",
+  },
+  {
+    name: "Shivam Jindal",
+    position: "Software Engg.",
+    company: "Airbnb",
+    experience: "10+",
+    previous: "",
+    linkedin: "https://www.linkedin.com/in/shivam-jindal/",
+    imageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      "Shivam Jindal"
+    )}&background=0D8ABC&color=fff`,
   },
 ];
 
-function getMentorImageSrc(name: string) {
-  return `/assets/mentors/${encodeURIComponent(name)}.png`;
+function getMentorImageSrc(mentor: Mentor) {
+  if (mentor.imageSrc) return mentor.imageSrc;
+  return `/assets/mentors/${encodeURIComponent(mentor.name)}.png`;
 }
 
 const CARD_WIDTH = "min-w-[320px] max-w-[320px] sm:min-w-[360px] sm:max-w-[360px]";
@@ -93,12 +192,23 @@ export default function MentorSection() {
             >
               <div className="flex gap-5">
                 <div className="h-16 w-16 shrink-0 rounded-full overflow-hidden bg-slate-100 relative shadow-inner ring-1 ring-slate-100">
-                  <Image
-                    src={getMentorImageSrc(mentor.name)}
-                    alt={mentor.name}
-                    fill
-                    className="object-cover"
-                  />
+                  {getMentorImageSrc(mentor).startsWith("http") ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={getMentorImageSrc(mentor)}
+                      alt={mentor.name}
+                      className="h-full w-full object-cover"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <Image
+                      src={getMentorImageSrc(mentor)}
+                      alt={mentor.name}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
                 </div>
 
                 <div className="min-w-0 flex-1 pt-0.5">
@@ -111,6 +221,11 @@ export default function MentorSection() {
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">
                     {mentor.company}
                   </p>
+                  {!!mentor.previous && mentor.previous.trim().length > 0 && (
+                    <p className="mt-2 text-xs font-medium text-slate-500 leading-snug line-clamp-2">
+                      Previously: {mentor.previous}
+                    </p>
+                  )}
                 </div>
               </div>
 
