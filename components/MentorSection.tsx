@@ -188,7 +188,7 @@ export default function MentorSection() {
           {duplicatedMentors.map((mentor, i) => (
             <article
               key={i}
-              className={`inline-flex ${CARD_WIDTH} min-h-[340px] sm:min-h-[360px] flex-col bg-white p-8 sm:p-9 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 shrink-0 whitespace-normal transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_24px_60px_rgba(0,0,0,0.08)] hover:border-slate-200/80`}
+              className={`inline-flex ${CARD_WIDTH} min-h-[300px] sm:min-h-[320px] flex-col bg-white p-8 sm:p-9 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 shrink-0 whitespace-normal transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_24px_60px_rgba(0,0,0,0.08)] hover:border-slate-200/80`}
             >
               <div className="flex gap-5">
                 <div className="h-16 w-16 shrink-0 rounded-full overflow-hidden bg-slate-100 relative shadow-inner ring-1 ring-slate-100">
@@ -221,21 +221,17 @@ export default function MentorSection() {
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">
                     {mentor.company}
                   </p>
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                      {mentor.experience} Exp
+                    </span>
+                  </div>
                   {!!mentor.previous && mentor.previous.trim().length > 0 && (
                     <p className="mt-2 text-xs font-medium text-slate-500 leading-snug line-clamp-2">
                       Previously: {mentor.previous}
                     </p>
                   )}
                 </div>
-              </div>
-
-              <div className="mt-8 flex-1 rounded-2xl bg-slate-50/90 border border-slate-100 px-5 py-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
-                  Experience
-                </p>
-                <p className="text-xl font-bold text-slate-900 font-display tracking-tight">
-                  {mentor.experience}
-                </p>
               </div>
 
               <a
