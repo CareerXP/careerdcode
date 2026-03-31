@@ -188,9 +188,9 @@ export default function MentorSection() {
           {duplicatedMentors.map((mentor, i) => (
             <article
               key={i}
-              className={`inline-flex ${CARD_WIDTH} min-h-[300px] sm:min-h-[320px] flex-col bg-white p-8 sm:p-9 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 shrink-0 whitespace-normal transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_24px_60px_rgba(0,0,0,0.08)] hover:border-slate-200/80`}
+              className={`inline-flex ${CARD_WIDTH} flex-col bg-white p-7 sm:p-8 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100 shrink-0 whitespace-normal transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_24px_60px_rgba(0,0,0,0.08)] hover:border-slate-200/80`}
             >
-              <div className="flex gap-5">
+              <div className="flex gap-4">
                 <div className="h-16 w-16 shrink-0 rounded-full overflow-hidden bg-slate-100 relative shadow-inner ring-1 ring-slate-100">
                   {getMentorImageSrc(mentor).startsWith("http") ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -212,7 +212,7 @@ export default function MentorSection() {
                 </div>
 
                 <div className="min-w-0 flex-1 pt-0.5">
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug font-display mb-3">
+                  <h3 className="text-lg font-bold text-slate-900 leading-snug font-display mb-1.5">
                     {mentor.name}
                   </h3>
                   <p className="text-sm font-semibold text-slate-800 leading-snug mb-1">
@@ -221,16 +221,16 @@ export default function MentorSection() {
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">
                     {mentor.company}
                   </p>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
                     <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-600">
                       {mentor.experience} Exp
                     </span>
                   </div>
-                  {!!mentor.previous && mentor.previous.trim().length > 0 && (
-                    <p className="mt-2 text-xs font-medium text-slate-500 leading-snug line-clamp-2">
-                      Previously: {mentor.previous}
-                    </p>
-                  )}
+                  <p className="mt-1.5 text-xs font-medium text-slate-500 leading-snug line-clamp-2 min-h-[2.6rem]">
+                    {mentor.previous && mentor.previous.trim().length > 0
+                      ? `Previously: ${mentor.previous}`
+                      : "Previously: —"}
+                  </p>
                 </div>
               </div>
 
@@ -238,7 +238,7 @@ export default function MentorSection() {
                 href={mentor.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#0A66C2] px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-[#0A66C2]/25 transition-all hover:bg-[#004182] hover:shadow-lg hover:shadow-[#0A66C2]/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A66C2]"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#0A66C2] px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-[#0A66C2]/25 transition-all hover:bg-[#004182] hover:shadow-lg hover:shadow-[#0A66C2]/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A66C2]"
                 aria-label={`${mentor.name} on LinkedIn`}
               >
                 <Linkedin className="size-5 shrink-0" strokeWidth={2} />

@@ -13,8 +13,8 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Courses', href: '/#courses' },
     { name: 'About Us', href: '/about' },
-    { name: 'Campus Connect', href: '/recruiters' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'Campus Connect', href: '/campus' },
+    { name: 'Recruiters', href: '/recruiters' },
   ];
 
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
@@ -23,6 +23,7 @@ export default function Navbar() {
     { name: 'FAQ', href: '/#faq' },
     { name: 'Mentors', href: '/#mentors' },
     { name: 'Reviews', href: '/#reviews' },
+    { name: 'Contact Us', href: '/contact' },
   ];
 
   return (

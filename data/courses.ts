@@ -96,7 +96,36 @@ export const coursesData: Course[] = [
       },
     ],
     faqs: [
-      { question: "Is this suitable for beginners?", answer: "Basic programming knowledge is recommended." },
+      {
+        question: "Who should take this course?",
+        answer:
+          "This program is ideal for students who have basic programming knowledge, want to improve problem-solving skills, and are preparing for coding interviews at top companies.",
+      },
+      {
+        question: "Will this help me crack product company interviews?",
+        answer:
+          "Yes. The program focuses on problem-solving patterns, frequently asked interview questions, and mock interviews with feedback so you can confidently face product-based company rounds.",
+      },
+      {
+        question: "What topics are covered in Advanced DSA?",
+        answer:
+          "You will learn arrays, strings, linked lists, stacks, queues, trees, graphs, dynamic programming, greedy algorithms, and advanced problem-solving techniques used in real interviews.",
+      },
+      {
+        question: "Will I get hands-on practice?",
+        answer:
+          "Yes. You will practice extensively on platforms like LeetCode, HackerRank, and CodeChef with structured problem sets, contests, and guided solutions.",
+      },
+      {
+        question: "Do you provide mock interviews?",
+        answer:
+          "Yes. We conduct mock interviews that simulate real-world technical interview environments so you can refine your approach and receive targeted feedback.",
+      },
+      {
+        question: "Is placement support included?",
+        answer:
+          "Yes. You get placement assistance, interview opportunities, and continuous guidance along with your DSA preparation until you get hired.",
+      },
     ],
   },
   {
@@ -216,7 +245,41 @@ export const coursesData: Course[] = [
       },
     ],
     faqs: [
-      { question: "What AI tools will I learn?", answer: "Cursor, Claude, and GitHub Copilot." },
+      {
+        question: "Do I need prior coding experience?",
+        answer:
+          "No. This full stack program is designed for beginners. We start from complete fundamentals and gradually move to advanced MERN stack and GenAI topics.",
+      },
+      {
+        question: "What roles can I apply for after this program?",
+        answer:
+          "After completing the program you can apply for roles like Frontend Developer, Backend Developer, and Full Stack Developer in product and service companies.",
+      },
+      {
+        question: "Will I build real-world projects?",
+        answer:
+          "Yes. You will build 2–3 production-level projects that you can proudly showcase on your resume, GitHub profile, and during interviews.",
+      },
+      {
+        question: "Is DSA included in this program?",
+        answer:
+          "Yes. DSA is integrated into the curriculum to help you prepare for coding interviews alongside your full stack development skills.",
+      },
+      {
+        question: "How is this different from other full stack courses?",
+        answer:
+          "This program offers 70% practical training, real project-based learning, guidance from industry mentors, and continuous placement support rather than just recorded videos.",
+      },
+      {
+        question: "When do placement opportunities start?",
+        answer:
+          "Placement opportunities start from Day 1. As you progress through the program, you can attend multiple drives and keep applying until you are placed.",
+      },
+      {
+        question: "Will you help me until I get placed?",
+        answer:
+          "Yes. We provide continuous support, interview preparation, and placement opportunities until you successfully get hired.",
+      },
     ],
   },
   {
@@ -333,7 +396,36 @@ export const coursesData: Course[] = [
       },
     ],
     faqs: [
-      { question: "Is there a mid-term assessment?", answer: "Yes, a mid-term Viva is included to track progress." },
+      {
+        question: "Do I need coding knowledge to join?",
+        answer:
+          "No. This software testing and automation course starts from complete basics and gradually introduces automation using Python and Java.",
+      },
+      {
+        question: "What job roles can I apply for after this course?",
+        answer:
+          "You can apply for roles such as Software Tester, QA Engineer, and Automation Tester in IT companies.",
+      },
+      {
+        question: "Is this a good option for freshers?",
+        answer:
+          "Yes. Software testing and automation is one of the fastest ways for freshers and non-CS backgrounds to enter the IT industry.",
+      },
+      {
+        question: "What tools and technologies will I learn?",
+        answer:
+          "You will learn Selenium, API testing, Python/Java for automation, SQL for database testing, and popular tools like JIRA, TestNG, Postman, and more.",
+      },
+      {
+        question: "Will I work on real projects?",
+        answer:
+          "Yes. You will work on real-world testing scenarios including manual test cases, automation frameworks, API tests, and database validation.",
+      },
+      {
+        question: "Do you provide placement support?",
+        answer:
+          "Yes. We provide continuous placement assistance, interview preparation, and hiring opportunities until you get placed.",
+      },
     ],
   },
 ];

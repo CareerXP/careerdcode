@@ -73,10 +73,10 @@ export default function Hero() {
             </Link>
             
             <Link 
-              href="/recruiters"
+              href="/campus"
               className="px-12 py-5 bg-transparent border-2 border-white/30 text-white font-black text-sm uppercase tracking-widest rounded-xl hover:bg-white/10 hover:border-white transition-all flex items-center gap-4 group"
             >
-              Recruiters
+              For Campus
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

@@ -17,6 +17,7 @@ import CourseFAQ from '@/components/CourseFAQ';
 import { useEffect, useState } from 'react';
 import { useModal } from '@/components/ClientLayout';
 import Navbar from '@/components/Navbar';
+import MentorSection from './MentorSection';
 
 const rotatingWords = [
   'Knowledge',
@@ -367,64 +368,8 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
           </div>
 
           {/* Mentors Grid - Redesigned like Founders */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-slate-100 border border-slate-100 rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/50">
-            {[
-              { name: 'Chetan Segare', role: 'SDE 2', company: 'Microsoft', image: 'https://picsum.photos/seed/mentor1/400/500', bio: 'Expert in distributed systems and cloud architecture at scale.' },
-              { name: 'Somendra Tiwari', role: 'SDE 2', company: 'ServiceNow', image: 'https://picsum.photos/seed/mentor2/400/500', bio: 'Passionate about full-stack development and enterprise solutions.' },
-              { name: 'Gaurav Choudhary', role: 'Software Developer', company: 'CareerXP', image: 'https://picsum.photos/seed/mentor3/400/500', bio: 'Dedicated to building impactful educational tools for developers.' },
-              { name: 'Navdeep Singh', role: 'Software Engineer', company: 'Microsoft', image: 'https://picsum.photos/seed/mentor4/400/500', bio: 'Specialist in frontend performance and modern web standards.' },
-              { name: 'Dhiraj Kumar', role: 'Senior Manager', company: 'IIT Alumni', image: 'https://picsum.photos/seed/mentor5/400/500', bio: 'Strategic leader with deep roots in technical excellence and mentorship.' }
-            ].map((mentor, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative bg-white aspect-[3/4] overflow-hidden flex flex-col"
-              >
-                {/* Mentor Image */}
-                <div className="relative flex-grow overflow-hidden">
-                  <img 
-                    src={mentor.image} 
-                    alt={mentor.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
-                </div>
-
-                {/* Mentor Info */}
-                <div className="p-6 bg-white border-t border-slate-50 relative z-10">
-                  <h3 className="text-lg font-bold text-slate-900 font-display tracking-tight leading-tight mb-1">
-                    {mentor.name}
-                  </h3>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest font-display">
-                      {mentor.role} @ {mentor.company}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bio on Hover */}
-                <div className="absolute inset-0 bg-slate-900/95 p-8 flex flex-col justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
-                  <Quote className="text-indigo-500 mb-4 opacity-50" size={32} />
-                  <p className="text-sm font-medium text-slate-300 leading-relaxed italic mb-6">
-                    {mentor.bio}
-                  </p>
-                  <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-                    <div className="flex flex-col">
-                      <span className="text-white font-bold font-display text-base">{mentor.name}</span>
-                      <span className="text-[9px] font-black text-indigo-500 uppercase tracking-widest">{mentor.company}</span>
-                    </div>
-                    <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white">
-                      <Linkedin size={14} />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        
+          <MentorSection />
         </div>
       </section>
 
