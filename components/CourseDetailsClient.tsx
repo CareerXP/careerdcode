@@ -304,12 +304,13 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
 
       {/* Floating Stats Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-        <div className="bg-white rounded-2xl shadow-2xl py-6 px-4 sm:py-10 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-100 border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-2xl py-6 px-4 sm:py-10 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-slate-100 border border-slate-100 overflow-hidden">
           {[
-            { label: 'Highest Salary', value: '41 Lakhs', icon: '💰', color: 'bg-red-50' },
-            { label: 'Partner Companies', value: '500+', icon: '🤝', color: 'bg-orange-50' },
+            { label: 'Highest Package', value: '18 LPA', icon: '💰', color: 'bg-red-50' },
+            { label: 'Partner Companies', value: '1000+', icon: '🤝', color: 'bg-orange-50' },
             { label: 'Job Assistance', value: '100%', icon: '✅', color: 'bg-indigo-50' },
-            { label: 'Average Salary', value: '7.4 LPA', icon: '📈', color: 'bg-indigo-50' }
+            { label: 'Avg CTC', value: '8 LPA', icon: '📈', color: 'bg-emerald-50' },
+            { label: 'Placement Rate', value: '96%', icon: '🎯', color: 'bg-indigo-50' }
           ].map((stat, idx) => (
             <div key={idx} className="bg-white flex items-center gap-5 p-4">
               <div className={`w-12 h-12 ${stat.color} rounded-xl flex items-center justify-center text-xl shadow-sm`}>
@@ -324,54 +325,8 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
         </div>
       </div>
 
-      {/* Learn From The Best Section */}
-      <section className="py-32 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-16 mb-24">
-            <div className="max-w-2xl">
-              <div className="mb-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 font-display">
-                  ELITE MENTORSHIP
-                </span>
-              </div>
-              <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 font-display tracking-tight mb-8">
-                Learn From <br />
-                <span className="text-indigo-600">The Best.</span>
-              </h2>
-              <p className="text-slate-500 text-lg leading-relaxed font-medium">
-                Learn from the Top 1% of the tech industry— exceptional professionals from top MNCs who have not only taught thousands but transformed their careers.
-              </p>
-            </div>
-            
-            <div className="relative w-full lg:w-auto">
-              <div className="flex items-center gap-4 sm:gap-6 h-24 sm:h-32">
-                <span className="text-2xl sm:text-4xl lg:text-6xl font-bold text-indigo-600 bg-indigo-50 px-4 sm:px-8 py-2 sm:py-3 rounded-2xl rotate-[-2deg] font-display">Expert</span>
-                <div className="h-px w-12 sm:w-24 bg-slate-200 hidden lg:block"></div>
-                <div className="relative h-full flex flex-col justify-center overflow-hidden min-w-[150px] sm:min-w-[240px]">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={wordIndex}
-                      initial={{ y: 40, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -40, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="flex flex-col"
-                    >
-                      <span className="text-xl sm:text-3xl lg:text-5xl font-bold text-indigo-600 font-display">
-                        {rotatingWords[wordIndex]}
-                      </span>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Mentors Grid - Redesigned like Founders */}
-        
-          <MentorSection />
-        </div>
-      </section>
+      
+      <MentorSection />
 
       {/* Hiring Partners Section */}
       <div id="partners" className="bg-white border-t border-slate-50">

@@ -84,7 +84,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">PHONE</span>
-                  <a href="tel:+917979954605" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">+91 7979954605</a>
+                  <a href="tel:+917980444047" className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">+91 7980444047</a>
                 </div>
               </div>
             </div>
