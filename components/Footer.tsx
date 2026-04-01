@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Send, Instagram, Youtube, Linkedin, Facebook, MessageCircle, Download } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { coursesData } from '@/data/courses';
 
 interface FooterProps {
@@ -18,11 +19,20 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
           {/* Brand & Mission */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-4 mb-10">
-              <Link href="/" className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-indigo-600 rotate-45 flex items-center justify-center rounded-sm shadow-xl shadow-indigo-100">
-                  <div className="w-5 h-5 bg-white -rotate-45"></div>
-                </div>
-                <span className="text-3xl font-bold tracking-tighter text-slate-900 font-display">CareerXP.</span>
+              <Link
+                href="/"
+                className="inline-flex items-center shrink-0"
+                aria-label="CareerXP home"
+              >
+                <Image
+                  src="/logo.jpeg"
+                  alt=""
+                  width={1600}
+                  height={1600}
+                  className="h-14 w-14 sm:h-16 sm:w-16 object-contain object-left"
+                  quality={95}
+                  sizes="(max-width: 640px) 56px, 64px"
+                />
               </Link>
             </div>
             <p className="text-xl text-slate-500 leading-relaxed mb-12 font-medium max-w-md">
