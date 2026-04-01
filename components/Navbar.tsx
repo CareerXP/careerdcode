@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, PhoneCall, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { useModal } from './ClientLayout';
 
@@ -31,11 +32,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-indigo-600 rotate-45 flex items-center justify-center rounded-sm shadow-lg shadow-indigo-100">
-              <div className="w-4 h-4 bg-white -rotate-45"></div>
-            </div>
-            <span className="text-xl font-bold tracking-tighter text-slate-900 font-display">CareerXP.</span>
+          <Link href="/" className="flex items-center group shrink-0">
+            <Image
+              src="/logo.jpeg"
+              alt="CareerXP"
+              width={160}
+              height={44}
+              className="h-9 sm:h-10 w-auto max-w-[min(160px,42vw)] object-contain object-left"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
