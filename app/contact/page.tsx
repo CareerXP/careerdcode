@@ -47,7 +47,7 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Email Us</p>
-                    <p className="text-lg font-bold text-slate-900">hello@careerxp.com</p>
+                    <p className="text-lg font-bold text-slate-900">support@careerxp.in</p>
                     <p className="text-sm text-slate-500">We usually reply within 24 hours.</p>
                   </div>
                 </div>
@@ -58,12 +58,12 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Call Us</p>
-                    <p className="text-lg font-bold text-slate-900">+91 98765 43210</p>
+                    <p className="text-lg font-bold text-slate-900">+91 7980444047</p>
                     <p className="text-sm text-slate-500">Mon-Sat, 10am to 7pm IST</p>
                   </div>
                 </div>
 
-                <div className="flex gap-6 p-8 bg-slate-50 rounded-[32px] border border-slate-100 group hover:border-indigo-100 transition-colors">
+                {/* <div className="flex gap-6 p-8 bg-slate-50 rounded-[32px] border border-slate-100 group hover:border-indigo-100 transition-colors">
                   <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-indigo-600 shadow-sm group-hover:bg-indigo-600 group-hover:text-white transition-all">
                     <MapPin size={24} />
                   </div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                     <p className="text-lg font-bold text-slate-900">Tech Hub, Sector 62</p>
                     <p className="text-sm text-slate-500">Noida, Uttar Pradesh 201301</p>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="p-8 bg-indigo-600 rounded-[40px] text-white relative overflow-hidden group">
