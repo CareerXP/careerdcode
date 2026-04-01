@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 export default function ContactPage() {
@@ -39,7 +39,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             
             {/* Contact Information */}
-            <div className="lg:col-span-5 space-y-12">
+            <div className="lg:col-span-12 max-w-3xl mx-auto space-y-12">
               <div className="grid gap-8">
                 <div className="flex gap-6 p-8 bg-slate-50 rounded-[32px] border border-slate-100 group hover:border-indigo-100 transition-colors">
                   <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-indigo-600 shadow-sm group-hover:bg-indigo-600 group-hover:text-white transition-all">
@@ -91,7 +91,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Contact Form — temporarily disabled
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -149,6 +149,7 @@ export default function ContactPage() {
                 </button>
               </form>
             </motion.div>
+            */}
 
           </div>
         </div>
