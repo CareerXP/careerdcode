@@ -1,13 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence } from 'motion/react';
 import { 
-  ChevronRight,
   CheckCircle2, 
   ArrowRight, 
   Download, 
-  Quote,
-  Linkedin
+  ChevronDown,
 } from 'lucide-react';
 import { Course } from '@/data/courses';
 import TrustedCompanies from '@/components/TrustedCompanies';
@@ -38,6 +35,41 @@ const COURSE_APPLY_WEBHOOK =
 
 const IN_COUNTRY_CODE = '+91';
 
+const DEGREE_OPTIONS = [
+  'BE',
+  'B.Tech',
+  'ME',
+  'M.Tech',
+  'BCA',
+  'MCA',
+  'B.Sc',
+  'Diploma',
+  'BBA',
+  'MBA',
+  'Others',
+] as const;
+
+const GRADUATION_YEARS = Array.from({ length: 12 }, (_, i) => String(2015 + i));
+
+const JOB_STATUS_OPTIONS = [
+  'Working Professional',
+  'Student',
+  'Graduated Not Employed',
+] as const;
+
+const STATE_OPTIONS = [
+  'Delhi',
+  'Maharashtra',
+  'Karnataka',
+  'Uttar Pradesh',
+] as const;
+
+function isValidEmail(value: string): boolean {
+  const t = value.trim();
+  if (!t) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
+}
+
 /** Digits only; accepts 10-digit mobile or common prefixes (0 / 91). */
 function normalizeIndianMobile(input: string): string {
   let d = input.replace(/\D/g, '');
@@ -46,13 +78,36 @@ function normalizeIndianMobile(input: string): string {
   return d;
 }
 
-function validateCourseApply(name: string, phoneDigits: string): string | null {
+function validateCourseApply(
+  name: string,
+  email: string,
+  phoneDigits: string,
+  state: string,
+  degree: string,
+  graduationYear: string,
+  jobStatus: string
+): string | null {
   const n = name.trim();
   if (n.length < 2) {
     return 'Please enter your full name (at least 2 characters).';
   }
   if (n.length > 120) {
     return 'Name is too long.';
+  }
+  if (!isValidEmail(email)) {
+    return 'Please enter a valid email address.';
+  }
+  if (!state) {
+    return 'Please select your state.';
+  }
+  if (!degree) {
+    return 'Please select your degree.';
+  }
+  if (!graduationYear) {
+    return 'Please select your graduation year.';
+  }
+  if (!jobStatus) {
+    return 'Please select your job status.';
   }
   if (phoneDigits.length !== 10) {
     return 'Enter a valid 10-digit Indian mobile number.';
@@ -68,7 +123,12 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
   const [wordIndex, setWordIndex] = useState(0);
 
   const [applyName, setApplyName] = useState('');
+  const [applyEmail, setApplyEmail] = useState('');
   const [applyPhone, setApplyPhone] = useState('');
+  const [applyState, setApplyState] = useState('');
+  const [applyDegree, setApplyDegree] = useState('');
+  const [applyGraduationYear, setApplyGraduationYear] = useState('');
+  const [applyJobStatus, setApplyJobStatus] = useState('');
   const [applyStatus, setApplyStatus] = useState<
     | { kind: 'idle' }
     | { kind: 'loading' }
@@ -82,7 +142,15 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
 
     const name = applyName.trim();
     const number = normalizeIndianMobile(applyPhone);
-    const validationError = validateCourseApply(name, number);
+    const validationError = validateCourseApply(
+      name,
+      applyEmail,
+      number,
+      applyState,
+      applyDegree,
+      applyGraduationYear,
+      applyJobStatus
+    );
     if (validationError) {
       setApplyStatus({ kind: 'error', message: validationError });
       return;
@@ -102,11 +170,16 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
             category: course.category,
           },
           name,
+          email: applyEmail.trim(),
           whatsapp: {
             countryCode: IN_COUNTRY_CODE,
             number,
             full: `${IN_COUNTRY_CODE}${number}`,
           },
+          state: applyState,
+          degree: applyDegree,
+          graduationYear: applyGraduationYear,
+          jobStatus: applyJobStatus,
           submittedAt: new Date().toISOString(),
         }),
       });
@@ -120,7 +193,12 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
         message: "Thanks! We'll reach out shortly.",
       });
       setApplyName('');
+      setApplyEmail('');
       setApplyPhone('');
+      setApplyState('');
+      setApplyDegree('');
+      setApplyGraduationYear('');
+      setApplyJobStatus('');
     } catch (err) {
       const message =
         err instanceof Error ? err.message : 'Something went wrong. Please try again.';
@@ -242,6 +320,24 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
                   </div>
 
                   <div className="space-y-1.5">
+                    <label htmlFor="course-apply-email" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email</label>
+                    <input
+                      id="course-apply-email"
+                      type="email"
+                      name="email"
+                      value={applyEmail}
+                      onChange={(e) => {
+                        setApplyEmail(e.target.value);
+                        if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                      }}
+                      autoComplete="email"
+                      inputMode="email"
+                      placeholder="you@example.com"
+                      className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
                     <label htmlFor="course-apply-phone" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
                     <div className="flex gap-3">
                       <div
@@ -266,6 +362,130 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
                         autoComplete="tel"
                         placeholder="98765 43210"
                         className="min-w-0 flex-1 bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="course-apply-state" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">State</label>
+                    <div className="relative">
+                      <select
+                        id="course-apply-state"
+                        name="state"
+                        value={applyState}
+                        onChange={(e) => {
+                          setApplyState(e.target.value);
+                          if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                        }}
+                        className={`w-full appearance-none bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 pr-10 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium ${
+                          applyState ? '' : 'text-slate-400'
+                        }`}
+                      >
+                        <option value="" disabled>
+                          Select state
+                        </option>
+                        {STATE_OPTIONS.map((s) => (
+                          <option key={s} value={s} className="text-slate-900">
+                            {s}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                        aria-hidden
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="course-apply-degree" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Degree</label>
+                    <div className="relative">
+                      <select
+                        id="course-apply-degree"
+                        name="degree"
+                        value={applyDegree}
+                        onChange={(e) => {
+                          setApplyDegree(e.target.value);
+                          if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                        }}
+                        className={`w-full appearance-none bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 pr-10 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium ${
+                          applyDegree ? '' : 'text-slate-400'
+                        }`}
+                      >
+                        <option value="" disabled>
+                          Select degree
+                        </option>
+                        {DEGREE_OPTIONS.map((d) => (
+                          <option key={d} value={d} className="text-slate-900">
+                            {d}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                        aria-hidden
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="course-apply-grad-year" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Graduation Year</label>
+                    <div className="relative">
+                      <select
+                        id="course-apply-grad-year"
+                        name="graduationYear"
+                        value={applyGraduationYear}
+                        onChange={(e) => {
+                          setApplyGraduationYear(e.target.value);
+                          if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                        }}
+                        className={`w-full appearance-none bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 pr-10 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium ${
+                          applyGraduationYear ? '' : 'text-slate-400'
+                        }`}
+                      >
+                        <option value="" disabled>
+                          Select year
+                        </option>
+                        {GRADUATION_YEARS.map((y) => (
+                          <option key={y} value={y} className="text-slate-900">
+                            {y}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                        aria-hidden
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="course-apply-job-status" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Job status</label>
+                    <div className="relative">
+                      <select
+                        id="course-apply-job-status"
+                        name="jobStatus"
+                        value={applyJobStatus}
+                        onChange={(e) => {
+                          setApplyJobStatus(e.target.value);
+                          if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
+                        }}
+                        className={`w-full appearance-none bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 pr-10 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium ${
+                          applyJobStatus ? '' : 'text-slate-400'
+                        }`}
+                      >
+                        <option value="" disabled>
+                          Select job status
+                        </option>
+                        {JOB_STATUS_OPTIONS.map((j) => (
+                          <option key={j} value={j} className="text-slate-900">
+                            {j}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                        aria-hidden
                       />
                     </div>
                   </div>

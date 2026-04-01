@@ -32,14 +32,21 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center group shrink-0">
+          <Link
+            href="/"
+            className="flex items-center group shrink-0"
+            aria-label="CareerXP home"
+          >
+            {/* Source is 1600×1600; use square bounds so object-contain doesn’t shrink the mark into a tiny strip */}
             <Image
               src="/logo.jpeg"
-              alt="CareerXP"
-              width={160}
-              height={44}
-              className="h-9 sm:h-10 w-auto max-w-[min(160px,42vw)] object-contain object-left"
+              alt=""
+              width={1600}
+              height={1600}
+              className="h-12 w-12 sm:h-14 sm:w-14 object-contain object-center"
               priority
+              quality={95}
+              sizes="(max-width: 640px) 48px, 56px"
             />
           </Link>
 

@@ -111,13 +111,14 @@ export default function HiringPartnerReview() {
           ))}
         </div>
 
-        {/* Stats Summary */}
-        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Stats Summary — aligned with course detail placement stats */}
+        <div className="mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
           {[
-            { label: "Partner Companies", value: "500+" },
-            { label: "Avg. Salary Hike", value: "120%" },
-            { label: "Placement Rate", value: "94%" },
-            { label: "Highest Package", value: "45 LPA" },
+            { label: "Highest Package", value: "18 LPA" },
+            { label: "Partner Companies", value: "1000+" },
+            { label: "Job Assistance", value: "100%" },
+            { label: "Avg CTC", value: "8 LPA" },
+            { label: "Placement Rate", value: "96%" },
           ].map((stat, i) => (
             <motion.div
               key={i}
