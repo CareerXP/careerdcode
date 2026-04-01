@@ -5,13 +5,20 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { 
   X, 
   User, 
+  Mail,
   Phone, 
   MapPin, 
   BookOpen, 
   GraduationCap, 
-  Briefcase, 
   ChevronDown 
 } from "lucide-react";
+
+function isValidEmail(value: string): boolean {
+  const trimmed = value.trim();
+  if (!trimmed) return false;
+  // Practical email pattern (not exhaustive RFC)
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+}
 
 interface CallbackModalProps {
   isOpen: boolean;
@@ -33,6 +40,7 @@ export default function CallbackModal({
   );
 
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [countryCode, setCountryCode] = useState("+91");
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [state, setState] = useState("");
@@ -50,6 +58,7 @@ export default function CallbackModal({
 
   const resetForm = () => {
     setName("");
+    setEmail("");
     setCountryCode("+91");
     setWhatsappNumber("");
     setState("");
@@ -73,6 +82,15 @@ export default function CallbackModal({
     e.preventDefault();
     if (status.kind === "loading") return;
 
+    const emailTrimmed = email.trim();
+    if (!isValidEmail(emailTrimmed)) {
+      setStatus({
+        kind: "error",
+        message: "Please enter a valid email address.",
+      });
+      return;
+    }
+
     setStatus({ kind: "loading" });
 
     try {
@@ -85,6 +103,7 @@ export default function CallbackModal({
           type,
           triggerPoint,
           name: name.trim(),
+          email: emailTrimmed,
           whatsapp: {
             countryCode,
             number: whatsappNumber.trim(),
@@ -169,6 +188,26 @@ export default function CallbackModal({
                   onChange={(e) => setName(e.target.value)}
                   className="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
                   placeholder="Enter name"
+                  autoComplete="name"
+                />
+              </div>
+
+              {/* Email Field */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-slate-400" />
+                </div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status.kind === "error") setStatus({ kind: "idle" });
+                  }}
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
+                  placeholder="Enter email"
+                  autoComplete="email"
+                  inputMode="email"
                 />
               </div>
 
