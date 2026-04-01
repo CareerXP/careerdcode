@@ -1,12 +1,12 @@
 export const seoConfig = {
-  defaultTitle: "CareerXP | Master High-Demand Tech Skills",
+  defaultTitle: "CareerXP | Built on real hires not assumptions",
   titleTemplate: "%s | CareerXP",
   description: "CareerXP offers industry-aligned tech education, elite mentorship from IIT Delhi alumni, and career-transforming courses in Full Stack Development, Data Science, and AI.",
-  canonical: "https://careerxp.com", // Replace with actual domain if different
+  canonical: "https://careerxp.in", // Replace with actual domain if different
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: 'https://careerxp.com',
+    url: 'https://careerxp.in',
     siteName: 'CareerXP',
     images: [
       {
