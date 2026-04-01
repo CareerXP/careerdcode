@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useModal } from "@/components/ClientLayout";
+import TrustedCompanies from "@/components/TrustedCompanies";
 
 export default function RecruitersPage() {
   const { openModal } = useModal();
@@ -419,7 +420,7 @@ export default function RecruitersPage() {
         </section>
 
         {/* Section 8: SOCIAL PROOF */}
-        <section className="py-32 bg-white border-y border-slate-100">
+        {/* <section className="py-32 bg-white border-y border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-slate-900 font-display tracking-tight mb-16">
               Trusted by Recruiters Across Multiple Companies
@@ -432,7 +433,9 @@ export default function RecruitersPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
+
+<TrustedCompanies />
 
         {/* FINAL CTA */}
         <section className="py-32">
