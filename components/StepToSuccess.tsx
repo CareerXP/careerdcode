@@ -59,7 +59,7 @@ const steps: Step[] = [
       "Real Projects",
       "Community access (Discord)"
     ],
-    image: ""
+    image: "/coding.png"
   },
   {
     id: 5,
