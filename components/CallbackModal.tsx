@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { 
   X, 
   User, 
@@ -33,15 +33,8 @@ export default function CallbackModal({
   type,
   triggerPoint = "general",
 }: CallbackModalProps) {
-  const WEBHOOK_URL = useMemo(
-    () =>
-      "https://n8n.srv1534167.hstgr.cloud/webhook/33db196a-d3d5-42ce-9fcc-985cb59a7a17",
-    []
-  );
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [countryCode, setCountryCode] = useState("+91");
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [state, setState] = useState("");
   const [degree, setDegree] = useState("");
@@ -59,7 +52,6 @@ export default function CallbackModal({
   const resetForm = () => {
     setName("");
     setEmail("");
-    setCountryCode("+91");
     setWhatsappNumber("");
     setState("");
     setDegree("");
@@ -94,31 +86,30 @@ export default function CallbackModal({
     setStatus({ kind: "loading" });
 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      const res = await fetch("/api/callback", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type,
           triggerPoint,
           name: name.trim(),
           email: emailTrimmed,
-          whatsapp: {
-            countryCode,
-            number: whatsappNumber.trim(),
-            full: `${countryCode}${whatsappNumber.trim()}`,
-          },
+          whatsappNumber: whatsappNumber.trim(),
           state,
           degree,
           graduationYear,
-          source: "CallbackModal",
-          submittedAt: new Date().toISOString(),
         }),
       });
 
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
       if (!res.ok) {
-        throw new Error(`Webhook request failed (${res.status})`);
+        throw new Error(
+          data.error ||
+            (res.status === 429
+              ? "Too many attempts. Please try again later."
+              : `Request failed (${res.status})`)
+        );
       }
 
       setStatus({
@@ -211,34 +202,23 @@ export default function CallbackModal({
                 />
               </div>
 
-              {/* WhatsApp Number Field */}
-              <div className="flex gap-2">
-                <div className="relative w-32">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Phone className="h-5 w-5 text-slate-400" />
-                  </div>
-                  <select
-                    value={countryCode}
-                    onChange={(e) => setCountryCode(e.target.value)}
-                    className="w-full pl-12 pr-8 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 appearance-none cursor-pointer"
-                  >
-                    <option>+91</option>
-                    <option>+1</option>
-                    <option>+44</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <ChevronDown className="h-4 w-4 text-slate-400" />
-                  </div>
+              {/* WhatsApp Number (+91 India, same pattern as enquiry modals) */}
+              <div className="flex items-stretch rounded-xl bg-slate-50 ring-0 focus-within:ring-2 focus-within:ring-indigo-500 transition-all">
+                <div className="pl-4 flex items-center pointer-events-none shrink-0">
+                  <Phone className="h-5 w-5 text-slate-400" />
                 </div>
-                <div className="relative flex-grow">
-                  <input 
-                    type="tel" 
-                    value={whatsappNumber}
-                    onChange={(e) => setWhatsappNumber(e.target.value)}
-                    className="w-full px-4 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-sans text-slate-600 placeholder:text-slate-400"
-                    placeholder="Enter whatsapp number"
-                  />
-                </div>
+                <span className="flex items-center px-3 text-sm font-semibold text-slate-500 border-r border-slate-200/90 select-none">
+                  +91
+                </span>
+                <input
+                  type="tel"
+                  value={whatsappNumber}
+                  onChange={(e) => setWhatsappNumber(e.target.value)}
+                  className="flex-1 min-w-0 py-4 pr-4 bg-transparent border-none rounded-r-xl outline-none font-sans text-slate-600 placeholder:text-slate-400"
+                  placeholder="WhatsApp number"
+                  autoComplete="tel-national"
+                  inputMode="numeric"
+                />
               </div>
 
               {/* State Field */}
