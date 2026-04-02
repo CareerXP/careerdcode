@@ -7,8 +7,24 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { useModal } from './ClientLayout';
 
-export default function Navbar() {
-  const { openModal } = useModal();
+export type NavbarCtaModal = 'callback' | 'campus-enquiry' | 'recruiter-enquiry';
+
+type NavbarProps = {
+  /** Which modal the primary nav CTA opens. Defaults to callback. */
+  ctaModal?: NavbarCtaModal;
+  /** Optional override for the desktop CTA button text */
+  ctaLabelDesktop?: string;
+  /** Optional override for the mobile CTA button text */
+  ctaLabelMobile?: string;
+};
+
+export default function Navbar({
+  ctaModal = 'callback',
+  ctaLabelDesktop,
+  ctaLabelMobile,
+}: NavbarProps = {}) {
+  const { openModal, openCampusEnquiryModal, openRecruiterEnquiryModal } =
+    useModal();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -19,6 +35,23 @@ export default function Navbar() {
   ];
 
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+
+  function openPrimaryCta() {
+    if (ctaModal === 'campus-enquiry') openCampusEnquiryModal();
+    else if (ctaModal === 'recruiter-enquiry') openRecruiterEnquiryModal();
+    else openModal('callback');
+  }
+
+  const defaultDesktopLabel =
+    ctaModal === 'campus-enquiry'
+      ? 'Campus enquiry'
+      : ctaModal === 'recruiter-enquiry'
+        ? 'Recruiter enquiry'
+        : 'Callback';
+  const defaultMobileLabel =
+    ctaModal === 'callback' ? 'Request Callback' : defaultDesktopLabel;
+  const desktopCtaLabel = ctaLabelDesktop ?? defaultDesktopLabel;
+  const mobileCtaLabel = ctaLabelMobile ?? defaultMobileLabel;
 
   const moreLinks = [
     { name: 'FAQ', href: '/#faq' },
@@ -102,11 +135,11 @@ export default function Navbar() {
           {/* Action Buttons & Mobile Toggle */}
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => openModal('callback')}
+              onClick={openPrimaryCta}
               className="hidden sm:flex items-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200"
             >
               <PhoneCall size={14} />
-              Callback
+              {desktopCtaLabel}
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -158,13 +191,13 @@ export default function Navbar() {
               <div className="pt-4 px-4">
                 <button 
                   onClick={() => {
-                    openModal('callback');
+                    openPrimaryCta();
                     setIsMobileMenuOpen(false);
                   }}
                   className="w-full flex items-center justify-center gap-2 px-6 py-4 text-[10px] font-black uppercase tracking-widest text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200"
                 >
                   <PhoneCall size={14} />
-                  Request Callback
+                  {mobileCtaLabel}
                 </button>
               </div>
             </div>

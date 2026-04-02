@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import Image from "next/image";
+
+/** Reviews longer than this get "Read more" + line clamp when collapsed. */
+const REVIEW_EXPAND_THRESHOLD = 280;
 
 function companyLogoUrl(company: string) {
   return `https://ui-avatars.com/api/?name=${encodeURIComponent(company)}&background=EEF2FF&color=4338CA&size=128&bold=true`;
@@ -47,6 +51,93 @@ Overall, Devanshu's commitment, ownership, and belief in his candidates made a m
   },
 ];
 
+type ReviewItem = (typeof reviews)[number];
+
+function PartnerReviewCard({ review, index }: { review: ReviewItem; index: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const needsExpand = review.review.length > REVIEW_EXPAND_THRESHOLD;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="bg-white p-6 md:p-8 rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100 relative group hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col"
+    >
+      <div className="absolute top-8 right-8 text-indigo-100 group-hover:text-indigo-200 transition-colors pointer-events-none">
+        <Quote size={48} />
+      </div>
+
+      <div className="flex items-center gap-4 mb-8 shrink-0">
+        <div className="w-16 h-16 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 p-2">
+          <Image
+            src={companyLogoUrl(review.company)}
+            alt={review.company}
+            width={64}
+            height={64}
+            className="object-contain"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-slate-900">{review.company}</h3>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+            {review.submittedAt}
+          </p>
+          <div className="flex gap-0.5 mt-1">
+            {[...Array(review.rating)].map((_, idx) => (
+              <Star key={idx} size={14} className="fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={
+          expanded
+            ? "mb-4 flex-1 flex flex-col min-h-0"
+            : "mb-4 flex-1 flex flex-col min-h-[10rem]"
+        }
+      >
+        <p
+          className={`text-slate-600 leading-relaxed italic whitespace-pre-line ${
+            !expanded && needsExpand ? "line-clamp-6" : ""
+          }`}
+        >
+          &ldquo;{review.review}&rdquo;
+        </p>
+        {needsExpand && (
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            className="mt-3 text-left text-sm font-bold text-indigo-600 hover:text-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-md self-start"
+          >
+            {expanded ? "Read less" : "Read more"}
+          </button>
+        )}
+      </div>
+
+      <div className="flex items-center gap-4 pt-6 border-t border-slate-50 mt-auto shrink-0">
+        <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+          <Image
+            src={partnerAvatarUrl(review.partnerName)}
+            alt={review.partnerName}
+            width={48}
+            height={48}
+            className="object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div>
+          <p className="font-bold text-slate-900">{review.partnerName}</p>
+          <p className="text-xs text-slate-500 font-medium">{review.role}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function HiringPartnerReview() {
   return (
     <section className="py-24 bg-slate-50 overflow-hidden">
@@ -68,65 +159,9 @@ export default function HiringPartnerReview() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {reviews.map((review, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white p-6 md:p-8 rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100 relative group hover:-translate-y-2 transition-transform duration-300"
-            >
-              <div className="absolute top-8 right-8 text-indigo-100 group-hover:text-indigo-200 transition-colors">
-                <Quote size={48} />
-              </div>
-
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 p-2">
-                  <Image
-                    src={companyLogoUrl(review.company)}
-                    alt={review.company}
-                    width={64}
-                    height={64}
-                    className="object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900">{review.company}</h3>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                    {review.submittedAt}
-                  </p>
-                  <div className="flex gap-0.5 mt-1">
-                    {[...Array(review.rating)].map((_, idx) => (
-                      <Star key={idx} size={14} className="fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-slate-600 leading-relaxed mb-8 italic whitespace-pre-line">
-                &ldquo;{review.review}&rdquo;
-              </p>
-
-              <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
-                  <Image
-                    src={partnerAvatarUrl(review.partnerName)}
-                    alt={review.partnerName}
-                    width={48}
-                    height={48}
-                    className="object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900">{review.partnerName}</p>
-                  <p className="text-xs text-slate-500 font-medium">{review.role}</p>
-                </div>
-              </div>
-            </motion.div>
+            <PartnerReviewCard key={i} review={review} index={i} />
           ))}
         </div>
 

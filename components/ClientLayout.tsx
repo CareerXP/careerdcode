@@ -5,6 +5,7 @@ import Footer from './Footer';
 import WhatsAppFAB from './WhatsAppFAB';
 import CallbackModal from './CallbackModal';
 import RecruiterEnquiryModal from './RecruiterEnquiryModal';
+import CampusEnquiryModal from './CampusEnquiryModal';
 import ScrollToTop from '@/components/ScrollToTop';
 
 interface ModalContextType {
@@ -13,11 +14,13 @@ interface ModalContextType {
     triggerPoint?: 'course-inquiry' | 'general'
   ) => void;
   openRecruiterEnquiryModal: () => void;
+  openCampusEnquiryModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextType>({
   openModal: () => {},
   openRecruiterEnquiryModal: () => {},
+  openCampusEnquiryModal: () => {},
 });
 
 export const useModal = () => useContext(ModalContext);
@@ -30,6 +33,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   const openRecruiterEnquiryModal = () => setIsRecruiterModalOpen(true);
   const closeRecruiterModal = () => setIsRecruiterModalOpen(false);
+  const [isCampusModalOpen, setIsCampusModalOpen] = useState(false);
+  const openCampusEnquiryModal = () => setIsCampusModalOpen(true);
+  const closeCampusModal = () => setIsCampusModalOpen(false);
 
   const openModal = (
     type: 'callback' | 'brochure' = 'callback',
@@ -43,7 +49,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="min-h-screen flex flex-col">
-      <ModalContext.Provider value={{ openModal, openRecruiterEnquiryModal }}>
+      <ModalContext.Provider
+        value={{ openModal, openRecruiterEnquiryModal, openCampusEnquiryModal }}
+      >
         {children}
         
         <Footer 
@@ -64,6 +72,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         <RecruiterEnquiryModal
           isOpen={isRecruiterModalOpen}
           onClose={closeRecruiterModal}
+        />
+
+        <CampusEnquiryModal
+          isOpen={isCampusModalOpen}
+          onClose={closeCampusModal}
         />
       </ModalContext.Provider>
     </div>

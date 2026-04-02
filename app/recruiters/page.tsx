@@ -118,7 +118,7 @@ export default function RecruitersPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      <Navbar ctaModal="recruiter-enquiry" />
       
       <main className="pt-32 pb-20">
         {/* HERO SECTION */}

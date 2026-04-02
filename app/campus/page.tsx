@@ -19,7 +19,7 @@ import { useModal } from "@/components/ClientLayout";
 import TrustedCompanies from "@/components/TrustedCompanies";
 
 export default function RecruitersPage() {
-  const { openModal } = useModal();
+  const { openCampusEnquiryModal } = useModal();
 
   const problemPoints = [
     "Limited practical exposure",
@@ -107,7 +107,7 @@ export default function RecruitersPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      <Navbar ctaModal="campus-enquiry" />
       
       <main className="pt-32 pb-20">
         {/* Hero Section */}
@@ -137,7 +137,7 @@ export default function RecruitersPage() {
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <button 
-                  onClick={() => openModal('callback')}
+                  onClick={() => openCampusEnquiryModal()}
                   className="px-8 py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-4 group"
                 >
                   Schedule a Discussion
@@ -307,7 +307,7 @@ export default function RecruitersPage() {
                   <h3 className="text-3xl font-bold text-slate-900 font-display">Ready to Elevate?</h3>
                   <p className="text-slate-500 font-medium">Join 50+ institutions already partnering with CareerXP.</p>
                   <button 
-                    onClick={() => openModal('callback')}
+                    onClick={() => openCampusEnquiryModal()}
                     className="w-full py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100"
                   >
                     Partner With Us
@@ -446,7 +446,7 @@ export default function RecruitersPage() {
                   </p>
                 </div>
                 <button 
-                  onClick={() => openModal('callback')}
+                  onClick={() => openCampusEnquiryModal()}
                   className="px-12 py-6 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-2xl shadow-indigo-500/20 flex items-center gap-4 mx-auto group"
                 >
                   Book a Meeting

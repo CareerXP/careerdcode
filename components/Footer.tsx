@@ -6,9 +6,10 @@ import { coursesData } from '@/data/courses';
 interface FooterProps {
   onCallbackClick: () => void;
   onBrochureClick: () => void;
+  hideCTA?: boolean;
 }
 
-export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps) {
+export default function Footer({ onCallbackClick, onBrochureClick,hideCTA = false }: FooterProps) {
   return (
     <footer className="relative bg-white border-t border-slate-100 pt-32 pb-16 overflow-hidden">
       {/* Technical Grid Background */}
@@ -102,7 +103,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
         </div>
 
         {/* Action Bar */}
-        <div className="grid md:grid-cols-2 gap-8 mb-24">
+       {!hideCTA && <div className="grid md:grid-cols-2 gap-8 mb-24">
           <button 
             onClick={onBrochureClick}
             className="group relative overflow-hidden bg-indigo-600 text-white rounded-2xl py-8 px-10 flex items-center justify-between transition-all hover:bg-indigo-700 shadow-2xl shadow-indigo-200"
@@ -126,7 +127,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
             <Phone className="relative z-10 group-hover:rotate-12 transition-transform text-indigo-600" size={32} />
             <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-indigo-50 rounded-full blur-3xl group-hover:bg-indigo-100 transition-colors"></div>
           </button>
-        </div>
+        </div>}
 
         {/* Bottom Bar */}
         <div className="pt-16 border-t border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-12">
