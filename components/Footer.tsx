@@ -25,7 +25,7 @@ export default function Footer({ onCallbackClick, onBrochureClick }: FooterProps
                 aria-label="CareerXP home"
               >
                 <Image
-                  src="/logo.jpeg"
+                  src="/logo.png"
                   alt=""
                   width={1600}
                   height={1600}

@@ -21,7 +21,7 @@ import Navbar from "@/components/Navbar";
 import { useModal } from "@/components/ClientLayout";
 
 export default function RecruitersPage() {
-  const { openModal } = useModal();
+  const { openRecruiterEnquiryModal } = useModal();
 
   const problems = [
     "High volume, low-quality applications",
@@ -154,14 +154,14 @@ export default function RecruitersPage() {
               <div className="space-y-8">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                   <button 
-                    onClick={() => openModal('callback')}
+                    onClick={() => openRecruiterEnquiryModal()}
                     className="px-8 py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-4 group"
                   >
                     Post Hiring Requirement
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button 
-                    onClick={() => openModal('callback')}
+                    onClick={() => openRecruiterEnquiryModal()}
                     className="px-8 py-5 bg-white text-slate-900 border-2 border-slate-200 font-black text-xs uppercase tracking-widest rounded-2xl hover:border-indigo-600 transition-all flex items-center gap-4 group"
                   >
                     Schedule a Discussion
@@ -188,25 +188,11 @@ export default function RecruitersPage() {
             >
               <div className="aspect-square bg-slate-50 rounded-[64px] border border-slate-100 overflow-hidden">
                 <img 
-                  src="https://picsum.photos/seed/recruiter/800/800" 
+                  src="/recruiter.png" 
                   alt="Hiring Solutions" 
                   className="w-full h-full object-cover opacity-80"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-              <div className="absolute -bottom-8 -right-8 p-8 bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xs">
-                <p className="text-sm font-bold text-slate-900 leading-relaxed">
-                  "CareerXP simplified our bulk hiring process across multiple campuses in India."
-                </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                    <Building2 size={20} className="text-indigo-600" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest">HR Director</p>
-                    <p className="text-[10px] text-slate-400 font-medium">Global Tech Firm</p>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </div>
@@ -452,7 +438,7 @@ export default function RecruitersPage() {
                 <h3 className="text-3xl font-bold text-slate-900 font-display">Simplify Your Hiring</h3>
                 <p className="text-slate-500 font-medium">From campus to company — we simplify fresher hiring at scale.</p>
                 <button 
-                  onClick={() => openModal('callback')}
+                  onClick={() => openRecruiterEnquiryModal()}
                   className="w-full py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100"
                 >
                   Get Started
@@ -483,14 +469,14 @@ export default function RecruitersPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                   <button 
-                    onClick={() => openModal('callback')}
+                    onClick={() => openRecruiterEnquiryModal()}
                     className="px-12 py-6 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-2xl shadow-indigo-500/20 flex items-center gap-4 group"
                   >
                     Post Hiring Requirement
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button 
-                    onClick={() => openModal('callback')}
+                    onClick={() => openRecruiterEnquiryModal()}
                     className="px-12 py-6 bg-white/10 text-white border border-white/20 font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-white/20 transition-all flex items-center gap-4 group"
                   >
                     Book a Call

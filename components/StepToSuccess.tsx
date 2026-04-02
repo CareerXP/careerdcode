@@ -27,7 +27,7 @@ const steps: Step[] = [
     bullets: ["Aptitude", "Technical Concepts", "Coding Skills"],
     footnote:
       "Based on your performance, we create a personalised training roadmap focusing on your weak areas.",
-    image: "https://picsum.photos/seed/evaluation/800/600",
+    image: "/Skill assessment image.png",
     cta: { label: "Choose your learning path", href: "/#courses" }
   },
   {
@@ -36,7 +36,7 @@ const steps: Step[] = [
     title: "Learn exactly what companies ask in interviews.",
     intro:
       "Get trained by mentors who are already working in top product & service-based companies — teaching you what actually matters.",
-    image: "https://picsum.photos/seed/training/800/600",
+    image: "/Mentors.png",
     cta: { label: "Meet our mentors", href: "/#mentors" }
   },
   {
@@ -46,7 +46,7 @@ const steps: Step[] = [
     intro: "We make you practice on:",
     bullets: ["HackerRank", "LeetCode", "CodeChef", "Codeforces"],
     footnote: "So you're ready for real coding rounds.",
-    image: "https://picsum.photos/seed/coding/800/600"
+    image: "/coding.png"
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const steps: Step[] = [
       "Real Projects",
       "Community access (Discord)"
     ],
-    image: "https://picsum.photos/seed/profile/800/600"
+    image: ""
   },
   {
     id: 5,
@@ -70,7 +70,7 @@ const steps: Step[] = [
       "Real interview scenarios",
       "Feedback from industry experts"
     ],
-    image: "https://picsum.photos/seed/mock/800/600"
+    image: "/Mock Interviews.png"
   },
   {
     id: 6,
@@ -83,7 +83,7 @@ const steps: Step[] = [
       "Unlimited interview opportunities",
       "Continuous support until you get placed"
     ],
-    image: "https://picsum.photos/seed/placed/800/600"
+    image: "/Placement.png"
   }
 ];
 

@@ -4,29 +4,45 @@ import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import Image from "next/image";
 
+function companyLogoUrl(company: string) {
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(company)}&background=EEF2FF&color=4338CA&size=128&bold=true`;
+}
+
+function partnerAvatarUrl(name: string) {
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=F1F5F9&color=334155&size=128`;
+}
+
 const reviews = [
   {
-    company: "Google",
-    partnerName: "Sarah Miller",
-    role: "Senior Engineering Manager",
-    logo: "https://picsum.photos/seed/google-logo/100/100",
-    review: "The graduates from this platform consistently demonstrate deep technical knowledge and a problem-solving mindset that is rare to find in junior developers.",
+    company: "Academian",
+    partnerName: "Akshay",
+    role: "Talent Acquisition Executive",
+    submittedAt: "28 Mar 2026 · 18:18",
+    review:
+      "Devanshu consistently delivered quality candidates for fresher roles like Trainee Software Engineers and Test Engineers. His understanding of requirements and quick turnaround made the hiring process smooth and efficient. Highly recommended.",
     rating: 5,
   },
   {
-    company: "Meta",
-    partnerName: "David Chen",
-    role: "Product Design Lead",
-    logo: "https://picsum.photos/seed/meta-logo/100/100",
-    review: "We've hired several designers from here, and they've all hit the ground running. Their portfolio projects show a level of maturity that we usually see in mid-level designers.",
+    company: "Xerago Ebiz services Pvt Ltd",
+    partnerName: "Mahalakshmi H",
+    role: "HR Manager",
+    submittedAt: "28 Mar 2026 · 18:24",
+    review:
+      "Great experience working with you. You are quick, reliable and spot on with candidate quality. Communication was always clear and proactive. Really appreciate your support and professionalism.",
     rating: 5,
   },
   {
-    company: "Amazon",
-    partnerName: "Jessica Williams",
-    role: "Talent Acquisition Director",
-    logo: "https://picsum.photos/seed/amazon-logo/100/100",
-    review: "The curriculum is perfectly aligned with industry needs. When we see a certification from this platform, we know the candidate has been through rigorous training.",
+    company: "Bottomline",
+    partnerName: "Mohammed Ansaf",
+    role: "Lead Campus Recruiter",
+    submittedAt: "28 Mar 2026 · 23:32",
+    review: `Devanshu played a key role in helping us close a highly niche position that demanded a rare combination of skills and knowledge, especially at a fresher level. Identifying candidates who meet such specific expectations is never easy, but his persistence and sharp understanding of the requirement made a significant difference.
+
+What stood out the most was his unwavering confidence in the candidates he presented. He didn't just share profiles, he strongly believed in their potential and took the time to thoroughly evaluate how well they aligned with both the technical and functional aspects of the role. This gave us a lot of confidence during the evaluation process and helped us move forward with clarity.
+
+His dedication throughout the process was evident in the way he stayed closely involved, ensured timely follow-ups, and maintained clear communication at every stage. He was proactive in addressing concerns, open to feedback, and consistently worked towards finding the right fit rather than just a quick closure.
+
+Overall, Devanshu's commitment, ownership, and belief in his candidates made a meaningful impact on successfully closing this challenging role.`,
     rating: 5,
   },
 ];
@@ -69,7 +85,7 @@ export default function HiringPartnerReview() {
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 p-2">
                   <Image
-                    src={review.logo}
+                    src={companyLogoUrl(review.company)}
                     alt={review.company}
                     width={64}
                     height={64}
@@ -79,6 +95,9 @@ export default function HiringPartnerReview() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-slate-900">{review.company}</h3>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                    {review.submittedAt}
+                  </p>
                   <div className="flex gap-0.5 mt-1">
                     {[...Array(review.rating)].map((_, idx) => (
                       <Star key={idx} size={14} className="fill-yellow-400 text-yellow-400" />
@@ -87,14 +106,14 @@ export default function HiringPartnerReview() {
                 </div>
               </div>
 
-              <p className="text-slate-600 leading-relaxed mb-8 italic">
-                "{review.review}"
+              <p className="text-slate-600 leading-relaxed mb-8 italic whitespace-pre-line">
+                &ldquo;{review.review}&rdquo;
               </p>
 
               <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
                   <Image
-                    src={`https://picsum.photos/seed/${review.partnerName}/100/100`}
+                    src={partnerAvatarUrl(review.partnerName)}
                     alt={review.partnerName}
                     width={48}
                     height={48}

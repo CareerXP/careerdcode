@@ -158,23 +158,11 @@ export default function RecruitersPage() {
             >
               <div className="aspect-square bg-slate-50 rounded-[64px] border border-slate-100 overflow-hidden">
                 <img 
-                  src="https://picsum.photos/seed/campus/800/800" 
+                  src="/campus.png" 
                   alt="Campus Ecosystem" 
                   className="w-full h-full object-cover opacity-80"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-              <div className="absolute -bottom-8 -left-8 p-8 bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xs">
-                <p className="text-sm font-bold text-slate-900 leading-relaxed">
-                  "CareerXP has transformed how our students approach technical interviews."
-                </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-indigo-100 rounded-full"></div>
-                  <div>
-                    <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Placement Head</p>
-                    <p className="text-[10px] text-slate-400 font-medium">Top Engineering College</p>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </div>

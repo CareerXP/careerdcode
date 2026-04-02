@@ -4,6 +4,7 @@ import { useState, createContext, useContext } from 'react';
 import Footer from './Footer';
 import WhatsAppFAB from './WhatsAppFAB';
 import CallbackModal from './CallbackModal';
+import RecruiterEnquiryModal from './RecruiterEnquiryModal';
 import ScrollToTop from '@/components/ScrollToTop';
 
 interface ModalContextType {
@@ -11,10 +12,12 @@ interface ModalContextType {
     type?: 'callback' | 'brochure',
     triggerPoint?: 'course-inquiry' | 'general'
   ) => void;
+  openRecruiterEnquiryModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextType>({
   openModal: () => {},
+  openRecruiterEnquiryModal: () => {},
 });
 
 export const useModal = () => useContext(ModalContext);
@@ -23,6 +26,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'callback' | 'brochure'>('callback');
   const [triggerPoint, setTriggerPoint] = useState<'course-inquiry' | 'general'>('general');
+  const [isRecruiterModalOpen, setIsRecruiterModalOpen] = useState(false);
+
+  const openRecruiterEnquiryModal = () => setIsRecruiterModalOpen(true);
+  const closeRecruiterModal = () => setIsRecruiterModalOpen(false);
 
   const openModal = (
     type: 'callback' | 'brochure' = 'callback',
@@ -36,7 +43,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="min-h-screen flex flex-col">
-      <ModalContext.Provider value={{ openModal }}>
+      <ModalContext.Provider value={{ openModal, openRecruiterEnquiryModal }}>
         {children}
         
         <Footer 
@@ -52,6 +59,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           onClose={closeModal}
           type={modalType}
           triggerPoint={triggerPoint}
+        />
+
+        <RecruiterEnquiryModal
+          isOpen={isRecruiterModalOpen}
+          onClose={closeRecruiterModal}
         />
       </ModalContext.Provider>
     </div>

@@ -39,7 +39,7 @@ export default function Navbar() {
           >
             {/* Source is 1600×1600; use square bounds so object-contain doesn’t shrink the mark into a tiny strip */}
             <Image
-              src="/logo.jpeg"
+              src="/logo.png"
               alt=""
               width={1600}
               height={1600}
