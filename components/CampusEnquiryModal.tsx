@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   X,
   User,
@@ -24,15 +24,14 @@ interface CampusEnquiryModalProps {
   onClose: () => void;
 }
 
+type TokenReady = "idle" | "loading" | "ready" | "error";
+
 export default function CampusEnquiryModal({
   isOpen,
   onClose,
 }: CampusEnquiryModalProps) {
-  const WEBHOOK_URL = useMemo(
-    () =>
-      "https://n8n.srv1534167.hstgr.cloud/webhook/33db196a-d3d5-42ce-9fcc-985cb59a7a17",
-    []
-  );
+  const [formToken, setFormToken] = useState<string | null>(null);
+  const [tokenReady, setTokenReady] = useState<TokenReady>("idle");
 
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
@@ -51,6 +50,24 @@ export default function CampusEnquiryModal({
 
   const closeTimerRef = useRef<number | null>(null);
 
+  const loadFormToken = useCallback(async () => {
+    setTokenReady("loading");
+    setFormToken(null);
+    try {
+      const r = await fetch("/api/campus-enquiry/token");
+      const data = (await r.json()) as { token?: string; error?: string };
+      if (!r.ok) {
+        throw new Error(data.error || "Could not prepare form");
+      }
+      if (!data.token) throw new Error("Could not prepare form");
+      setFormToken(data.token);
+      setTokenReady("ready");
+    } catch {
+      setFormToken(null);
+      setTokenReady("error");
+    }
+  }, []);
+
   const resetForm = () => {
     setName("");
     setDesignation("");
@@ -62,10 +79,15 @@ export default function CampusEnquiryModal({
   };
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setFormToken(null);
+      setTokenReady("idle");
+      return;
+    }
     setStatus({ kind: "idle" });
     resetForm();
-  }, [isOpen]);
+    void loadFormToken();
+  }, [isOpen, loadFormToken]);
 
   useEffect(() => {
     return () => {
@@ -75,7 +97,7 @@ export default function CampusEnquiryModal({
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (status.kind === "loading") return;
+    if (status.kind === "loading" || tokenReady !== "ready" || !formToken) return;
 
     const nameTrimmed = name.trim();
     if (!nameTrimmed) {
@@ -111,30 +133,41 @@ export default function CampusEnquiryModal({
     setStatus({ kind: "loading" });
 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      const res = await fetch("/api/campus-enquiry", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "campus-enquiry",
+          formToken,
           name: nameTrimmed,
           designation: designation.trim(),
           collegeName: collegeName.trim(),
-          contact: {
-            countryCode,
-            number: phoneTrimmed,
-            full: `${countryCode}${phoneTrimmed}`,
-          },
+          countryCode,
+          contactNumber: phoneTrimmed,
           email: emailTrimmed,
           state,
-          source: "CampusEnquiryModal",
-          submittedAt: new Date().toISOString(),
         }),
       });
 
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      if (res.status === 401) {
+        await loadFormToken();
+        setStatus({
+          kind: "error",
+          message:
+            data.error ||
+            "Your session expired. A new form session was started — please submit again.",
+        });
+        return;
+      }
+
       if (!res.ok) {
-        throw new Error(`Webhook request failed (${res.status})`);
+        throw new Error(
+          data.error ||
+            (res.status === 429
+              ? "Too many attempts. Please try again later."
+              : `Request failed (${res.status})`)
+        );
       }
 
       setStatus({
@@ -142,6 +175,8 @@ export default function CampusEnquiryModal({
         message: "Submitted! Our team will reach out shortly.",
       });
       resetForm();
+      setFormToken(null);
+      void loadFormToken();
 
       if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
       closeTimerRef.current = window.setTimeout(() => {
@@ -169,7 +204,7 @@ export default function CampusEnquiryModal({
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md max-h-[min(90vh,calc(100vh-2rem))] overflow-y-auto bg-white rounded-3xl p-8 shadow-2xl"
+            className="relative w-full max-w-md max-h-[min(90vh,calc(100vh-2rem))] overflow-y-auto bg-white rounded-3xl p-8 shadow-2xl [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <button
               type="button"
@@ -187,6 +222,21 @@ export default function CampusEnquiryModal({
                 Share your details and we&apos;ll get in touch with you asap.
               </p>
             </div>
+
+            {tokenReady === "error" && (
+              <div className="mb-4 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-center">
+                <p className="text-xs font-bold text-red-700 mb-2">
+                  Could not prepare the form. Check your connection and try again.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => void loadFormToken()}
+                  className="text-xs font-black uppercase tracking-widest text-indigo-600 hover:text-indigo-700"
+                >
+                  Retry
+                </button>
+              </div>
+            )}
 
             <form className="space-y-3" onSubmit={onSubmit}>
               <div className="relative">
@@ -312,10 +362,18 @@ export default function CampusEnquiryModal({
 
               <button
                 type="submit"
-                disabled={status.kind === "loading"}
+                disabled={
+                  status.kind === "loading" ||
+                  tokenReady === "loading" ||
+                  tokenReady !== "ready"
+                }
                 className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mt-6 font-sans text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {status.kind === "loading" ? "Submitting..." : "Submit enquiry"}
+                {status.kind === "loading"
+                  ? "Submitting..."
+                  : tokenReady === "loading"
+                    ? "Preparing form..."
+                    : "Submit enquiry"}
               </button>
             </form>
           </motion.div>

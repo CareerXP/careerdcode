@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { X, User, Mail, Phone, Building2, Briefcase, ChevronDown } from "lucide-react";
 
 function isValidEmail(value: string): boolean {
@@ -15,15 +15,14 @@ interface RecruiterEnquiryModalProps {
   onClose: () => void;
 }
 
+type TokenReady = "idle" | "loading" | "ready" | "error";
+
 export default function RecruiterEnquiryModal({
   isOpen,
   onClose,
 }: RecruiterEnquiryModalProps) {
-  const WEBHOOK_URL = useMemo(
-    () =>
-      "https://n8n.srv1534167.hstgr.cloud/webhook/33db196a-d3d5-42ce-9fcc-985cb59a7a17",
-    []
-  );
+  const [formToken, setFormToken] = useState<string | null>(null);
+  const [tokenReady, setTokenReady] = useState<TokenReady>("idle");
 
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
@@ -41,6 +40,24 @@ export default function RecruiterEnquiryModal({
 
   const closeTimerRef = useRef<number | null>(null);
 
+  const loadFormToken = useCallback(async () => {
+    setTokenReady("loading");
+    setFormToken(null);
+    try {
+      const r = await fetch("/api/recruiter-enquiry/token");
+      const data = (await r.json()) as { token?: string; error?: string };
+      if (!r.ok) {
+        throw new Error(data.error || "Could not prepare form");
+      }
+      if (!data.token) throw new Error("Could not prepare form");
+      setFormToken(data.token);
+      setTokenReady("ready");
+    } catch {
+      setFormToken(null);
+      setTokenReady("error");
+    }
+  }, []);
+
   const resetForm = () => {
     setName("");
     setDesignation("");
@@ -51,10 +68,15 @@ export default function RecruiterEnquiryModal({
   };
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setFormToken(null);
+      setTokenReady("idle");
+      return;
+    }
     setStatus({ kind: "idle" });
     resetForm();
-  }, [isOpen]);
+    void loadFormToken();
+  }, [isOpen, loadFormToken]);
 
   useEffect(() => {
     return () => {
@@ -64,7 +86,7 @@ export default function RecruiterEnquiryModal({
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (status.kind === "loading") return;
+    if (status.kind === "loading" || tokenReady !== "ready" || !formToken) return;
 
     const nameTrimmed = name.trim();
     if (!nameTrimmed) {
@@ -96,29 +118,40 @@ export default function RecruiterEnquiryModal({
     setStatus({ kind: "loading" });
 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      const res = await fetch("/api/recruiter-enquiry", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "recruiter-enquiry",
+          formToken,
           name: nameTrimmed,
           designation: designation.trim(),
           companyName: companyName.trim(),
-          contact: {
-            countryCode,
-            number: phoneTrimmed,
-            full: `${countryCode}${phoneTrimmed}`,
-          },
+          countryCode,
+          contactNumber: phoneTrimmed,
           email: emailTrimmed,
-          source: "RecruiterEnquiryModal",
-          submittedAt: new Date().toISOString(),
         }),
       });
 
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      if (res.status === 401) {
+        await loadFormToken();
+        setStatus({
+          kind: "error",
+          message:
+            data.error ||
+            "Your session expired. A new form session was started — please submit again.",
+        });
+        return;
+      }
+
       if (!res.ok) {
-        throw new Error(`Webhook request failed (${res.status})`);
+        throw new Error(
+          data.error ||
+            (res.status === 429
+              ? "Too many attempts. Please try again later."
+              : `Request failed (${res.status})`)
+        );
       }
 
       setStatus({
@@ -126,6 +159,8 @@ export default function RecruiterEnquiryModal({
         message: "Submitted! Our team will reach out shortly.",
       });
       resetForm();
+      setFormToken(null);
+      void loadFormToken();
 
       if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
       closeTimerRef.current = window.setTimeout(() => {
@@ -153,7 +188,7 @@ export default function RecruiterEnquiryModal({
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl overflow-visible"
+            className="relative w-full max-w-md max-h-[min(90vh,calc(100vh-2rem))] overflow-y-auto bg-white rounded-3xl p-8 shadow-2xl [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <button
               type="button"
@@ -171,6 +206,21 @@ export default function RecruiterEnquiryModal({
                 Share your details and we&apos;ll get in touch with you asap.
               </p>
             </div>
+
+            {tokenReady === "error" && (
+              <div className="mb-4 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-center">
+                <p className="text-xs font-bold text-red-700 mb-2">
+                  Could not prepare the form. Check your connection and try again.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => void loadFormToken()}
+                  className="text-xs font-black uppercase tracking-widest text-indigo-600 hover:text-indigo-700"
+                >
+                  Retry
+                </button>
+              </div>
+            )}
 
             <form className="space-y-3" onSubmit={onSubmit}>
               <div className="relative">
@@ -216,7 +266,7 @@ export default function RecruiterEnquiryModal({
               </div>
 
               <div className="flex gap-2">
-                <div className="relative w-32">
+                <div className="relative w-32 shrink-0">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <Phone className="h-5 w-5 text-slate-400" />
                   </div>
@@ -233,7 +283,7 @@ export default function RecruiterEnquiryModal({
                     <ChevronDown className="h-4 w-4 text-slate-400" />
                   </div>
                 </div>
-                <div className="relative flex-grow">
+                <div className="relative flex-grow min-w-0">
                   <input
                     type="tel"
                     value={contactNumber}
@@ -272,10 +322,18 @@ export default function RecruiterEnquiryModal({
 
               <button
                 type="submit"
-                disabled={status.kind === "loading"}
+                disabled={
+                  status.kind === "loading" ||
+                  tokenReady === "loading" ||
+                  tokenReady !== "ready"
+                }
                 className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mt-6 font-sans text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {status.kind === "loading" ? "Submitting..." : "Submit enquiry"}
+                {status.kind === "loading"
+                  ? "Submitting..."
+                  : tokenReady === "loading"
+                    ? "Preparing form..."
+                    : "Submit enquiry"}
               </button>
             </form>
           </motion.div>
