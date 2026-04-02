@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { rateLimitMemory, clientIp } from "@/lib/rate-limit-memory";
-import { consumeRecruiterEnquiryToken } from "@/lib/recruiter-enquiry-tokens";
 
 const DEFAULT_WEBHOOK =
   "https://n8n.srv1534167.hstgr.cloud/webhook/4b3c52d1-6658-4805-a5f4-6d3e4b96d68d";
@@ -75,18 +74,11 @@ export async function POST(request: Request) {
   }
 
   const b = body as Record<string, unknown>;
-  const formToken = typeof b.formToken === "string" ? b.formToken : undefined;
-  if (!consumeRecruiterEnquiryToken(formToken)) {
-    return NextResponse.json(
-      { error: "Invalid or expired session. Please close and reopen the form." },
-      { status: 401 }
-    );
-  }
 
   const name = typeof b.name === "string" ? b.name.trim() : "";
   const designation = typeof b.designation === "string" ? b.designation.trim() : "";
   const companyName = typeof b.companyName === "string" ? b.companyName.trim() : "";
-  const countryCode = typeof b.countryCode === "string" ? b.countryCode : "+91";
+  const countryCode = "+91";
   const contactNumber = typeof b.contactNumber === "string" ? b.contactNumber.trim() : "";
   const email = typeof b.email === "string" ? b.email.trim() : "";
 
