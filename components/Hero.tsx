@@ -42,7 +42,7 @@ export default function Hero() {
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-white/30"></span>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/60 font-mono">
+              <span className="text-[14px] font-black uppercase tracking-[0.4em] text-white/60 font-mono">
                 Placement-First Learning
               </span>
               <span className="w-8 h-[1px] bg-white/30"></span>
@@ -50,7 +50,7 @@ export default function Hero() {
             
             <h1 className="text-5xl sm:text-7xl lg:text-[90px] font-black text-white leading-[1.1] tracking-tight font-display">
               Tired of learning <br />
-              <span className="text-white/90">but not getting placed.</span>
+              <span className="text-white/90">but not getting placed?</span>
             </h1>
             
             <p className="text-white/70 text-lg sm:text-2xl font-medium leading-relaxed max-w-3xl mx-auto">

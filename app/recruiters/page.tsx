@@ -171,7 +171,7 @@ export default function RecruitersPage() {
                 {/* Micro Trust Strip */}
                 <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 border-t border-slate-100">
                   {trustStrip.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-slate-400 font-mono text-[10px] uppercase tracking-widest">
+                    <div key={idx} className="flex items-center gap-2 text-slate-400 font-mono text-[14px] uppercase tracking-widest">
                       <CheckCircle2 size={14} className="text-indigo-600" />
                       {item}
                     </div>
@@ -261,7 +261,7 @@ export default function RecruitersPage() {
         <section className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-24 space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 text-slate-900 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] font-display border border-slate-100">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 text-slate-900 rounded-lg text-[14px] font-black uppercase tracking-[0.2em] font-display border border-slate-100">
                 Our Solution
               </div>
               <h2 className="text-5xl font-bold text-slate-900 font-display tracking-tight">

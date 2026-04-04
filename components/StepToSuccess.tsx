@@ -98,7 +98,7 @@ export default function StepsToSuccess() {
         <div className="mb-8 md:mb-12">
           <div className="flex items-center gap-3 mb-4">
             <span className="w-8 h-[1px] bg-indigo-600"></span>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
+            <span className="text-[16px] font-black uppercase tracking-[0.4em] text-indigo-600 font-mono">
               The Roadmap
             </span>
           </div>
@@ -113,7 +113,7 @@ export default function StepsToSuccess() {
             <button
               key={s.id}
               onClick={() => setActiveStep(idx)}
-              className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
+              className={`px-4 py-2 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all duration-300 border ${
                 activeStep === idx
                   ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-200"
                   : "bg-white text-slate-400 border-slate-100 hover:border-indigo-200 hover:text-indigo-600"
@@ -138,11 +138,7 @@ export default function StepsToSuccess() {
               {/* Left: copy */}
               <div className="min-w-0 space-y-4 sm:space-y-6">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-lg text-[10px] font-black uppercase tracking-widest font-display">
-                      Step {step.id}: {step.label}
-                    </span>
-                  </div>
+                  
                   <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-display tracking-tight leading-[1.1]">
                     {step.title}
                   </h3>

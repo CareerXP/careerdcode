@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Quote, Star } from "lucide-react";
+import {
+  BadgeCheck,
+  Banknote,
+  Building2,
+  Quote,
+  Star,
+  Target,
+  TrendingUp,
+} from "lucide-react";
 import Image from "next/image";
 
 /** Reviews longer than this get "Read more" + line clamp when collapsed. */
@@ -15,6 +23,39 @@ function companyLogoUrl(company: string) {
 function partnerAvatarUrl(name: string) {
   return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=F1F5F9&color=334155&size=128`;
 }
+
+const placementHighlightStats = [
+  {
+    label: "Highest package",
+    value: "18 LPA",
+    Icon: Banknote,
+    iconClass: "bg-rose-50 text-rose-600 ring-rose-100",
+  },
+  {
+    label: "Partner companies",
+    value: "1000+",
+    Icon: Building2,
+    iconClass: "bg-amber-50 text-amber-600 ring-amber-100",
+  },
+  {
+    label: "Job assistance",
+    value: "100%",
+    Icon: BadgeCheck,
+    iconClass: "bg-indigo-50 text-indigo-600 ring-indigo-100",
+  },
+  {
+    label: "Average CTC",
+    value: "8 LPA",
+    Icon: TrendingUp,
+    iconClass: "bg-emerald-50 text-emerald-700 ring-emerald-100",
+  },
+  {
+    label: "Placement rate",
+    value: "96%",
+    Icon: Target,
+    iconClass: "bg-violet-50 text-violet-600 ring-violet-100",
+  },
+] as const;
 
 const reviews = [
   {
@@ -165,27 +206,37 @@ export default function HiringPartnerReview() {
           ))}
         </div>
 
-        {/* Stats Summary — aligned with course detail placement stats */}
-        <div className="mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
-          {[
-            { label: "Highest Package", value: "18 LPA" },
-            { label: "Partner Companies", value: "1000+" },
-            { label: "Job Assistance", value: "100%" },
-            { label: "Avg CTC", value: "8 LPA" },
-            { label: "Placement Rate", value: "96%" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center p-4 rounded-2xl bg-white/50 border border-white/20"
-            >
-              <p className="text-3xl font-bold text-indigo-600 mb-1 font-display">{stat.value}</p>
-              <p className="text-xs font-black text-slate-400 uppercase tracking-widest">{stat.label}</p>
-            </motion.div>
-          ))}
+        {/* Placement highlights — same figures as course pages; type tuned for readability */}
+        <div className="mt-20 rounded-[28px] border border-slate-200/90 bg-white p-4 shadow-[0_20px_50px_-24px_rgba(15,23,42,0.12)] ring-1 ring-slate-900/[0.04] sm:p-6">
+          <p className="mb-4 px-1 text-center text-sm font-semibold text-slate-700 sm:mb-5">
+            Placement &amp; career highlights
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            {placementHighlightStats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+                className="flex gap-4 rounded-2xl border border-slate-100 bg-slate-50/60 p-4 transition-colors hover:border-indigo-200/60 hover:bg-white sm:p-5"
+              >
+                <div
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 ${stat.iconClass}`}
+                >
+                  <stat.Icon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-2xl font-bold leading-none tracking-tight text-slate-900 tabular-nums sm:text-[1.65rem]">
+                    {stat.value}
+                  </p>
+                  <p className="mt-2 text-sm font-medium leading-snug text-slate-600">
+                    {stat.label}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { INDIAN_STATES_AND_UTS } from "@/data/indianStates";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { 
@@ -233,11 +234,14 @@ export default function CallbackModal({
                     state ? "text-slate-600" : "text-slate-400"
                   }`}
                 >
-                  <option value="" disabled>Select State</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="" disabled>
+                    Select state / UT
+                  </option>
+                  {INDIAN_STATES_AND_UTS.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
                 </select>
                 <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
                   <ChevronDown className="h-5 w-5 text-slate-400" />

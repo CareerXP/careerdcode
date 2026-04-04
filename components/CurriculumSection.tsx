@@ -13,6 +13,12 @@ interface CurriculumSectionProps {
 }
 
 export default function CurriculumSection({ curriculum }: CurriculumSectionProps) {
+  const moduleCount = curriculum.length;
+  const subTopicCount = curriculum.reduce(
+    (n, item) => n + (item.subTopics?.length ?? 0),
+    0
+  );
+
   return (
     <section id="curriculum" className="py-32 bg-slate-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,13 +38,60 @@ export default function CurriculumSection({ curriculum }: CurriculumSectionProps
             </p>
           </div>
           <div className="lg:col-span-7 flex items-end">
-            <div className="flex items-center gap-8 p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 w-full">
-              <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shrink-0">
-                <span className="text-2xl font-bold font-display">{curriculum.length}</span>
+            <div className="w-full overflow-hidden rounded-[28px] border border-slate-200/90 bg-white shadow-[0_24px_64px_-28px_rgba(15,23,42,0.14)] ring-1 ring-slate-900/[0.04]">
+              <div className="border-b border-slate-100 bg-gradient-to-r from-slate-50 via-white to-indigo-50/50 px-6 py-4 sm:px-8">
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-indigo-600 font-display">
+                  Syllabus at a glance
+                </p>
+                <p className="mt-1 text-sm font-medium text-slate-500">
+                  Numbers are computed from the syllabus data for this course.
+                </p>
               </div>
-              <div>
-                <p className="text-xl font-bold text-slate-900 font-display">Comprehensive Modules</p>
-                <p className="text-sm text-slate-400 font-black uppercase tracking-widest font-mono">Covering 200+ Topics</p>
+              <div
+                className={`grid ${subTopicCount > 0 ? 'sm:grid-cols-2' : ''} divide-y divide-slate-100 sm:divide-y-0 sm:divide-x sm:divide-slate-100`}
+              >
+                <div className="flex items-center gap-5 px-6 py-6 sm:px-8 sm:py-8">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 shadow-sm ring-1 ring-indigo-100/80">
+                    <span className="font-display text-2xl font-bold tabular-nums">{moduleCount}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400 font-display">
+                      Modules
+                    </p>
+                    <p className="mt-1 font-display text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
+                      Major course units
+                    </p>
+                  </div>
+                </div>
+                {subTopicCount > 0 ? (
+                  <div className="flex items-center gap-5 px-6 py-6 sm:px-8 sm:py-8">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-sm ring-1 ring-emerald-100/80">
+                      <span className="font-display text-2xl font-bold tabular-nums">{subTopicCount}</span>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400 font-display">
+                        Sub-topics
+                      </p>
+                      <p className="mt-1 font-display text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
+                        Listed breakdown items
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-5 px-6 py-6 sm:px-8 sm:py-8">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-slate-500 shadow-sm ring-1 ring-slate-200/80">
+                      <span className="font-display text-xl font-bold">—</span>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400 font-display">
+                        Sub-topics
+                      </p>
+                      <p className="mt-1 text-sm font-medium leading-snug text-slate-500">
+                        Expand each module below—sub-topic lists will appear when defined for this course.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

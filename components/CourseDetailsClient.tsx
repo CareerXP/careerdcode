@@ -1,10 +1,15 @@
 "use client";
 
-import { 
-  CheckCircle2, 
-  ArrowRight, 
-  Download, 
+import {
+  ArrowRight,
+  BadgeCheck,
+  Banknote,
+  Building2,
+  CheckCircle2,
   ChevronDown,
+  Download,
+  Target,
+  TrendingUp,
 } from 'lucide-react';
 import { Course } from '@/data/courses';
 import TrustedCompanies from '@/components/TrustedCompanies';
@@ -522,26 +527,77 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
         </div>
       </section>
 
-      {/* Floating Stats Bar */}
+      {/* Outcomes strip — overlaps hero */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-        <div className="bg-white rounded-2xl shadow-2xl py-6 px-4 sm:py-10 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-slate-100 border border-slate-100 overflow-hidden">
-          {[
-            { label: 'Highest Package', value: '18 LPA', icon: '💰', color: 'bg-red-50' },
-            { label: 'Partner Companies', value: '1000+', icon: '🤝', color: 'bg-orange-50' },
-            { label: 'Job Assistance', value: '100%', icon: '✅', color: 'bg-indigo-50' },
-            { label: 'Avg CTC', value: '8 LPA', icon: '📈', color: 'bg-emerald-50' },
-            { label: 'Placement Rate', value: '96%', icon: '🎯', color: 'bg-indigo-50' }
-          ].map((stat, idx) => (
-            <div key={idx} className="bg-white flex items-center gap-5 p-4">
-              <div className={`w-12 h-12 ${stat.color} rounded-xl flex items-center justify-center text-xl shadow-sm`}>
-                {stat.icon}
+        <div className="rounded-3xl border border-slate-200/90 bg-white shadow-[0_24px_64px_-12px_rgba(15,23,42,0.18)] overflow-hidden ring-1 ring-slate-900/[0.04]">
+          <div className="flex flex-col gap-1 border-b border-slate-100 bg-gradient-to-r from-slate-50 via-white to-indigo-50/40 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-indigo-600 font-display">
+              Placement &amp; career outcomes
+            </p>
+            <p className="text-xs font-medium text-slate-500">
+              Numbers learners use to plan their next move.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-slate-100">
+            {(
+              [
+                {
+                  label: 'Highest package',
+                  value: '18 LPA',
+                  Icon: Banknote,
+                  accent: 'text-rose-600',
+                  surface: 'bg-rose-50',
+                },
+                {
+                  label: 'Partner companies',
+                  value: '1000+',
+                  Icon: Building2,
+                  accent: 'text-amber-600',
+                  surface: 'bg-amber-50',
+                },
+                {
+                  label: 'Job assistance',
+                  value: '100%',
+                  Icon: BadgeCheck,
+                  accent: 'text-indigo-600',
+                  surface: 'bg-indigo-50',
+                },
+                {
+                  label: 'Avg CTC',
+                  value: '8 LPA',
+                  Icon: TrendingUp,
+                  accent: 'text-emerald-600',
+                  surface: 'bg-emerald-50',
+                },
+                {
+                  label: 'Placement rate',
+                  value: '96%',
+                  Icon: Target,
+                  accent: 'text-violet-600',
+                  surface: 'bg-violet-50',
+                },
+              ] as const
+            ).map(({ label, value, Icon, accent, surface }) => (
+              <div
+                key={label}
+                className="group flex items-center gap-4 bg-white px-5 py-5 sm:px-6 sm:py-7 transition-colors hover:bg-slate-50/90"
+              >
+                <div
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${surface} shadow-sm ring-1 ring-black/[0.04] transition-transform duration-300 group-hover:scale-[1.04]`}
+                >
+                  <Icon className={`h-5 w-5 ${accent}`} strokeWidth={2.25} aria-hidden />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-2xl font-bold tabular-nums tracking-tight text-slate-900 sm:text-[1.65rem] leading-none">
+                    {value}
+                  </p>
+                  <p className="mt-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                    {label}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-2xl font-bold text-slate-900 leading-none mb-1.5 font-display tracking-tight">{stat.value}</p>
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{stat.label}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
@@ -571,25 +627,38 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
             </h2>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px bg-slate-100 border border-slate-100 rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/50">
-            {course.techStack.map((tech) => (
-              <div key={tech} className="bg-white p-10 flex flex-col items-center justify-center gap-6 group hover:bg-slate-50 transition-colors">
-                <div className="w-16 h-16 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                  <img 
-                    src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech}/${tech}-original.svg`} 
-                    alt={tech}
-                    className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech}/${tech}-plain.svg`;
-                    }}
-                    referrerPolicy="no-referrer"
+          <div className="rounded-[28px] border border-slate-200/90 bg-gradient-to-b from-slate-50/80 via-white to-indigo-50/30 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] ring-1 ring-slate-900/[0.04] sm:p-6 lg:p-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+              {course.techStack.map((tech) => (
+                <div
+                  key={tech}
+                  className="group relative flex flex-col items-center justify-center gap-3.5 overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 px-3 py-6 shadow-sm backdrop-blur-[2px] transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200/90 hover:bg-white hover:shadow-[0_20px_48px_-28px_rgba(79,70,229,0.35)] sm:gap-4 sm:px-4 sm:py-8"
+                >
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_-20%,rgba(99,102,241,0.12),transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 ring-1 ring-slate-100 transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-50/80 group-hover:ring-indigo-100 sm:h-14 sm:w-14">
+                    <img
+                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech}/${tech}-original.svg`}
+                      alt=""
+                      className="h-8 w-8 object-contain grayscale transition-all duration-300 group-hover:grayscale-0 sm:h-9 sm:w-9"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech}/${tech}-plain.svg`;
+                      }}
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <span className="relative max-w-full truncate px-1 text-center text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 transition-colors duration-300 group-hover:text-indigo-600 font-display">
+                    {tech}
+                  </span>
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-indigo-600 transition-colors font-display">
-                  {tech}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

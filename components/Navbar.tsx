@@ -63,7 +63,7 @@ export default function Navbar({
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-26">
           {/* Logo */}
           <Link
             href="/"
@@ -76,7 +76,7 @@ export default function Navbar({
               alt=""
               width={1600}
               height={1600}
-              className="h-12 w-12 sm:h-14 sm:w-14 object-contain object-center"
+              className="h-16 w-16 sm:h-22 sm:w-22 object-contain object-center"
               priority
               quality={95}
               sizes="(max-width: 640px) 48px, 56px"
@@ -89,7 +89,7 @@ export default function Navbar({
               <Link 
                 key={link.name} 
                 href={link.href} 
-                className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors"
+                className="text-[12px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors"
               >
                 {link.name}
               </Link>
@@ -100,7 +100,7 @@ export default function Navbar({
               <button 
                 onMouseEnter={() => setIsMoreMenuOpen(true)}
                 onMouseLeave={() => setIsMoreMenuOpen(false)}
-                className="flex items-center gap-1 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 cursor-pointer transition-colors"
+                className="flex items-center gap-1 text-[12px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 cursor-pointer transition-colors"
               >
                 More <ChevronDown size={12} className={`transition-transform duration-300 ${isMoreMenuOpen ? 'rotate-180' : ''}`} />
               </button>
