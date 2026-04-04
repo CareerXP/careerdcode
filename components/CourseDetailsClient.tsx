@@ -222,7 +222,7 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen min-w-0 bg-white">
       <div className="sticky top-0 z-50">
         {/* Top Banner */}
         <div className="bg-slate-900 text-white text-center py-2 text-[10px] font-black uppercase tracking-[0.2em] shadow-md">
@@ -236,35 +236,38 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
         {/* Technical Grid Background */}
         <div className="absolute inset-0 -z-10 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:32px_32px]"></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+        <div className="relative z-10 mx-auto max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
+          <div className="grid min-w-0 grid-cols-1 gap-16 items-start lg:grid-cols-12">
             
             {/* Left Content */}
-            <div className="lg:col-span-7">
-              <div className="space-y-10">
-                <div>
+            <div className="min-w-0 lg:col-span-7">
+              <div className="min-w-0 space-y-10">
+                <div className="min-w-0">
                   <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 font-display mb-6 block">
                     PROFESSIONAL CERTIFICATION
                   </span>
-                  <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-slate-900 font-display tracking-tight leading-[0.9] mb-8">
+                  <h1 className="mb-8 break-words text-4xl font-bold leading-[0.9] tracking-tight text-slate-900 font-display sm:text-5xl lg:text-8xl">
                     {course.title.split('-')[0]} <br />
                     <span className="text-indigo-600">Full Stack</span> <br />
                     Development.
                   </h1>
                 </div>
                 
-                <div className="flex items-center gap-6">
-                  <div className="h-px w-12 bg-slate-900"></div>
-                  <h2 className="text-xl lg:text-2xl font-medium text-slate-600 italic font-serif">
+                <div className="flex min-w-0 items-start gap-4 sm:gap-6">
+                  <div
+                    className="mt-[0.65em] h-px w-10 shrink-0 bg-slate-900 sm:w-12"
+                    aria-hidden
+                  />
+                  <h2 className="min-w-0 flex-1 break-words text-xl font-medium leading-snug text-slate-600 italic font-serif lg:text-2xl">
                     Master {course.techStack.slice(0, 4).join(', ')} & more
                   </h2>
                 </div>
 
-                <div className="flex items-start gap-6 p-8 bg-slate-50 rounded-2xl border border-slate-100 max-w-xl">
-                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 shrink-0">
+                <div className="flex min-w-0 max-w-xl items-start gap-6 rounded-2xl border border-slate-100 bg-slate-50 p-6 sm:p-8">
+                  <div className="w-12 h-12 shrink-0 rounded-xl border border-slate-100 bg-white shadow-sm flex items-center justify-center">
                     <CheckCircle2 className="text-indigo-600" size={24} />
                   </div>
-                  <p className="text-lg text-slate-600 leading-relaxed font-medium">
+                  <p className="min-w-0 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
                     Curriculum designed and taught by Alumni from <span className="text-slate-900 font-bold">IITs & Leading Tech Companies</span>.
                   </p>
                 </div>
@@ -289,8 +292,8 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
             </div>
             
             {/* Right Content: Form Card */}
-            <div className="lg:col-span-5 w-full max-w-xl mx-auto lg:max-w-none">
-              <div className="bg-white p-6 sm:p-10 lg:p-12 rounded-[32px] border border-slate-100 shadow-2xl shadow-slate-200/50 relative">
+            <div className="mx-auto w-full min-w-0 max-w-xl lg:col-span-5 lg:mx-0 lg:max-w-none">
+              <div className="relative min-w-0 rounded-[32px] border border-slate-100 bg-white p-6 shadow-2xl shadow-slate-200/50 sm:p-10 lg:p-12">
                 <div className="absolute top-0 right-10 transform -translate-y-1/2">
                   <div className="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
                     FREE DEMO
