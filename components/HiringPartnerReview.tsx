@@ -64,7 +64,7 @@ const reviews = [
     role: "Talent Acquisition Executive",
     submittedAt: "28 Mar 2026 · 18:18",
     review:
-      "Devanshu consistently delivered quality candidates for fresher roles like Trainee Software Engineers and Test Engineers. His understanding of requirements and quick turnaround made the hiring process smooth and efficient. Highly recommended.",
+      "CareerXP consistently delivered quality candidates for fresher roles like Trainee Software Engineers and Test Engineers. His understanding of requirements and quick turnaround made the hiring process smooth and efficient. Highly recommended.",
     rating: 5,
   },
   {
@@ -81,13 +81,13 @@ const reviews = [
     partnerName: "Mohammed Ansaf",
     role: "Lead Campus Recruiter",
     submittedAt: "28 Mar 2026 · 23:32",
-    review: `Devanshu played a key role in helping us close a highly niche position that demanded a rare combination of skills and knowledge, especially at a fresher level. Identifying candidates who meet such specific expectations is never easy, but his persistence and sharp understanding of the requirement made a significant difference.
+    review: `CareerXP played a key role in helping us close a highly niche position that demanded a rare combination of skills and knowledge, especially at a fresher level. Identifying candidates who meet such specific expectations is never easy, but his persistence and sharp understanding of the requirement made a significant difference.
 
 What stood out the most was his unwavering confidence in the candidates he presented. He didn't just share profiles, he strongly believed in their potential and took the time to thoroughly evaluate how well they aligned with both the technical and functional aspects of the role. This gave us a lot of confidence during the evaluation process and helped us move forward with clarity.
 
 His dedication throughout the process was evident in the way he stayed closely involved, ensured timely follow-ups, and maintained clear communication at every stage. He was proactive in addressing concerns, open to feedback, and consistently worked towards finding the right fit rather than just a quick closure.
 
-Overall, Devanshu's commitment, ownership, and belief in his candidates made a meaningful impact on successfully closing this challenging role.`,
+Overall, CareerXP's commitment, ownership, and belief in his candidates made a meaningful impact on successfully closing this challenging role.`,
     rating: 5,
   },
 ];
