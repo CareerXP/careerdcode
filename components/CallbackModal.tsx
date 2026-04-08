@@ -231,10 +231,7 @@ export default function CallbackModal({
                 <input
                   type="tel"
                   value={whatsappNumber}
-                  onChange={(e) => {
-                    setWhatsappNumber(normalizeIndianMobile(e.target.value));
-                    if (status.kind === "error") setStatus({ kind: "idle" });
-                  }}
+                  onChange={(e) => setWhatsappNumber(e.target.value)}
                   className="flex-1 min-w-0 py-4 pr-4 bg-transparent border-none rounded-r-xl outline-none font-sans text-slate-600 placeholder:text-slate-400"
                   placeholder="WhatsApp number"
                   autoComplete="tel-national"

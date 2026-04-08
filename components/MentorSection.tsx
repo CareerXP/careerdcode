@@ -179,7 +179,7 @@ export default function MentorSection() {
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: mentors.length * 8,
+              duration: mentors.length * 10,
               ease: "linear",
             },
           }}
