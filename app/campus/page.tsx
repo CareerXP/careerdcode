@@ -156,13 +156,77 @@ export default function RecruitersPage() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-square bg-slate-50 rounded-[64px] border border-slate-100 overflow-hidden">
-                <img 
-                  src="/campus.png" 
-                  alt="Campus Ecosystem" 
-                  className="w-full h-full object-cover opacity-80"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative aspect-square rounded-[64px] border border-slate-200 bg-gradient-to-br from-white via-indigo-50/40 to-slate-50 overflow-hidden shadow-[0_30px_90px_-60px_rgba(79,70,229,0.45)]">
+                <div className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl" />
+                <div className="absolute -bottom-20 -right-16 h-72 w-72 rounded-full bg-violet-200/40 blur-3xl" />
+                <div className="absolute inset-0 opacity-[0.35] bg-[radial-gradient(#4F46E5_1px,transparent_1px)] [background-size:26px_26px]" />
+
+                <div className="relative h-full p-8 sm:p-10 flex flex-col">
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex items-center gap-2 rounded-2xl border border-indigo-200/60 bg-white/70 px-4 py-2 text-[10px] font-black uppercase tracking-[0.25em] text-indigo-700 backdrop-blur-sm">
+                      <Calendar size={14} className="text-indigo-600" />
+                      Placement roadmap
+                    </div>
+                    <div className="hidden sm:flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                      <span className="h-[1px] w-10 bg-slate-200" />
+                      Campus to career
+                    </div>
+                  </div>
+
+                  <div className="mt-8 grid grid-cols-2 gap-4">
+                    <div className="rounded-3xl border border-slate-200/80 bg-white/70 p-5 backdrop-blur-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">
+                          <Building2 size={18} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-2xl font-black text-slate-900 font-display leading-none">
+                            1000+
+                          </p>
+                          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                            Hiring partners
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-3xl border border-slate-200/80 bg-white/70 p-5 backdrop-blur-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
+                          <BarChart3 size={18} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-2xl font-black text-slate-900 font-display leading-none">
+                            96%
+                          </p>
+                          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                            Placement rate
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex-1 rounded-[36px] border border-slate-200/80 bg-white/70 p-6 backdrop-blur-sm">
+                    <p className="text-xs font-black uppercase tracking-[0.25em] text-slate-400">
+                      What you get
+                    </p>
+                    <div className="mt-4 space-y-3">
+                      {[
+                        "Skill assessment + gap mapping",
+                        "Mock interviews & hiring drives",
+                        "Ongoing placement opportunities",
+                      ].map((item) => (
+                        <div key={item} className="flex items-center gap-3">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">
+                            <ChevronRight size={16} />
+                          </span>
+                          <span className="text-sm font-semibold text-slate-700">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>

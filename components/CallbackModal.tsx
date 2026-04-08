@@ -21,6 +21,10 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
 }
 
+function normalizeIndianMobile(value: string): string {
+  return value.replace(/\D/g, "").slice(0, 10);
+}
+
 interface CallbackModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -84,6 +88,19 @@ export default function CallbackModal({
       return;
     }
 
+    const whatsappNormalized = normalizeIndianMobile(whatsappNumber);
+    if (!whatsappNormalized) {
+      setStatus({ kind: "error", message: "Please enter your WhatsApp number." });
+      return;
+    }
+    if (whatsappNormalized.length !== 10) {
+      setStatus({
+        kind: "error",
+        message: "Please enter a valid 10-digit WhatsApp number.",
+      });
+      return;
+    }
+
     setStatus({ kind: "loading" });
 
     try {
@@ -95,7 +112,7 @@ export default function CallbackModal({
           triggerPoint,
           name: name.trim(),
           email: emailTrimmed,
-          whatsappNumber: whatsappNumber.trim(),
+          whatsappNumber: whatsappNormalized,
           state,
           degree,
           graduationYear,
@@ -214,11 +231,15 @@ export default function CallbackModal({
                 <input
                   type="tel"
                   value={whatsappNumber}
-                  onChange={(e) => setWhatsappNumber(e.target.value)}
+                  onChange={(e) => {
+                    setWhatsappNumber(normalizeIndianMobile(e.target.value));
+                    if (status.kind === "error") setStatus({ kind: "idle" });
+                  }}
                   className="flex-1 min-w-0 py-4 pr-4 bg-transparent border-none rounded-r-xl outline-none font-sans text-slate-600 placeholder:text-slate-400"
                   placeholder="WhatsApp number"
                   autoComplete="tel-national"
                   inputMode="numeric"
+                  maxLength={10}
                 />
               </div>
 

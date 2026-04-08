@@ -89,7 +89,7 @@ export default function Navbar({
               <Link 
                 key={link.name} 
                 href={link.href} 
-                className="text-[12px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition-colors"
+                className="text-[12px] font-black text-slate-900 uppercase tracking-widest hover:text-indigo-600 transition-colors"
               >
                 {link.name}
               </Link>
@@ -100,7 +100,7 @@ export default function Navbar({
               <button 
                 onMouseEnter={() => setIsMoreMenuOpen(true)}
                 onMouseLeave={() => setIsMoreMenuOpen(false)}
-                className="flex items-center gap-1 text-[12px] font-black text-slate-400 uppercase tracking-widest hover:text-indigo-600 cursor-pointer transition-colors"
+                className="flex items-center gap-1 text-[12px] font-black text-slate-900 uppercase tracking-widest hover:text-indigo-600 cursor-pointer transition-colors"
               >
                 More <ChevronDown size={12} className={`transition-transform duration-300 ${isMoreMenuOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -120,7 +120,7 @@ export default function Navbar({
                         <Link
                           key={link.name}
                           href={link.href}
-                          className="block px-6 py-4 text-[10px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-50 hover:text-indigo-600 transition-all"
+                          className="block px-6 py-4 text-[10px] font-black text-slate-900 uppercase tracking-widest hover:bg-slate-50 hover:text-indigo-600 transition-all"
                         >
                           {link.name}
                         </Link>
@@ -168,7 +168,7 @@ export default function Navbar({
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-4 text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all"
+                  className="block px-4 py-4 text-[10px] font-black text-slate-900 uppercase tracking-[0.2em] hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all"
                 >
                   {link.name}
                 </Link>
@@ -182,7 +182,7 @@ export default function Navbar({
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-3 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] hover:text-indigo-600 transition-all"
+                    className="block px-4 py-3 text-[10px] font-black text-slate-900 uppercase tracking-[0.2em] hover:text-indigo-600 transition-all"
                   >
                     {link.name}
                   </Link>

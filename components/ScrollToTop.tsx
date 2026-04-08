@@ -34,12 +34,12 @@ export default function ScrollToTop() {
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          className="fixed bottom-8 left-0 right-0 z-50 flex justify-center md:left-auto md:right-8 md:w-auto md:justify-start"
+          className="fixed bottom-8 left-0 right-0 z-50 flex justify-center pointer-events-none md:left-auto md:right-8 md:w-auto md:justify-start"
         >
           <button
             type="button"
             onClick={scrollToTop}
-            className="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-2xl shadow-slate-900/20 hover:bg-indigo-600 hover:scale-110 transition-all duration-300 group"
+            className="pointer-events-auto w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-2xl shadow-slate-900/20 hover:bg-indigo-600 hover:scale-110 transition-all duration-300 group"
             aria-label="Scroll to top"
           >
             <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform duration-300" />

@@ -19,6 +19,10 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
 }
 
+function normalizeIndianMobile(value: string): string {
+  return value.replace(/\D/g, "").slice(0, 10);
+}
+
 interface CampusEnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -82,9 +86,16 @@ export default function CampusEnquiryModal({
       setStatus({ kind: "error", message: "Please enter your college name." });
       return;
     }
-    const phoneTrimmed = contactNumber.trim();
-    if (!phoneTrimmed) {
+    const phoneNormalized = normalizeIndianMobile(contactNumber);
+    if (!phoneNormalized) {
       setStatus({ kind: "error", message: "Please enter your contact number." });
+      return;
+    }
+    if (phoneNormalized.length !== 10) {
+      setStatus({
+        kind: "error",
+        message: "Please enter a valid 10-digit mobile number.",
+      });
       return;
     }
     const emailTrimmed = email.trim();
@@ -110,7 +121,7 @@ export default function CampusEnquiryModal({
           name: nameTrimmed,
           designation: designation.trim(),
           collegeName: collegeName.trim(),
-          contactNumber: phoneTrimmed,
+          contactNumber: phoneNormalized,
           email: emailTrimmed,
           state,
         }),
@@ -231,11 +242,15 @@ export default function CampusEnquiryModal({
                 <input
                   type="tel"
                   value={contactNumber}
-                  onChange={(e) => setContactNumber(e.target.value)}
+                  onChange={(e) => {
+                    setContactNumber(normalizeIndianMobile(e.target.value));
+                    if (status.kind === "error") setStatus({ kind: "idle" });
+                  }}
                   className="flex-1 min-w-0 py-4 pr-4 bg-transparent border-none rounded-r-xl outline-none font-sans text-slate-600 placeholder:text-slate-400"
                   placeholder="Mobile number"
                   autoComplete="tel-national"
                   inputMode="numeric"
+                  maxLength={10}
                 />
               </div>
 
@@ -271,10 +286,46 @@ export default function CampusEnquiryModal({
                   <option value="" disabled>
                     Select State
                   </option>
+                  <option value="Andaman and Nicobar Islands">
+                    Andaman and Nicobar Islands
+                  </option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Dadra and Nagar Haveli and Daman and Diu">
+                    Dadra and Nagar Haveli and Daman and Diu
+                  </option>
                   <option value="Delhi">Delhi</option>
-                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  <option value="Jharkhand">Jharkhand</option>
                   <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Ladakh">Ladakh</option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Puducherry">Puducherry</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
                   <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
                   <ChevronDown className="h-5 w-5 text-slate-400" />

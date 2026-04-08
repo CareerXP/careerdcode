@@ -91,6 +91,9 @@ const brandLogos: string[] = [
   "/assets/brands/85.png",
 ];
 
+const row1Logos = brandLogos.filter((_, i) => i % 2 === 0);
+const row2Logos = brandLogos.filter((_, i) => i % 2 === 1);
+
 export default function TrustedCompanies() {
   return (
     <section className="py-20 bg-white">
@@ -104,29 +107,56 @@ export default function TrustedCompanies() {
           </p>
         </div>
 
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex items-center gap-10 md:gap-16 lg:gap-20 whitespace-nowrap"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 30,
-              ease: "linear",
-            }}
-          >
-            {[...brandLogos, ...brandLogos].map((src, index) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={`${src}-${index}`}
-                src={src}
-                alt=""
-                className="h-8 md:h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-                loading="lazy"
-                referrerPolicy="no-referrer"
-              />
-            ))}
-          </motion.div>
+        <div className="space-y-6">
+          <div className="relative overflow-hidden">
+            <motion.div
+              className="flex items-center gap-10 md:gap-16 lg:gap-20 whitespace-nowrap"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 24,
+                ease: "linear",
+              }}
+            >
+              {[...row1Logos, ...row1Logos].map((src, index) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={`rtl-${src}-${index}`}
+                  src={src}
+                  alt=""
+                  className="h-8 md:h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="relative overflow-hidden">
+            <motion.div
+              className="flex items-center gap-10 md:gap-16 lg:gap-20 whitespace-nowrap"
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 24,
+                ease: "linear",
+              }}
+            >
+              {[...row2Logos, ...row2Logos].map((src, index) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={`ltr-${src}-${index}`}
+                  src={src}
+                  alt=""
+                  className="h-8 md:h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
