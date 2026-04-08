@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 type Step = {
@@ -14,7 +13,6 @@ type Step = {
   bullets?: string[];
   footnote?: string;
   highlights?: string[];
-  image: string;
   cta?: { label: string; href: string };
 };
 
@@ -27,7 +25,6 @@ const steps: Step[] = [
     bullets: ["Aptitude", "Technical Concepts", "Coding Skills"],
     footnote:
       "Based on your performance, we create a personalised training roadmap focusing on your weak areas.",
-    image: "/Skill assessment image.png",
     cta: { label: "Choose your learning path", href: "/#courses" }
   },
   {
@@ -36,7 +33,6 @@ const steps: Step[] = [
     title: "Learn exactly what companies ask in interviews.",
     intro:
       "Get trained by mentors who are already working in top product & service-based companies — teaching you what actually matters.",
-    image: "/Mentors.png",
     cta: { label: "Meet our mentors", href: "/#mentors" }
   },
   {
@@ -46,7 +42,6 @@ const steps: Step[] = [
     intro: "We make you practice on:",
     bullets: ["HackerRank", "LeetCode", "CodeChef", "Codeforces"],
     footnote: "So you're ready for real coding rounds.",
-    image: "/coding.png"
   },
   {
     id: 4,
@@ -58,8 +53,7 @@ const steps: Step[] = [
       "GitHub Portfolio",
       "Real Projects",
       "Community access (Discord)"
-    ],
-    image: "/coding.png"
+    ]
   },
   {
     id: 5,
@@ -70,7 +64,6 @@ const steps: Step[] = [
       "Real interview scenarios",
       "Feedback from industry experts"
     ],
-    image: "/Mock Interviews.png"
   },
   {
     id: 6,
@@ -82,8 +75,7 @@ const steps: Step[] = [
       "Get access to real company interviews from Day 1",
       "Unlimited interview opportunities",
       "Continuous support until you get placed"
-    ],
-    image: "/Placement.png"
+    ]
   }
 ];
 
@@ -133,7 +125,7 @@ export default function StepsToSuccess() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center"
+              className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 items-center"
             >
               {/* Left: copy */}
               <div className="min-w-0 space-y-4 sm:space-y-6">
@@ -191,17 +183,66 @@ export default function StepsToSuccess() {
                 )}
               </div>
 
-              {/* Right: Image */}
-              <div className="relative w-full aspect-video lg:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group">
-                <Image
-                  src={step.image}
-                  alt={step.title}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Right: Visual (no images) */}
+              <div className="relative w-full rounded-3xl overflow-hidden border border-slate-200 bg-gradient-to-br from-white via-indigo-50/40 to-slate-50 shadow-2xl shadow-indigo-100 min-h-[320px] sm:min-h-[360px] lg:min-h-[420px]">
+                <div className="absolute -top-16 -left-16 h-56 w-56 rounded-full bg-indigo-200/40 blur-3xl" />
+                <div className="absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-violet-200/40 blur-3xl" />
+                <div className="absolute inset-0 opacity-[0.25] bg-[radial-gradient(#4F46E5_1px,transparent_1px)] [background-size:26px_26px]" />
+
+                <div className="relative h-full p-6 sm:p-8 flex flex-col gap-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-black uppercase tracking-[0.35em] text-slate-400">
+                        Step 0{step.id}
+                      </p>
+                      <p className="mt-2 text-2xl sm:text-3xl font-black text-slate-900 font-display leading-tight">
+                        {step.label}
+                      </p>
+                    </div>
+                    <div className="shrink-0 rounded-2xl border border-indigo-200/60 bg-white/70 px-3 py-2 text-[10px] font-black uppercase tracking-[0.25em] text-indigo-700 backdrop-blur-sm">
+                      CareerXP
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {(step.bullets ?? step.highlights ?? []).slice(0, 6).map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-slate-200 bg-white/70 px-3 py-2 text-xs font-bold text-slate-700 backdrop-blur-sm"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl border border-slate-200/80 bg-white/70 p-4 backdrop-blur-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                        Focus
+                      </p>
+                      <p className="mt-2 text-sm font-semibold text-slate-700">
+                        {step.intro ? "Structured training" : "Placement outcomes"}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200/80 bg-white/70 p-4 backdrop-blur-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                        Outcome
+                      </p>
+                      <p className="mt-2 text-sm font-semibold text-slate-700">
+                        Shortlist-ready profile
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-auto flex items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white/70 px-4 py-3 backdrop-blur-sm">
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                      Next up
+                    </p>
+                    <p className="text-xs font-bold text-slate-700 truncate">
+                      {steps[(activeStep + 1) % steps.length].label}
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>

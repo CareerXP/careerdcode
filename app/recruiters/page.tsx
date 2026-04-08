@@ -186,13 +186,78 @@ export default function RecruitersPage() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-square bg-slate-50 rounded-[64px] border border-slate-100 overflow-hidden">
-                <img 
-                  src="/recruiter.png" 
-                  alt="Hiring Solutions" 
-                  className="w-full h-full object-cover opacity-80"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative aspect-square rounded-[64px] border border-slate-200 bg-gradient-to-br from-white via-indigo-50/40 to-slate-50 overflow-hidden shadow-[0_30px_90px_-60px_rgba(79,70,229,0.45)]">
+                <div className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl" />
+                <div className="absolute -bottom-20 -right-16 h-72 w-72 rounded-full bg-violet-200/40 blur-3xl" />
+                <div className="absolute inset-0 opacity-[0.35] bg-[radial-gradient(#4F46E5_1px,transparent_1px)] [background-size:26px_26px]" />
+
+                <div className="relative h-full p-8 sm:p-10 flex flex-col">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="inline-flex items-center gap-2 rounded-2xl border border-indigo-200/60 bg-white/70 px-4 py-2 text-[10px] font-black uppercase tracking-[0.25em] text-indigo-700 backdrop-blur-sm">
+                      <MessageSquare size={14} className="text-indigo-600" />
+                      Recruiter desk
+                    </div>
+                    <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200/60 bg-white/70 px-4 py-2 text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700 backdrop-blur-sm">
+                      <Coins size={14} className="text-emerald-600" />
+                      Zero cost
+                    </div>
+                  </div>
+
+                  <div className="mt-8 grid grid-cols-2 gap-4">
+                    <div className="rounded-3xl border border-slate-200/80 bg-white/70 p-5 backdrop-blur-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">
+                          <Users size={18} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-2xl font-black text-slate-900 font-display leading-none">
+                            Pre-screened
+                          </p>
+                          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                            Candidate pool
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-3xl border border-slate-200/80 bg-white/70 p-5 backdrop-blur-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 ring-1 ring-amber-100">
+                          <Calendar size={18} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-2xl font-black text-slate-900 font-display leading-none">
+                            Faster
+                          </p>
+                          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                            Hiring cycles
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex-1 rounded-[36px] border border-slate-200/80 bg-white/70 p-6 backdrop-blur-sm">
+                    <p className="text-xs font-black uppercase tracking-[0.25em] text-slate-400">
+                      What we handle
+                    </p>
+                    <div className="mt-4 space-y-3">
+                      {[
+                        { Icon: BarChart3, label: "Assessment + screening" },
+                        { Icon: Target, label: "Role-aligned shortlisting" },
+                        { Icon: Globe, label: "Pan-India campus drives" },
+                        { Icon: Zap, label: "Fast coordination" },
+                      ].map(({ Icon, label }) => (
+                        <div key={label} className="flex items-center gap-3">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">
+                            <Icon size={16} aria-hidden />
+                          </span>
+                          <span className="text-sm font-semibold text-slate-700">{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -383,17 +448,51 @@ export default function RecruitersPage() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="aspect-[4/5] bg-slate-900 rounded-[64px] overflow-hidden relative group">
-                  <img 
-                    src="https://picsum.photos/seed/talent/800/1000" 
-                    alt="Talent Pipeline" 
-                    className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-12 left-12 right-12">
-                    <p className="text-3xl font-bold text-white font-display mb-4">10,000+</p>
-                    <p className="text-slate-300 font-medium">Interview-ready candidates across India</p>
+                <div className="aspect-[4/5] rounded-[64px] overflow-hidden relative border border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 shadow-[0_40px_110px_-70px_rgba(15,23,42,0.95)]">
+                  <div className="absolute -top-20 -left-16 h-72 w-72 rounded-full bg-indigo-500/25 blur-3xl" />
+                  <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl" />
+                  <div className="absolute inset-0 opacity-[0.18] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:26px_26px]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+
+                  <div className="relative h-full p-10 sm:p-12 flex flex-col">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="inline-flex items-center gap-2.5 rounded-3xl border border-white/10 bg-white/5 px-5 py-3 text-xs font-black uppercase tracking-[0.25em] text-white/80 backdrop-blur-sm">
+                        <Users size={16} className="text-indigo-200" />
+                        Talent pipeline
+                      </div>
+                      <div className="inline-flex items-center gap-2.5 rounded-3xl border border-white/10 bg-white/5 px-5 py-3 text-xs font-black uppercase tracking-[0.25em] text-white/80 backdrop-blur-sm">
+                        <Globe size={16} className="text-indigo-200" />
+                        Pan India
+                      </div>
+                    </div>
+
+                    <div className="mt-auto">
+                      <p className="text-4xl sm:text-5xl font-black text-white font-display tracking-tight">
+                        10,000+
+                      </p>
+                      <p className="mt-3 text-white/80 font-semibold">
+                        Interview-ready candidates across India
+                      </p>
+
+                      <div className="mt-8 grid grid-cols-2 gap-3">
+                        {[
+                          { Icon: BarChart3, label: "Assessed" },
+                          { Icon: Target, label: "Role-aligned" },
+                          { Icon: Zap, label: "Fast cycles" },
+                          { Icon: Calendar, label: "Drive-ready" },
+                        ].map(({ Icon, label }) => (
+                          <div
+                            key={label}
+                            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm"
+                          >
+                            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-indigo-200 ring-1 ring-white/10">
+                              <Icon size={16} aria-hidden />
+                            </span>
+                            <span className="text-sm font-bold text-white/85">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
