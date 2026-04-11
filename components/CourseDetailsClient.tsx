@@ -12,6 +12,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { Course } from '@/data/courses';
+import { INDIAN_STATES_AND_UTS } from '@/data/indianStates';
 import TrustedCompanies from '@/components/TrustedCompanies';
 import PlacedStudents from '@/components/PlacedStudents';
 import CurriculumSection from '@/components/CurriculumSection';
@@ -62,25 +63,18 @@ const JOB_STATUS_OPTIONS = [
   'Graduated Not Employed',
 ] as const;
 
-const STATE_OPTIONS = [
-  'Delhi',
-  'Maharashtra',
-  'Karnataka',
-  'Uttar Pradesh',
-] as const;
-
 function isValidEmail(value: string): boolean {
   const t = value.trim();
   if (!t) return false;
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
 }
 
-/** Digits only; accepts 10-digit mobile or common prefixes (0 / 91). */
+/** Local 10-digit mobile: strips non-digits, optional leading 91 / 0, caps at 10. */
 function normalizeIndianMobile(input: string): string {
   let d = input.replace(/\D/g, '');
-  if (d.length === 12 && d.startsWith('91')) d = d.slice(2);
+  if (d.length >= 12 && d.startsWith('91')) d = d.slice(2);
   if (d.length === 11 && d.startsWith('0')) d = d.slice(1);
-  return d;
+  return d.slice(0, 10);
 }
 
 function validateCourseApply(
@@ -113,6 +107,9 @@ function validateCourseApply(
   }
   if (!jobStatus) {
     return 'Please select your job status.';
+  }
+  if (!phoneDigits) {
+    return 'Please enter your 10-digit mobile number.';
   }
   if (phoneDigits.length !== 10) {
     return 'Enter a valid 10-digit Indian mobile number.';
@@ -364,12 +361,13 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
                         inputMode="numeric"
                         value={applyPhone}
                         onChange={(e) => {
-                          setApplyPhone(e.target.value);
+                          setApplyPhone(normalizeIndianMobile(e.target.value));
                           if (applyStatus.kind === 'error') setApplyStatus({ kind: 'idle' });
                         }}
-                        autoComplete="tel"
-                        placeholder="98765 43210"
-                        className="min-w-0 flex-1 bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium"
+                        autoComplete="tel-national"
+                        maxLength={10}
+                        placeholder="9876543210"
+                        className="min-w-0 flex-1 bg-slate-50 border border-slate-100 rounded-xl py-4 px-5 text-slate-900 focus:outline-none focus:border-indigo-500 transition-colors font-medium tabular-nums"
                       />
                     </div>
                   </div>
@@ -390,9 +388,9 @@ export default function CourseDetailsClient({ course, nextBatchDate }: CourseDet
                         }`}
                       >
                         <option value="" disabled>
-                          Select state
+                          Select state / UT
                         </option>
-                        {STATE_OPTIONS.map((s) => (
+                        {INDIAN_STATES_AND_UTS.map((s) => (
                           <option key={s} value={s} className="text-slate-900">
                             {s}
                           </option>
