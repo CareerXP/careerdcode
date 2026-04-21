@@ -56,7 +56,6 @@ export default function Navbar({
   const moreLinks = [
     { name: 'FAQ', href: '/#faq' },
     { name: 'Mentors', href: '/#mentors' },
-    { name: 'Reviews', href: '/#reviews' },
     { name: 'Contact Us', href: '/contact' },
   ];
 
@@ -74,12 +73,12 @@ export default function Navbar({
             <Image
               src="/logo.png"
               alt=""
-              width={1600}
-              height={1600}
-              className="h-16 w-16 sm:h-22 sm:w-22 object-contain object-center"
+              width={3200}
+              height={3200}
+              className="h-28 w-28 sm:h-32 sm:w-32 object-contain object-center"
               priority
               quality={95}
-              sizes="(max-width: 640px) 48px, 56px"
+              sizes="(max-width: 640px) 96px, 112px"
             />
           </Link>
 

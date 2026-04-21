@@ -15,7 +15,8 @@ import {
   Target,
   Globe,
   Coins,
-  MessageSquare
+  MessageSquare,
+  Download
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useModal } from "@/components/ClientLayout";
@@ -116,6 +117,28 @@ export default function RecruitersPage() {
     "Zero hiring cost"
   ];
 
+
+  const downloadRecruitersBrochure = () => {
+    const url = "/assets/static/broucher_recruitment.pdf";
+    void (async () => {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("fetch failed");
+        const blob = await res.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = objectUrl;
+        a.download = "broucher_recruiters.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(objectUrl);
+      } catch {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+    })();
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar ctaModal="recruiter-enquiry" />
@@ -161,10 +184,11 @@ export default function RecruitersPage() {
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button 
-                    onClick={() => openRecruiterEnquiryModal()}
+                    onClick={() => downloadRecruitersBrochure()}
                     className="px-8 py-5 bg-white text-slate-900 border-2 border-slate-200 font-black text-xs uppercase tracking-widest rounded-2xl hover:border-indigo-600 transition-all flex items-center gap-4 group"
                   >
-                    Schedule a Discussion
+                    Download Brochure
+                    <Download size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
 

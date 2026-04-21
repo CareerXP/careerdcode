@@ -28,11 +28,11 @@ export default function Footer({ onCallbackClick, onBrochureClick,hideCTA = fals
                 <Image
                   src="/logo.png"
                   alt=""
-                  width={1600}
-                  height={1600}
-                  className="h-14 w-14 sm:h-16 sm:w-16 object-contain object-left"
+                  width={3200}
+                  height={3200}
+                  className="h-28 w-28 sm:h-32 sm:w-32 object-contain object-left"
                   quality={95}
-                  sizes="(max-width: 640px) 56px, 64px"
+                  sizes="(max-width: 640px) 112px, 128px"
                 />
               </Link>
             </div>

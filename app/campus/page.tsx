@@ -12,7 +12,8 @@ import {
   CheckCircle2, 
   AlertCircle,
   Calendar,
-  ChevronRight
+  ChevronRight,
+  Download
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useModal } from "@/components/ClientLayout";
@@ -105,6 +106,27 @@ export default function RecruitersPage() {
     "GOOGLE", "AMAZON", "META", "MICROSOFT", "ADOBE", "NETFLIX", "UBER", "ZOMATO"
   ];
 
+  const downloadCampusBrochure = () => {
+    const url = "/assets/static/broucher_campus.pdf";
+    void (async () => {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("fetch failed");
+        const blob = await res.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = objectUrl;
+        a.download = "broucher_campus.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(objectUrl);
+      } catch {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+    })();
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar ctaModal="campus-enquiry" />
@@ -137,11 +159,12 @@ export default function RecruitersPage() {
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <button 
-                  onClick={() => openCampusEnquiryModal()}
+                  type="button"
+                  onClick={downloadCampusBrochure}
                   className="px-8 py-5 bg-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-4 group"
                 >
-                  Schedule a Discussion
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  Download Brochure
+                  <Download size={18} className="group-hover:translate-y-0.5 transition-transform" />
                 </button>
                 <div className="flex items-center gap-3 text-slate-400 font-mono text-[10px] uppercase tracking-widest">
                   <CheckCircle2 size={14} className="text-indigo-600" />
