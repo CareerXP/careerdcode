@@ -7,13 +7,6 @@ import { useModal } from '@/components/ClientLayout';
 import { ArrowUpRight, Clock, Code2, Layers, Zap } from 'lucide-react';
 import { coursesData } from '@/data/courses';
 
-const COURSE_FEE_OVERRIDES: Record<string, string> = {
-  // Pricing shown on course cards (CourseSection)
-  'mern-genai': '₹49,999', // Full-Stack
-  'dsa-mastery': '₹29,999', // DSA
-  'testing-automation': '₹24,999', // Testing
-};
-
 const DEVICON_BASE =
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons';
 
@@ -264,13 +257,23 @@ export default function CourseSection() {
                     </div>
 
                     <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-6">
-                      <div>
-                        <span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                          Investment
-                        </span>
-                        <span className="font-display text-xl font-bold text-slate-900 sm:text-2xl">
-                          {COURSE_FEE_OVERRIDES[course.id] ?? course.price}
-                        </span>
+                      <div className="min-w-0 pr-3">
+                        <div className="mb-1 flex flex-wrap items-center gap-2">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                            Investment
+                          </span>
+                          <span className="rounded-full bg-emerald-600 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white shadow-sm shadow-emerald-600/25">
+                            {course.discountBadge}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+                          <span className="font-display text-xl font-bold text-indigo-600 sm:text-2xl">
+                            {course.discountedPrice}
+                          </span>
+                          <span className="font-display text-base font-semibold text-slate-400 line-through decoration-slate-400/70">
+                            {course.originalPrice}
+                          </span>
+                        </div>
                       </div>
                       <Link
                         href={`/courses/${course.id}`}

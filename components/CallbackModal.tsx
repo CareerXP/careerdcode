@@ -25,6 +25,27 @@ function normalizeIndianMobile(value: string): string {
   return value.replace(/\D/g, "").slice(0, 10);
 }
 
+const BROCHURE_PDF_URL = "/assets/static/broucher.pdf";
+const BROCHURE_DOWNLOAD_FILENAME = "broucher.pdf";
+
+async function downloadBrochurePdf(): Promise<void> {
+  try {
+    const res = await fetch(BROCHURE_PDF_URL);
+    if (!res.ok) throw new Error("fetch failed");
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = objectUrl;
+    a.download = BROCHURE_DOWNLOAD_FILENAME;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(objectUrl);
+  } catch {
+    window.open(BROCHURE_PDF_URL, "_blank", "noopener,noreferrer");
+  }
+}
+
 interface CallbackModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -128,6 +149,10 @@ export default function CallbackModal({
               ? "Too many attempts. Please try again later."
               : `Request failed (${res.status})`)
         );
+      }
+
+      if (type === "brochure") {
+        await downloadBrochurePdf();
       }
 
       setStatus({

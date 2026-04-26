@@ -47,7 +47,12 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Email Us</p>
-                    <p className="text-lg font-bold text-slate-900">support@careerxp.in</p>
+                    <a
+                      href="mailto:support@careerxp.in"
+                      className="text-lg font-bold text-slate-900 hover:text-indigo-600 transition-colors"
+                    >
+                      support@careerxp.in
+                    </a>
                     <p className="text-sm text-slate-500">We usually reply within 24 hours.</p>
                   </div>
                 </div>
@@ -58,7 +63,12 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Call Us</p>
-                    <p className="text-lg font-bold text-slate-900">+91 7980444047</p>
+                    <a
+                      href="tel:+917980444047"
+                      className="text-lg font-bold text-slate-900 hover:text-indigo-600 transition-colors"
+                    >
+                      +91 7980444047
+                    </a>
                     <p className="text-sm text-slate-500">Mon-Sat, 10am to 7pm IST</p>
                   </div>
                 </div>

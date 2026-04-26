@@ -4,7 +4,12 @@ export interface Course {
   category: string;
   description: string;
   duration: string;
+  /** @deprecated Prefer discountedPrice; kept for backward compatibility */
   price: string;
+  originalPrice: string;
+  discountedPrice: string;
+  /** Short label for course cards, e.g. "50% OFF" */
+  discountBadge: string;
   image: string;
   techStack: string[];
   features: string[];
@@ -28,7 +33,10 @@ export const coursesData: Course[] = [
     category: "Computer Science",
     description: "Master the foundations of computer science and ace your technical interviews with deep dives into complex algorithms.",
     duration: "4 Months",
-    price: "₹29,999",
+    price: "₹34,999",
+    originalPrice: "₹69,999",
+    discountedPrice: "₹34,999",
+    discountBadge: "50% OFF",
     image: "https://picsum.photos/seed/dsa/800/600",
     techStack: ["java", "python", "javascript", "typescript"],
     features: ["4 Core Modules", "Capstone Project", "Interview Mastery", "Live Mentorship"],
@@ -134,7 +142,10 @@ export const coursesData: Course[] = [
     category: "Full Stack Development",
     description: "The ultimate modern web development track. Build full-stack apps and supercharge your workflow with AI tools.",
     duration: "8 Months",
-    price: "₹49,999",
+    price: "₹54,999",
+    originalPrice: "₹99,999",
+    discountedPrice: "₹54,999",
+    discountBadge: "50% OFF",
     image: "https://picsum.photos/seed/mern/800/600",
     techStack: ["react", "nodejs", "mongodb", "express", "javascript", "nextjs"],
     features: ["8 Comprehensive Modules", "AI Tools Integration", "No-Code Mastery", "Real-world Deployment"],
@@ -288,7 +299,10 @@ export const coursesData: Course[] = [
     category: "Quality Assurance",
     description: "Become a complete QA engineer. From manual testing to advanced automation with Python and Selenium.",
     duration: "6 Courses",
-    price: "₹24,999",
+    price: "₹29,999",
+    originalPrice: "₹59,999",
+    discountedPrice: "₹29,999",
+    discountBadge: "50% OFF",
     image: "https://picsum.photos/seed/testing/800/600",
     techStack: ["python", "java", "selenium", "mysql"],
     features: ["6 Specialized Courses", "Mid-term Viva", "API Testing", "SQL for Testers"],
